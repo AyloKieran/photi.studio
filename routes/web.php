@@ -25,4 +25,12 @@ Route::get('/settings', function () {
     return view('settings');
 });
 
+Route::get('/auth', function () {
+    return view('auth');
+});
+
+Route::get('/post', function () {
+    return view('post');
+});
+
 require __DIR__ . '/auth.php';

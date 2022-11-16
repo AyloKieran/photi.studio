@@ -1,0 +1,78 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.post {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+
+    &__holder {
+        display: flex;
+        flex-grow: 1;
+        background: var(--action__background);
+        border-radius: var(--rounded--extralarge);
+        flex-direction: column;
+
+        @include tablet() {
+            flex-direction: row;
+            padding: var(--spacing6);
+            gap: var(--spacing6);
+        }
+
+        & > div {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+    }
+
+    &__image {
+        position: relative;
+
+        &--overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        &--controls {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing4);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: var(--spacing4);
+
+            & .control__actionable {
+                --actionable--size: 2.5rem;
+                --actionable--opacity: 0.75;
+
+                &:has(img) {
+                    --actionable--opacity: 0.95;
+                }
+
+            }
+        }
+    }
+
+    &__info {
+        padding: var(--spacing6);
+
+        @include tablet() {
+            padding: 0;
+        }
+
+        & .section {
+            &__title {
+                font-size: 24px;
+                font-weight: 900;
+            }
+        }
+
+        & .seperator {
+            margin-top: 0;
+            border-color: var(--border--light);
+        }
+    }
+}

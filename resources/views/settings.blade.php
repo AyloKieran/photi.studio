@@ -64,11 +64,16 @@
                 </div>
             </div>
             <div class="navigation__auth">
-                auth
+                <a href="#" class="navigation__user">
+                    <img src="https://kierannoble.dev/assets/me.webp">
+                    <span>@AyloKieran</span>
+                </a>
+                <div class="navigation__actions">
+                    <i class="icon fa-solid fa-cog"></i>
+                    <i class="icon fa-solid fa-arrow-right-from-bracket"></i>
+                </div>
             </div>
-            <div class="navigation__actions">
-                <i class="fa fa-cog"></i>
-            </div>
+
         </aside>
         <label class="navigation__shade" for="navigation__shown"></label>
     </nav>

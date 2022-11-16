@@ -1,0 +1,30 @@
+&__actionable {
+    --actionable--size: 3rem;
+    --actionable--opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--action__background);
+    color: var(--title__colour);
+    height: var(--actionable--size);
+    width: var(--actionable--size);
+    position: relative;
+    opacity: var(--actionable--opacity);
+
+    & img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: calc(100% - 2px);
+        border-radius: 50%;
+        border: 2px solid var(--action__background);
+    }
+
+    &--active {
+        --actionable--opacity: 1 !important;
+    }
+}

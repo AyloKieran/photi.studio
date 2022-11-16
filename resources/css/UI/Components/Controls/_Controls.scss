@@ -1,6 +1,7 @@
 @import "../../Utilities/Mixins/Mixins";
 
 .control {
+    @import "Actionable/Actionable";
     @import "Dropdown/Dropdown";
     @import "Input/Input";
     @import "Toggle/Toggle";
