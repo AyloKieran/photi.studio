@@ -1,0 +1,20 @@
+.header {
+    margin-top: var(--spacing3);
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--title__colour);
+    }
+
+    &__subtitle {
+        font-size: var(--section__subtitle--size);
+        color: var(--subtitle__colour);
+        margin-top: var(--spacing1);
+    }
+
+    & .seperator {
+        margin: var(--spacing4) 0;
+    }
+    
+}

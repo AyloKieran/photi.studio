@@ -1,0 +1,20 @@
+.section {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        color: var(--section__title-colour);
+        font-weight: 500;
+        margin-bottom: var(--spacing1);
+    }
+
+    &__subtitle {
+        color: var(--section__subtitle-colour);
+        margin-bottom: var(--spacing2);
+        font-size: var(--section__subtitle--size);
+    }
+
+    &__content {
+
+    }
+}

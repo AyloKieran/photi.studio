@@ -1,0 +1,16 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.control {
+    @import "Dropdown/Dropdown";
+    @import "Input/Input";
+    @import "Toggle/Toggle";
+    @import "Table/Table";
+
+    @include tablet {
+        --control--maxWidth: 50%;
+    }
+
+    @include tv {
+        --control--maxWidth: 25%;
+    }
+}

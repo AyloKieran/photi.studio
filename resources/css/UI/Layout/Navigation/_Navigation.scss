@@ -1,0 +1,96 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.navigation {
+
+    &__header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--action__background);
+        height: var(--header--height);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--border--muted);
+
+        @include desktop {
+            width: var(--navigation--width);
+            background-color: var(--navigation__background);
+            border-bottom: unset;
+            border-right: var(--border--width) solid var(--border);
+
+        }
+    }
+
+    & input {
+        display: none;
+
+        &:checked {
+            color: green; 
+
+            & ~ .navigation__bar {
+                right: 0;
+            }
+
+            & ~ .navigation__shade {
+                backdrop-filter: blur(2px);
+                pointer-events: unset;
+            }
+
+        }
+    }
+    
+    &__bar {
+        position: fixed;
+        z-index: 250;
+        max-width: calc(var(--navigation--width) - (var(--spacing3) * 2));
+        width: 100%;
+        background-color: var(--navigation__background);
+        opacity: 0.85;
+        top: var(--header--height);
+        bottom: 0;
+        right: calc(var(--navigation--width) * -1);
+        padding: var(--spacing3);
+        border-left: 2px solid var(--border--muted);
+        @include transition(right);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing3);
+
+        & .nav {
+            flex-grow: 1;
+        }
+        
+        @include desktop {
+            right: unset !important;
+            border-left: unset;
+            border-right: var(--border--width) solid var(--border);
+            opacity: 1;
+        }
+
+    }
+
+    &__toggle {
+        @include desktop {
+            display: none;
+        }
+    }
+
+    &__shade {
+        position: fixed;
+        z-index: 200;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        @include transition(backdrop-filter);
+
+        @include desktop {
+            display: none;
+            pointer-events: none !important;
+        }
+    }
+}

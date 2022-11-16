@@ -1,0 +1,23 @@
+@import "../../Theme/_InternalThemeVariables";
+
+@mixin transition($variable) {
+    transition: $variable var(--transition--length) ease-in-out;
+}
+
+@mixin tablet {
+    @media (min-width: $tabletWidth) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktopWidth) {
+        @content;
+    }
+}
+
+@mixin tv {
+    @media (min-width: $tvWidth) {
+        @content;
+    }
+}

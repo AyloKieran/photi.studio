@@ -1,0 +1,11 @@
+.wrapper {
+    min-height: 100vh;
+    max-width: 100vw;
+    width: 100%;
+    background-color: var(--content__background);
+    color: var(--default-text__colour);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5; 
+}

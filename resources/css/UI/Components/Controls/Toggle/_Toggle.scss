@@ -1,0 +1,48 @@
+&__toggle {
+    width: fit-content;
+
+    & input {
+        display: none;
+
+        &:checked {
+            & + .control__button-slider {
+                background-color: var(--primary__colour);
+
+                &::before {
+                    margin-left: calc(50% - 0.25rem + 2px);
+                }
+            }
+        }
+    }
+
+    & .control__button {
+        padding: var(--spacing2);
+        position: relative;
+        width: 1.75rem;
+        height: 0.5rem;
+
+        &-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--action__background);
+            padding: 0.25rem;
+            border-radius: 1rem;
+            @include transition(background-color);
+
+            &:before {
+                position: absolute;
+                content: "";
+                height: calc(100% - .5rem);
+                aspect-ratio: 1;
+                border-radius: 50%;
+                // background-color: var(--title__colour); // TO DO: this shouldn't be title colour - should always be white?
+                background-color: white;
+                margin-left: 0px;
+                @include transition(margin-left);
+            }
+        }
+    }
+}
