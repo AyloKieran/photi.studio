@@ -26,28 +26,28 @@
     </section>
     <main class="content">
         <div class="content__holder">
-            <x-section title="{{ _('Text Area Control') }}"
-                subtitle="{{ _('This control allows for longer text inputs, such as bios') }}">
+            <x-section title="{{ __('Text Area Control') }}"
+                subtitle="{{ __('This control allows for longer text inputs, such as bios') }}">
                 <x-textarea name="unused" placeholder="placeholder" />
             </x-section>
-            <x-section title="{{ _('Generic Input Control') }}"
-                subtitle="{{ _('This control allows for users to use form inputs') }}">
+            <x-section title="{{ __('Generic Input Control') }}"
+                subtitle="{{ __('This control allows for users to use form inputs') }}">
                 <x-input type="datetime-local" name="unused" />
             </x-section>
-            <x-section title="{{ _('Toggle Control') }}"
-                subtitle="{{ _('This control allows for users to provide Boolean inputs') }}">
+            <x-section title="{{ __('Toggle Control') }}"
+                subtitle="{{ __('This control allows for users to provide Boolean inputs') }}">
                 <x-toggle name="unused" checked="" />
             </x-section>
-            <x-section title="{{ _('Checkbox Control (Dropdown)') }}"
-                subtitle="{{ _('This control allows for users to use checkbox form inputs') }}">
+            <x-section title="{{ __('Checkbox Control (Dropdown)') }}"
+                subtitle="{{ __('This control allows for users to use checkbox form inputs') }}">
                 <x-checkbox name="unused" :values="$values" />
             </x-section>
-            <x-section title="{{ _('Radio Control (Dropdown)') }}"
-                subtitle="{{ _('This control allows for users to use radio form inputs') }}">
+            <x-section title="{{ __('Radio Control (Dropdown)') }}"
+                subtitle="{{ __('This control allows for users to use radio form inputs') }}">
                 <x-radio name="radio" :values="$values" />
             </x-section>
-            <x-section title="{{ _('Table Control') }}"
-                subtitle="{{ _('This control allows for users to use form inputs') }}">
+            <x-section title="{{ __('Table Control') }}"
+                subtitle="{{ __('This control allows for users to use form inputs') }}">
                 <div class="control control__table control__table--sortable control__table--navigatable">
                     <div class="control__table--holder">
                         <table>

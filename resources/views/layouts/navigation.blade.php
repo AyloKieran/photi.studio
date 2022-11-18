@@ -9,20 +9,20 @@
     <aside class="navigation__bar">
         <div class="nav">
             <x-navigation.section>
-                <x-navigation.link title="{{ _('Upload Photo') }}" actionable="true" />
+                <x-navigation.link title="{{ __('Upload Photo') }}" actionable="true" />
             </x-navigation.section>
-            <x-navigation.section title="{{ _('Posts') }}">
-                <x-navigation.link title="{{ _('My Feed') }}" icon="fa-home" route="dashboard" />
-                <x-navigation.link title="{{ _('Search') }}" icon="fa-search" />
-                <x-navigation.link title="{{ _('Trending') }}" icon="fa-arrow-trend-up" />
-                <x-navigation.link title="{{ _('Friends') }}" icon="fa-users" />
+            <x-navigation.section title="{{ __('Posts') }}">
+                <x-navigation.link title="{{ __('My Feed') }}" icon="fa-home" route="dashboard" />
+                <x-navigation.link title="{{ __('Search') }}" icon="fa-search" />
+                <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" />
+                <x-navigation.link title="{{ __('Friends') }}" icon="fa-users" />
             </x-navigation.section>
-            <x-navigation.section title="{{ _('Social') }}">
-                <x-navigation.link title="{{ _('Notifications') }}" icon="fa-bell" />
-                <x-navigation.link title="{{ _('Messages') }}" icon="fa-envelope" />
+            <x-navigation.section title="{{ __('Social') }}">
+                <x-navigation.link title="{{ __('Notifications') }}" icon="fa-bell" />
+                <x-navigation.link title="{{ __('Messages') }}" icon="fa-envelope" />
             </x-navigation.section>
-            <x-navigation.section title="{{ _('Prototype') }}">
-                <x-navigation.link title="{{ _('Prototype Feedback') }}" icon="fa-comments" />
+            <x-navigation.section title="{{ __('Prototype') }}">
+                <x-navigation.link title="{{ __('Prototype Feedback') }}" icon="fa-comments" />
             </x-navigation.section>
         </div>
         <div class="navigation__auth">
