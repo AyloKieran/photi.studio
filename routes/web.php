@@ -23,11 +23,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/settings', function () {
     return view('settings');
-});
-
-Route::get('/auth', function () {
-    return view('auth');
-});
+})->middleware('password.confirm');
 
 Route::get('/post', function () {
     return view('post');

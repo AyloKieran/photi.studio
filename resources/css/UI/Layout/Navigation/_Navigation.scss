@@ -10,13 +10,14 @@
         background: var(--action__background);
         height: var(--header--height);
         z-index: 1000;
+        padding: 0 var(--spacing4);
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 2px solid var(--border--muted);
 
         @include desktop {
-            width: var(--navigation--width);
+            width: calc(var(--navigation--width) - calc(var(--spacing4) * 2));
             background-color: var(--navigation__background);
             border-bottom: unset;
             border-right: var(--border--width) solid var(--border);

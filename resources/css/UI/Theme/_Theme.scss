@@ -1,7 +1,7 @@
 @import "_InternalThemeVariables";
 @import "_Spacing";
 
-
+// Dynamic Properties
 $properties: (
     //Property Name                         Light Theme                         Dark Theme
     ("--title__colour",                 "rgba(12 26 29)",                  "rgba(255 255 255)"),
@@ -24,6 +24,7 @@ $properties: (
     ("--table__row--even",              "rgba(204 206 216)",                  "rgba(35, 38, 50)"),
 );
 
+// Static Properties
 :root {
     --primary__colour: rgb(37 153 255);
     --navigation--width: 15rem;
@@ -59,16 +60,25 @@ $properties: (
 .theme--dark {
     @each $property in $properties {
         @if nth($property,3) != "" {
-            #{nth($property,1)}: #{nth($property,3)};
+            #{nth($property,1)}: #{nth($property,3)} !important;
         }
     }
     color-scheme: dark;
 }
 
 /* Light Theme -------------------------------------------- */
+@media (prefers-color-scheme: light) {
+    :root {
+        @each $property in $properties {
+            @if nth($property,2) != "" {
+                #{nth($property,1)}: #{nth($property,2)};
+            }
+        }
+    }
+}
 .theme--light {
     @each $property in $properties {
-        #{nth($property,1)}: #{nth($property,2)};
+        #{nth($property,1)}: #{nth($property,2)} !important;
     }
     color-scheme: light;
 }

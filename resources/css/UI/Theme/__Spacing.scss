@@ -1,6 +1,6 @@
 // spacing
 :root {
-    @for $i from 1 through 96 {
+    @for $i from 1 through 48 {
         --spacing#{$i}: #{0.25rem * $i};
     }
 }

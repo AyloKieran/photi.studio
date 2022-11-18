@@ -1,35 +1,16 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<x-auth-layout title="{{ __('Confirm Password') }}">
+    <form method="POST" action="{{ route('password.confirm') }}">
+        @csrf
+        <x-authentication.message
+            message="{{ __('This is a secure area of the application. Please confirm your password before continuing.') }}" />
+        <x-section title="{{ __('Password') }}">
+            <x-input type="password" name="password" required="true" autofocus />
+        </x-section>
+        <div class="authentication__form--actions">
+            <x-button primary type="submit">
+                {{ __('Confirm') }}
+                <i class="icon fa-solid fa-arrow-right"></i>
+            </x-button>
         </div>
-
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
-
-            <!-- Password -->
-            <div>
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Confirm') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </form>
+</x-auth-layout>

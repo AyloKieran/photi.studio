@@ -1,0 +1,24 @@
+&__button {
+    border: 0;
+    border-radius: var(--rounded--medium);
+    background-color: var(--action__background);
+    font-size: 12px;
+    padding: var(--spacing2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing1);
+    text-decoration: none;
+    color: var(--subtitle__colour);
+    cursor: pointer;
+
+    &--primary {
+        background-color: var(--primary__colour);
+        color: var(--title__colour);
+        font-weight: 600;
+    }
+
+    &--secondary {
+        flex-grow: 0.5 !important;
+    }
+}

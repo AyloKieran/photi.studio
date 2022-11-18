@@ -85,8 +85,7 @@
                         <div class="post">
                             <div class="post__holder">
                                 <div class="post__image">
-                                    <img src="https://images.unsplash.com/photo-1659535964542-63e75ddb28ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                                        style="width: 100%; height: 100%; border-radius: var(--rounded--extralarge)">
+                                    <img src="https://i.pinimg.com/564x/f8/b2/8b/f8b28b423a05880a3054fb5a3f4da864.jpg">
                                     <div class="post__image--overlay">
                                         <div class="post__image--controls">
                                             <div class="control control__actionable">

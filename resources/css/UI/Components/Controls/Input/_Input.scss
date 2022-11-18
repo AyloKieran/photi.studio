@@ -15,7 +15,13 @@
 
     }
 
+    &--error {
+        color: rgb(197, 87, 87); // TO DO: variable;
+        font-size: 12px;
+        margin: var(--spacing1);
+    }
+
     & .error {
-        border: 2px solid rgba(255 10 10); // TO DO: variable
+        border: 2px solid rgba(197, 87, 87); // TO DO: variable
     }
 }
