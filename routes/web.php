@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,14 @@ Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']],
 
 Route::get('/post', function () {
     return view('pages.post');
+});
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    return "Cleared";
 });
 
 require __DIR__ . '/auth.php';
