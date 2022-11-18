@@ -1,3 +1,23 @@
+@php
+    $values = [
+        (object) [
+            'key' => 'Item One',
+            'value' => 'item-one',
+            'checked' => true,
+        ],
+        (object) [
+            'key' => 'Item Two',
+            'value' => 'item-two',
+            'checked' => false,
+        ],
+        (object) [
+            'key' => 'Item Three',
+            'value' => 'item-three',
+            'checked' => false,
+        ],
+    ];
+@endphp
+
 <x-preferences-layout title="{{ __('Profile Information') }}">
     <section class="header">
         <h1 class="header__title">Profile Information</h1>
@@ -18,27 +38,6 @@
                 subtitle="{{ _('This control allows for users to provide Boolean inputs') }}">
                 <x-toggle name="unused" checked="" />
             </x-section>
-
-            @php
-                $values = [
-                    (object) [
-                        'key' => 'Item One',
-                        'value' => 'item-one',
-                        'checked' => true,
-                    ],
-                    (object) [
-                        'key' => 'Item Two',
-                        'value' => 'item-two',
-                        'checked' => false,
-                    ],
-                    (object) [
-                        'key' => 'Item Three',
-                        'value' => 'item-three',
-                        'checked' => false,
-                    ],
-                ];
-            @endphp
-
             <x-section title="{{ _('Checkbox Control (Dropdown)') }}"
                 subtitle="{{ _('This control allows for users to use checkbox form inputs') }}">
                 <x-checkbox name="unused" :values="$values" />
