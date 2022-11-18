@@ -1,6 +1,6 @@
 <div class="nav">
     <x-navigation.section>
-        <x-navigation.link title="{{ _('Upload Photo') }}" actionable="true" />
+        {{-- <x-navigation.link title="{{ _('Upload Photo') }}" actionable="true" /> --}}
     </x-navigation.section>
     <x-navigation.section title="{{ _('Posts') }}">
         <x-navigation.link title="{{ _('My Feed') }}" icon="fa-home" route="dashboard" />
