@@ -45,7 +45,7 @@
             padding: var(--spacing4);
 
             & .control__actionable {
-                --actionable--size: 2.5rem;
+                --actionable--size: 2.5rem; // TO DO: variable
                 --actionable--opacity: 0.75;
 
                 &:has(img) {
@@ -74,8 +74,8 @@
 
         & .section {
             &__title {
-                font-size: 24px;
-                font-weight: 900;
+                font-size: 24px; // TO DO: variable
+                font-weight: 900; // TO DO: variable
             }
         }
 

@@ -11,11 +11,11 @@
 
             &:checked {
 
-                & ~ .control__dropdown-item-text { 
+                & ~ .control__dropdown-item-text {
                     background: var(--action__background--selected);
                     color: var(--section__title-colour);
 
-                    & .control__dropdown-item-checked { 
+                    & .control__dropdown-item-checked {
                         opacity: 1;
                     }
                 }
@@ -29,7 +29,7 @@
             display: flex;
             justify-content: space-between;
         }
-        
+
         &-checked {
             opacity: 0;
         }
@@ -67,7 +67,7 @@
         pointer-events: auto;
     }
 
-    & .control__button { 
+    & .control__button {
         background: var(--action__background);
         padding: var(--spacing2);
         border-radius: var(--rounded--large);

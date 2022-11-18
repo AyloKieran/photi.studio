@@ -2,7 +2,7 @@
     border: 0;
     border-radius: var(--rounded--medium);
     background-color: var(--action__background);
-    font-size: 12px;
+    font-size: 12px; // TO DO: variable
     padding: var(--spacing2);
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
     &--primary {
         background-color: var(--primary__colour);
         color: var(--title__colour);
-        font-weight: 600;
+        font-weight: 600; // TO DO: variable
     }
 
     &--secondary {

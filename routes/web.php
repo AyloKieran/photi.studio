@@ -14,19 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/settings', function () {
-    return view('settings');
-})->middleware('password.confirm');
+Route::get('/preferences', fn () => redirect(route('preferences.profile-information')))->name('preferences');
+Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']], function () {
+    Route::get('/profile-information', fn () => view('pages.preferences.profile-information'))->name('preferences.profile-information');
+});
 
 Route::get('/post', function () {
-    return view('post');
+    return view('pages.post');
 });
 
 require __DIR__ . '/auth.php';
