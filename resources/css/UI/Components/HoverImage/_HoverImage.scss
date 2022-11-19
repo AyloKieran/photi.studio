@@ -1,0 +1,59 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.hoverImage {
+    --colour: rgba(26, 27, 36, 0.25); // TO DO: better variable name and variable
+
+    position: relative;
+    margin-bottom: var(--spacing4);
+    display: flex;
+    width: 100%;
+    border-radius: var(--rounded--medium);
+
+    &:hover {
+        & .hoverImage__image--overlay {
+            opacity: 1;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        max-height: calc(100vh*0.5); // TO DO: variable
+        min-height: 156px; // TO DO: variable (or calcuate from overlay controls)
+        height: auto;
+        object-fit: cover;
+        border-radius: var(--rounded--medium);
+        background: var(--colour); // TO DO: variable
+
+        &--overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1; // TO DO: variable
+            display: flex;
+            background-color: var(--colour);
+            opacity: 0;
+        }
+
+        &--controls {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing3);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: var(--spacing3);
+
+            & .control__actionable {
+                --actionable--size: 2.25rem; // TO DO: variable
+                --actionable--opacity: 0.75;
+
+                &:has(img) {
+                    --actionable--opacity: 0.95;
+                }
+
+            }
+        }
+    }
+}
