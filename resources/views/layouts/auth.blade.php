@@ -3,9 +3,7 @@
 <x-base-layout title="{{ $title }}">
 
     <body class="wrapper authentication">
-        <div class="authentication__image">
-            <img src="/tyler-lastovich-AVzByhROPbs-unsplash.jpg">
-        </div>
+        @include('components.authentication.images')
         <div class="authentication__auth">
             <div class="">logo</div>
             <div class="authentication__form">
@@ -21,7 +19,6 @@
                     @csrf
                     <x-button secondary type="submit">
                         {{ __('Log Out') }}
-                        {{-- <i class="icon fa-solid fa-arrow-right"></i> --}}
                     </x-button>
                 @endauth
         </div>
