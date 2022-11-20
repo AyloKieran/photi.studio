@@ -1,0 +1,7 @@
+&__tags {
+    &-holder {
+        display: flex;
+        gap: var(--spacing2);
+        flex-wrap: wrap;
+    }
+}

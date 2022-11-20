@@ -1,3 +1,4 @@
+@import "../Utilities/Mixins/Mixins";
 @import "_InternalThemeVariables";
 @import "_Spacing";
 
@@ -29,7 +30,6 @@ $properties: (
     --primary__colour: rgb(37 153 255);
     --error__colour: rgb(197, 87, 87);
     --navigation--width: 15rem;
-    --header--height: 3rem;
     --max-content--width: 1500px;
     --border--width: 1px;
     --table__border--width: 1px;
@@ -45,6 +45,12 @@ $properties: (
     --navigation__dropdown--gap: .125rem;
     --icon--size: .75rem;
     --transition--length: .25s;
+
+    --header--height: 3rem;
+
+    @include desktop {
+       --header--height: 6rem;
+    }
 }
 
 /* Dark Theme -------------------------------------------- */

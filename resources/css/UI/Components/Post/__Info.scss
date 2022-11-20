@@ -1,0 +1,56 @@
+&__info {
+    padding: var(--spacing6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing2);
+
+    @include tablet() {
+        max-height: 80vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    @include desktop() {
+        padding: 0;
+    }
+
+    & .section {
+        & input {
+            display: none;
+
+            &:checked {
+                & ~ .section__subtitle {
+                    display: block;
+                }
+
+                & ~ .post__description-toggle {
+                    &::before {
+                        content: "Show Less";
+                    }
+                }
+            }
+        }
+
+        &__title {
+            font-size: 24px; // TO DO: variable
+            font-weight: 900; // TO DO: variable
+        }
+
+        &__title, &__subtitle {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; // TO DO: variable
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    & .post__description-toggle {
+        margin-left: auto;
+        font-size: 12px; // TO DO: variable
+    }
+
+    & .seperator {
+        margin-top: 0;
+    }
+}

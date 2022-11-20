@@ -29,7 +29,7 @@ Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']],
 
 Route::get('/post', function () {
     return view('pages.post');
-});
+})->middleware(['auth'])->name('post');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

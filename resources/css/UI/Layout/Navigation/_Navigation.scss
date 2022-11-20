@@ -29,8 +29,6 @@
         display: none;
 
         &:checked {
-            color: green;
-
             & ~ .navigation__bar {
                 right: 0;
             }

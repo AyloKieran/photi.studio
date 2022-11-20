@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+
+    &-track {
+        background-color: transparent;
+    }
+
+    &-thumb {
+        background-color: var(--subtitle__colour);
+        border-radius: 20px;
+        border: 5px solid transparent;
+        background-clip: content-box;
+
+        &:hover {
+            // background-color: rgba(var(--title__colour), 0.75);
+        }
+
+        &:active {
+            // background-color: rgba(var(--title__colour), 1);
+        }
+      }
+  }

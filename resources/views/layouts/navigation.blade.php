@@ -1,7 +1,7 @@
 <nav class="navigation">
     <input id="navigation__shown" type="checkbox">
     <div class="navigation__header">
-        <div>logo</div>
+        <x-logo navFriendly="true" />
         <label class="navigation__toggle" for="navigation__shown">
             <i class="fa fa-bars"></i>
         </label>

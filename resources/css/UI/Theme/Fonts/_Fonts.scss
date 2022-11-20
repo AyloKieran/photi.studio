@@ -52,6 +52,42 @@
     font-weight: 900;
 }
 
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Light.ttf") format("truetype");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Thin.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Now";
+    src: url("@assets/fonts/Now-Black.ttf") format("truetype");
+    font-weight: 800;
+}
+
 @import "FontAwesome/fontawesome.scss";
 @import "FontAwesome/solid.scss";
 @import "FontAwesome/brands.scss";

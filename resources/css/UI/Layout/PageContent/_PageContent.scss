@@ -9,7 +9,7 @@ $contentAsideWidth: 2rem;
     display: flex;
     overflow-x: auto;
 
-    & input {
+    & #pageContent__aside--open {
         display: none;
 
         &:checked {

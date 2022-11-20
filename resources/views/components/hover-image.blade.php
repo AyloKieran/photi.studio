@@ -1,4 +1,4 @@
-@props(['hoverable' => false, 'navigatable' => true])
+@props(['hoverable' => true, 'navigatable' => true])
 
 @php
     $tagName = $navigatable == 'true' ? 'a' : 'div';
@@ -12,7 +12,7 @@
     @endphp
     <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
         loading="lazy" decoding="async" />
-    @if ($hoverable)
+    @if ($hoverable == 'true')
         <div class="hoverImage__image--overlay">
             <div class="hoverImage__image--controls">
                 <div class="control control__actionable control__actionable--active">

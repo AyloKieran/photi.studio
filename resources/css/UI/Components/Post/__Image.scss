@@ -1,0 +1,65 @@
+&__image {
+    --colour: rgba(255, 100, 50, .25); // TO DO: better variable name and variable
+
+    position: relative;
+
+    &--overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &--controls {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing4);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: var(--spacing4);
+
+        & .control__actionable {
+            --actionable--size: 2.5rem; // TO DO: variable
+            --actionable--opacity: 0.75;
+
+            &:has(img) {
+                --actionable--opacity: 0.95;
+            }
+
+        }
+    }
+
+
+    // Displays the post image and blurs background image
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--imageURL);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        backdrop-filter: blur(15px);
+        border-radius: var(--rounded--extralarge);
+    }
+
+    & > img {
+        width: 100%;
+        height: 100%;
+        border-radius: var(--rounded--extralarge);
+        max-height: 80vh; // TO DO: variable?
+        background-color: var(--colour);
+        object-fit: cover;
+        // overflow: hidden;
+
+
+        @include tablet {
+            min-height: 50vh; // TO DO: variable?
+        }
+    }
+}

@@ -1,0 +1,64 @@
+&__comments {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    &-holder {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing2);
+        max-height: calc(39px * 10 - 1px); // TO DO: variable // comment height * number of comments - border
+        margin-right: calc(var(--spacing4) * -1);
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &:empty {
+            &::before {
+                content: 'No comments yet';
+                font-size: 14px;
+                text-align: center;
+                color: var(--subtitle__colour);
+                margin: auto;
+            }
+        }
+    }
+
+    &-actions {
+        margin-top: var(--spacing2);
+        display: flex;
+        gap: var(--spacing2);
+    }
+
+    &-input {
+        flex-grow: 1;
+        background: var(--action__background);
+        padding: 0 var(--spacing2);
+        border-radius: 32px; // TO DO: variable
+        color: var(--section__title-colour);
+        display: flex;
+        gap: var(--spacing1);
+
+        & input {
+            flex-grow: 1;
+            border: none;
+            background: inherit;
+        }
+
+        &--feedback {
+            font-size: 10px; // TO DO: variable
+            margin: auto 0;
+            color: var(--subtitle__colour);
+            margin-right: var(--spacing1);
+        }
+    }
+
+    &-button {
+        height: 32px; // TO DO: variable
+        width: 32px; // TO DO: variable
+        background: var(--action__background);
+        border: none;
+        border-radius: 32px; // TO DO: variable
+        color: var(--subtitle__colour);
+    }
+}

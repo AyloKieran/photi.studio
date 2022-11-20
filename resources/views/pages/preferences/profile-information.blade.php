@@ -19,11 +19,8 @@
 @endphp
 
 <x-preferences-layout title="{{ __('Profile Information') }}">
-    <section class="header">
-        <h1 class="header__title">Profile Information</h1>
-        <h2 class="header__subtitle">How do you want to be seen on Photi.Studio?</h2>
-        <hr class="seperator" />
-    </section>
+    <x-header title="{{ __('Profile Information') }}"
+        subtitle="{{ __('How do you want to be seen on Photi.Studio?') }}" />
     <main class="content">
         <div class="content__holder">
             <x-section title="{{ __('Text Area Control') }}"

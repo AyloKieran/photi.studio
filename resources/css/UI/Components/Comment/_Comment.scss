@@ -1,0 +1,41 @@
+.comment {
+    width: 100%;
+    display: flex;
+    gap: var(--spacing2);
+    max-width: calc(100% - var(--spacing4));
+
+    &__avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+    }
+
+    &__holder {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__author {
+        color: var(--navigation__section-title);
+        font-size: 14px; // TO DO: variable
+        font-weight: 600; // TO DO: variable
+    }
+
+    &__time {
+        color: var(--subtitle__color);
+        font-size: 10px; // TO DO: variable
+        margin: auto 0;
+    }
+
+    &__text {
+        color: var(--subtitle__color);
+        font-size: 12px; // TO DO: variable
+    }
+}
