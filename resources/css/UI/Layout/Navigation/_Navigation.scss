@@ -99,6 +99,7 @@
         display: flex;
         gap: var(--spacing3);
         border-top: var(--border--width) solid var(--border);
+        background-color: var(--navigation__auth--background);
     }
 
     &__user {

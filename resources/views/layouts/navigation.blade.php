@@ -12,8 +12,8 @@
         </div>
         <div class="navigation__auth">
             <a href="#" class="navigation__user">
-                <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
-                <span>{{ auth()->user()->name }}</span>
+                <img src="{{ auth()->user()->avatar }}" loading="lazy" decoding="async">
+                <span>{{ auth()->user()->preferred_name }}</span>
             </a>
             <div class="navigation__actions">
                 <a class="icon fa-solid fa-cog" href={{ route('preferences') }}></a>

@@ -4,7 +4,7 @@
         <x-authentication.message
             message="{{ __('This is a secure area of the application. Please confirm your password before continuing.') }}" />
         <x-section title="{{ __('Password') }}">
-            <x-input type="password" name="password" required="true" autofocus />
+            <x-input type="password" name="password" required autofocus />
         </x-section>
         <div class="authentication__form--actions">
             <x-button primary type="submit">

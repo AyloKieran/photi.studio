@@ -1,9 +1,22 @@
-@props(['title', 'subtitle' => ''])
+@props(['title', 'subtitle' => '', 'includeSeperator' => true])
 
 <section class="header">
-    <h1 class="header__title">{{ $title }}</h1>
-    @if ($subtitle != '')
-        <h2 class="header__subtitle">{{ $subtitle }}</h2>
+    <div class="header__holder">
+        <div class="header__titles">
+            <h1 class="header__title">{{ $title }}</h1>
+            @if ($subtitle != '')
+                <h2 class="header__subtitle">{{ $subtitle }}</h2>
+            @endif
+        </div>
+        @if ($slot)
+            <div class="header__actions">
+                <div class="header__actions-holder">
+                    {{ $slot }}
+                </div>
+            </div>
+        @endif
+    </div>
+    @if ($includeSeperator == 'true')
+        <hr class="seperator" />
     @endif
-    <hr class="seperator" />
 </section>

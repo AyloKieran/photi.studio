@@ -9,7 +9,7 @@
             <x-authentication.message message="{{ session('status') }}" />
         @endif
         <x-section title="{{ __('Email') }}">
-            <x-input type="email" name="email" placeholder="howdy@photi.studio" required="true" autofocus />
+            <x-input type="email" name="email" placeholder="howdy@photi.studio" required autofocus />
         </x-section>
         <div class="authentication__form--actions">
             <x-button primary type="submit">

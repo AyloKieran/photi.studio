@@ -7,10 +7,10 @@
             <x-input type="email" name="email" value="{{ $request->email }}" />
         </x-section>
         <x-section title="{{ __('Password') }}">
-            <x-input type="password" name="password" required="true" />
+            <x-input type="password" name="password" required />
         </x-section>
         <x-section title="{{ __('Password Confirmation') }}">
-            <x-input type="password" name="password_confirmation" required="true" />
+            <x-input type="password" name="password_confirmation" required />
         </x-section>
         <div class="authentication__form--actions">
             <x-button primary type="submit">

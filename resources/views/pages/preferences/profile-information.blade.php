@@ -29,7 +29,7 @@
             </x-section>
             <x-section title="{{ __('Generic Input Control') }}"
                 subtitle="{{ __('This control allows for users to use form inputs') }}">
-                <x-input type="datetime-local" name="unused" />
+                <x-input type="datetime-local" name="unused" required />
             </x-section>
             <x-section title="{{ __('Toggle Control') }}"
                 subtitle="{{ __('This control allows for users to provide Boolean inputs') }}">

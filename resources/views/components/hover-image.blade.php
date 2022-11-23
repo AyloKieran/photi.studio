@@ -1,10 +1,10 @@
-@props(['hoverable' => true, 'navigatable' => true])
+@props(['hoverable' => true, 'navigatable' => true, 'showUser' => true])
 
 @php
     $tagName = $navigatable == 'true' ? 'a' : 'div';
 @endphp
 
-<{{ $tagName }} {{ $navigatable == 'true' ? 'href=#' : '' }} class="hoverImage">
+<{{ $tagName }} {{ $navigatable == 'true' ? 'href=' . '/post' : '' }} class="hoverImage">
     @php
         $width = rand(200, 900);
         $height = rand(200, 900);
@@ -15,6 +15,11 @@
     @if ($hoverable == 'true')
         <div class="hoverImage__image--overlay">
             <div class="hoverImage__image--controls">
+                @if ($showUser)
+                    <div class="control control__actionable">
+                        <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
+                    </div>
+                @endif
                 <div class="control control__actionable control__actionable--active">
                     <i class="icon fa fa-thumbs-up"></i>
                 </div>

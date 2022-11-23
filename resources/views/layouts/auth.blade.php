@@ -9,21 +9,24 @@
                 <x-logo />
             </div>
             <div class="authentication__form">
-                <section class="header">
-                    <h1 class="header__title">{{ $title }}</h1>
-                </section>
+                <x-header title="{{ $title }}" includeSeperator="false" />
                 {{ $slot }}
             </div>
             <div class="authentication__footer">
                 @auth
-                    MOVE ME
-                    Signed in as {{ auth()->user()->name }}
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-button secondary type="submit">
-                            {{ __('Log Out') }}
-                        </x-button>
-                    </form>
+                    <div class="authentication__footer-actions">
+                        <div class="authentication__footer-user">
+                            <img src="{{ Auth::user()->avatar }}"
+                                alt="{{ __(':name\'s Profile Picture', ['name' => auth()->user()->preferred_name]) }}">
+                            <span>{{ Auth()->user()->preferred_name }}</span>
+                        </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-button secondary type="submit">
+                                {{ __('Log Out') }}
+                            </x-button>
+                        </form>
+                    </div>
                 @endauth
             </div>
         </div>

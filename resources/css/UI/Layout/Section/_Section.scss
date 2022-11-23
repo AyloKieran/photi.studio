@@ -17,4 +17,14 @@
     &__content { // TO DO: Remove?
 
     }
+
+    &:has(input[required], select[required], textarea[required]) {
+        & .section__title {
+            &::after {
+                content: '*';
+                color: var(--error__colour);
+                margin-left: var(--spacing1);
+            }
+        }
+    }
 }

@@ -13,6 +13,25 @@
         margin-top: var(--spacing1);
     }
 
+    &__holder {
+        flex-grow: 1;
+        display: flex;
+        gap: var(--spacing6);
+    }
+
+    &__titles {
+        flex-grow: 1;
+    }
+
+    &__actions {
+        margin: auto 0;
+
+        &-holder {
+            display: flex;
+            gap: var(--spacing3);
+        }
+    }
+
     & .seperator {
         margin: var(--spacing4) 0;
     }

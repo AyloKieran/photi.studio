@@ -2,10 +2,10 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <x-section title="{{ __('Email') }}">
-            <x-input type="email" name="email" placeholder="howdy@photi.studio" required="true" autofocus />
+            <x-input type="email" name="email" placeholder="howdy@photi.studio" required autofocus />
         </x-section>
         <x-section title="{{ __('Password') }}">
-            <x-input type="password" name="password" required="true" />
+            <x-input type="password" name="password" required />
         </x-section>
         <div class="authentication__form--actions">
             @if (Route::has('password.request'))

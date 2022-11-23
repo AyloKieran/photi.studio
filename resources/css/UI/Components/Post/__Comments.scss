@@ -8,12 +8,14 @@
         display: flex;
         flex-direction: column;
         gap: var(--spacing2);
-        max-height: calc(39px * 10 - 1px); // TO DO: variable // comment height * number of comments - border
+        max-height: calc(39px * 9 - 1px); // TO DO: variable // comment height * number of comments - border
         margin-right: calc(var(--spacing4) * -1);
         overflow-y: auto;
         overflow-x: hidden;
 
         &:empty {
+            min-height: 100px;
+
             &::before {
                 content: 'No comments yet';
                 font-size: 14px;
@@ -42,7 +44,7 @@
         & input {
             flex-grow: 1;
             border: none;
-            background: inherit;
+            background: none;
         }
 
         &--feedback {
@@ -60,5 +62,9 @@
         border: none;
         border-radius: 32px; // TO DO: variable
         color: var(--subtitle__colour);
+
+        &:disabled {
+            opacity: 0.35;
+        }
     }
 }

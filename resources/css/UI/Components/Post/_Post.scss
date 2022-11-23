@@ -18,7 +18,6 @@
 
         @include desktop() {
             flex-direction: row;
-            padding: var(--spacing6);
             gap: var(--spacing6);
         }
 
