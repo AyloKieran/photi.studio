@@ -6,13 +6,15 @@
             <x-post.comment />
         @endfor
     </div>
-    <form action="" class="post__comments-actions">
-        <div class="post__comments-input">
-            <input type="text" name="unused" placeholder="Add a comment...">
-            <span class="post__comments-input--feedback">14/300</span>
-        </div>
-        <button class="post__comments-button">
-            <i class="icon fa-solid fa-arrow-right"></i>
-        </button>
-    </form>
+    @auth
+        <form action="" class="post__comments-actions">
+            <div class="post__comments-input">
+                <input type="text" name="unused" placeholder="Add a comment...">
+                <span class="post__comments-input--feedback">14/300</span>
+            </div>
+            <button class="post__comments-button">
+                <i class="icon fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    @endauth
 </div>

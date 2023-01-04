@@ -11,21 +11,33 @@
             @include('components.global.navigation')
         </div>
         <div class="navigation__auth">
-            <a href="#" class="navigation__user">
-                <img src="{{ auth()->user()->avatar }}" loading="lazy" decoding="async">
-                <span>{{ auth()->user()->preferred_name }}</span>
-            </a>
-            <div class="navigation__actions">
-                <a class="icon fa-solid fa-cog" href={{ route('preferences') }}></a>
-                <i class="icon fa-solid fa-arrow-right-from-bracket"
-                    onclick="document.getElementById('logoutForm').submit()"></i>
+            @auth
+                <a href="#" class="navigation__user">
+                    <img src="{{ auth()->user()->avatar }}" loading="lazy" decoding="async">
+                    <span>{{ auth()->user()->preferred_name }}</span>
+                </a>
+                <div class="navigation__actions">
+                    <a class="icon fa-solid fa-cog" href={{ route('preferences') }}></a>
+                    <i class="icon fa-solid fa-arrow-right-from-bracket"
+                        onclick="document.getElementById('logoutForm').submit()"></i>
+                </div>
             </div>
-        </div>
 
-        <form method="POST" action="{{ route('logout') }}" style="display: none" id="logoutForm">
-            @csrf
-        </form>
-
+            <form method="POST" action="{{ route('logout') }}" style="display: none" id="logoutForm">
+                @csrf
+            </form>
+        @else
+            <div class="navigation__auth--actions">
+                <x-button primary>
+                    <a href="{{ route('login') }}">Login</a>
+                    <i class="icon fa-solid fa-arrow-right-to-bracket"></i>
+                </x-button>
+                <x-button>
+                    <a href="{{ route('register') }}">Register</a>
+                    <i class="icon fa-solid fa-user-plus"></i>
+                </x-button>
+            </div>
+        @endauth
     </aside>
     <label class="navigation__shade" for="navigation__shown"></label>
 </nav>

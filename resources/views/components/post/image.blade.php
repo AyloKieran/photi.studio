@@ -13,12 +13,14 @@
             <div class="control control__actionable">
                 <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
             </div>
-            <div class="control control__actionable control__actionable--active">
-                <i class="icon fa fa-thumbs-up"></i>
-            </div>
-            <div class="control control__actionable">
-                <i class="icon fa fa-thumbs-down"></i>
-            </div>
+            @auth
+                <div class="control control__actionable control__actionable--active">
+                    <i class="icon fa fa-thumbs-up"></i>
+                </div>
+                <div class="control control__actionable">
+                    <i class="icon fa fa-thumbs-down"></i>
+                </div>
+            @endauth
             <div class="control control__actionable">
                 <i class="icon fa fa-magnifying-glass-arrow-right"></i>
             </div>

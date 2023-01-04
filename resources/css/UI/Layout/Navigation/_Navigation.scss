@@ -100,6 +100,17 @@
         gap: var(--spacing3);
         border-top: var(--border--width) solid var(--border);
         background-color: var(--navigation__auth--background);
+
+        &--actions {
+            display: flex;
+            gap: var(--spacing2);
+            width: 100%;
+
+            & > * {
+                flex-grow: 1;
+                flex-basis: 0;
+            }
+        }
     }
 
     &__user {
