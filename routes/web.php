@@ -8,9 +8,9 @@ Route::get('/', function () {
     return view('pages.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    return view('pages.home');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/preferences', fn () => redirect(route('preferences.profile-information')))->name('preferences');
 Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']], function () {
@@ -20,6 +20,9 @@ Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']],
 Route::get('/post', function () {
     return view('pages.post');
 })->middleware(['auth'])->name('post');
+Route::get('/search/tag/{tag}', function ($tag) {
+    return view('pages.tag')->with('tag', $tag);;
+})->middleware(['auth'])->name('search.tag');
 
 Route::post('/search', function (Request $request) {
     return redirect()->route('search', ['search' => $request->search]);

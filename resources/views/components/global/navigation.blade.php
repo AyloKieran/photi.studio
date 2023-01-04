@@ -2,7 +2,7 @@
     <x-navigation.link title="{{ __('Upload Photo') }}" actionable="true" />
 </x-navigation.section>
 <x-navigation.section title="{{ __('Posts') }}">
-    <x-navigation.link title="{{ __('My Feed') }}" icon="fa-home" route="dashboard" />
+    <x-navigation.link title="{{ __('My Feed') }}" icon="fa-home" route="home" />
     <x-navigation.link title="{{ __('Search') }}" icon="fa-search" route="search" />
     <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" />
     <x-navigation.link title="{{ __('Friends') }}" icon="fa-users" />
