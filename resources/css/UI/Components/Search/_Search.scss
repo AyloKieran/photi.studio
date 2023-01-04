@@ -1,0 +1,58 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.search {
+
+    &__controls {
+        display: flex;
+        // gap: var(--spacing2);
+        max-width: 500px;
+
+        & .control__input {
+            --control--maxWidth: 100% !important;
+            flex-grow: 1;
+        }
+    }
+
+    &__line {
+        --numberOfItems: 2;
+
+        margin-top: var(--spacing2);
+        display: grid;
+        grid-template-columns: repeat(var(--numberOfItems), auto);
+        grid-gap: var(--spacing4);
+
+        @include tablet {
+            --numberOfItems: 3;
+        }
+
+        @include tabletLarge {
+            --numberOfItems: 4;
+        }
+
+        @include desktop {
+            --numberOfItems: 5;
+        }
+
+        @include tv {
+            --numberOfItems: 7;
+        }
+
+        & > * {
+            overflow: hidden;
+        }
+    }
+
+    &__message {
+        font-size: 14px;
+        background-color: var(--border--muted);
+        padding: var(--spacing2) var(--spacing4);
+        border-radius: var(--rounded--medium);
+        margin-top: var(--spacing1);
+
+        & b {
+            font-weight: 900;
+        }
+    }
+
+    @import "Cards/_Cards";
+}

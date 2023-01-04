@@ -59,7 +59,7 @@
         width: 100%;
         height: 100%;
         border-radius: var(--rounded--extralarge);
-        max-height: 80vh; // TO DO: variable?
+        max-height: calc(700px - calc(var(--spacing6) * 2)); // TO DO: variable?
         background-color: var(--colour);
         object-fit: cover;
         // overflow: hidden;

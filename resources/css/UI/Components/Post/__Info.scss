@@ -34,6 +34,11 @@
         &__title {
             font-size: 24px; // TO DO: variable
             font-weight: 900; // TO DO: variable
+            margin-bottom: 0;
+        }
+
+        &__subtitle {
+            margin-bottom: var(--spacing1);
         }
 
         &__title, &__subtitle {

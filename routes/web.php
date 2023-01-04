@@ -2,17 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('pages.welcome');
@@ -30,6 +20,13 @@ Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm']],
 Route::get('/post', function () {
     return view('pages.post');
 })->middleware(['auth'])->name('post');
+
+Route::post('/search', function (Request $request) {
+    return redirect()->route('search', ['search' => $request->search]);
+})->middleware(['auth'])->name('search.lookup'); // TO DO: better route name
+Route::get('/search/{search?}', function ($search = null) {
+    return view('pages.search')->with('search', $search);
+})->middleware(['auth'])->name('search');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

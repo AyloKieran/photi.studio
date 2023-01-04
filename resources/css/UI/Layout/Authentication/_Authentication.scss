@@ -11,7 +11,7 @@
         top: 0;
         bottom: 0;
         z-index: 10;
-        min-width: 20rem;  // TO DO: vairable
+        min-width: 20rem;  // TO DO: variable
         display: flex;
         flex-direction: column;
         padding: var(--spacing12) var(--spacing6) var(--spacing6);
@@ -21,7 +21,7 @@
         @include tablet() {
             left: unset;
             border-left: 2px solid var(--border);
-            max-width: 20rem; // TO DO: vairable
+            max-width: 20rem; // TO DO: variable
         }
     }
 
@@ -48,7 +48,7 @@
             border: var(--border--width) solid var(--border);
             border-radius: var(--rounded--large);
             padding: var(--spacing2);
-            font-size: 14px;  // TO DO: vairable
+            font-size: 14px;  // TO DO: variable
         }
 
         &--actions {
