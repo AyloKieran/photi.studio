@@ -9,4 +9,8 @@
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
+
+    // &:has(.modal--open) {
+    //     overflow: hidden;
+    // }
 }

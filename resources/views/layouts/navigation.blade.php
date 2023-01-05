@@ -28,14 +28,18 @@
             </form>
         @else
             <div class="navigation__auth--actions">
-                <x-button primary>
-                    <a href="{{ route('login') }}">Login</a>
-                    <i class="icon fa-solid fa-arrow-right-to-bracket"></i>
-                </x-button>
-                <x-button>
-                    <a href="{{ route('register') }}">Register</a>
-                    <i class="icon fa-solid fa-user-plus"></i>
-                </x-button>
+                <a href="{{ route('login') }}">
+                    <x-button primary>
+                        {{ __('Login') }}
+                        <i class="icon fa-solid fa-arrow-right-to-bracket"></i>
+                    </x-button>
+                </a>
+                <a href="{{ route('register') }}">
+                    <x-button>
+                        {{ __('Register') }}
+                        <i class="icon fa-solid fa-user-plus"></i>
+                    </x-button>
+                </a>
             </div>
         @endauth
     </aside>

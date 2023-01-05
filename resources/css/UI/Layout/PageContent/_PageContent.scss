@@ -97,6 +97,15 @@ $contentAsideWidth: 2rem;
         &:has(.footer) {
             padding-bottom: 6rem; // TO DO: proper footer limit
         }
+
+        &:has(.modal--open) {
+            max-height: calc(100vh - var(--header--height) - 56px); // TO DO: find what this 56px is and why its needed
+            overflow: hidden;
+
+            @include desktop {
+                max-height: calc(100vh - 56px);
+            }
+        }
     }
 
 }

@@ -1,7 +1,7 @@
 @import "../../Utilities/Mixins/Mixins";
 
 .hoverImage {
-    --colour: rgba(26, 27, 36, 0.25); // TO DO: better variable name and variable
+    --colour: rgba(255, 0, 0, 0.25); // TO DO: better variable name and variable
 
     position: relative;
     margin-bottom: var(--spacing4);

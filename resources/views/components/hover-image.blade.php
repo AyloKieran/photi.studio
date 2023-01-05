@@ -4,12 +4,15 @@
     $tagName = $navigatable == 'true' ? 'a' : 'div';
 @endphp
 
-<{{ $tagName }} {{ $navigatable == 'true' ? 'href=' . '/post' : '' }} class="hoverImage">
-    @php
-        $width = rand(200, 900);
-        $height = rand(200, 900);
-        $image = "https://picsum.photos/$width/$height";
-    @endphp
+@php
+    $width = rand(300, 900);
+    $height = rand(300, 900);
+    $image = "https://picsum.photos/$width/$height";
+    $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
+@endphp
+
+<{{ $tagName }} {{ $navigatable == 'true' ? 'href=' . '/post' : '' }} class="hoverImage"
+    style="--colour: {{ $color }}">
     <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
         loading="lazy" decoding="async" />
     @if ($hoverable == 'true')
