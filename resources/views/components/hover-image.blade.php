@@ -12,7 +12,7 @@
 @endphp
 
 <{{ $tagName }} {{ $navigatable == 'true' ? 'href=' . '/post' : '' }} class="hoverImage"
-    style="--colour: {{ $color }}">
+    style="--background-colour: {{ $color }}">
     <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
         loading="lazy" decoding="async" />
     @if ($hoverable == 'true')
