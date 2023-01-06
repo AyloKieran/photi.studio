@@ -1,5 +1,10 @@
-<a href="{{ route('profile', ['user' => auth()->user()]) }}" class="search__card search__card--user">
+@php
+    use App\Models\User;
+    $user = User::where('username', '@AyloKieran')->first();
+@endphp
+
+<a href="{{ route('profile', ['user' => $user]) }}" class="search__card search__card--user">
     <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
-    <span class="search__card-title">Kieran Noble</span>
-    <span class="search__card-subtitle">@AyloKieran</span>
+    <span class="search__card-title">{{ $user->name }}</span>
+    <span class="search__card-subtitle">{{ $user->username }}</span>
 </a>

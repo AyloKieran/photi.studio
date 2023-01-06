@@ -8,6 +8,11 @@
     $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
+@php
+    use App\Models\User;
+    $user = User::where('username', '@AyloKieran')->first();
+@endphp
+
 <script>
     function navigateToPost(id) { // TO DO: move this to global js
         window.location.href = "{{ route('post') }}/" + id;
@@ -22,9 +27,8 @@
         <div class="hoverImage__image--overlay">
             <div class="hoverImage__image--controls">
                 @if ($showUser)
-                    <a class="control control__actionable" href="{{ route('profile', ['user' => auth()->user()]) }}">
-                        <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}" loading="lazy"
-                            decoding="async">
+                    <a class="control control__actionable" href="{{ route('profile', ['user' => $user]) }}">
+                        <img src="{{ $user->avatar }}" alt="{{ $user->name }}" loading="lazy" decoding="async">
                     </a>
                 @endif
                 @auth

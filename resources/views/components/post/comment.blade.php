@@ -1,11 +1,15 @@
 @php
-    $userLink = route('profile', ['user' => auth()->user()]);
+    use App\Models\User;
+    $user = User::where('username', '@AyloKieran')->first();
+@endphp
+
+@php
+    $userLink = route('profile', ['user' => $user]);
 @endphp
 
 <div class="comment">
     <a href="{{ $userLink }}">
-        <img class="comment__avatar" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}" loading="lazy"
-            decoding="async">
+        <img class="comment__avatar" src="{{ $user->avatar }}" alt="{{ $user->name }}" loading="lazy" decoding="async">
     </a>
     <div class="comment__holder">
         <div class="comment__info">

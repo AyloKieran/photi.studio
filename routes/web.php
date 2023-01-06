@@ -32,8 +32,11 @@ Route::get('/search/{search?}', function ($search = null) {
     return view('pages.search')->with('search', $search);
 })->name('search');
 Route::get('/search/tag/{tag}', function ($tag) {
-    return view('pages.tag')->with('tag', $tag);;
+    return view('pages.search.tag')->with('tag', $tag);;
 })->name('search.tag');
+Route::get('/search/post/{post}', function ($post) {
+    return view('pages.search.post')->with('post', $post);;
+})->name('search.post');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
