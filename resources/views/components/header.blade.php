@@ -8,7 +8,7 @@
                 <h2 class="header__subtitle">{{ $subtitle }}</h2>
             @endif
         </div>
-        @if ($slot)
+        @if ($slot && $slot != '')
             <div class="header__actions">
                 <div class="header__actions-holder">
                     {{ $slot }}

@@ -9,6 +9,18 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
+
+Route::get('/onboarding', fn () => redirect(route('onboarding.profile')))->name('onboarding');
+Route::get('/onboarding/profile', function () {
+    return view('pages.onboarding.profile');
+})->name('onboarding.profile');
+Route::get('/onboarding/preferences', function () {
+    return view('pages.onboarding.preferences');
+})->name('onboarding.preferences');
+Route::get('/onboarding/friends', function () {
+    return view('pages.onboarding.friends');
+})->name('onboarding.friends');
+
 Route::get('/home', function () {
     return view('pages.home');
 })->name('home');
@@ -31,7 +43,7 @@ Route::post('/search', function (Request $request) {
 Route::get('/search/{search?}', function ($search = null) {
     return view('pages.search')->with('search', $search);
 })->name('search');
-Route::get('/search/tag/{tag}', function ($tag) {
+Route::get('/search/{tag}/tags', function ($tag) {
     return view('pages.search.tag')->with('tag', $tag);;
 })->name('search.tag');
 Route::get('/search/post/{post}', function ($post) {

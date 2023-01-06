@@ -102,7 +102,9 @@
                     </div>
                 </div>
             </x-section>
-
+            <div class="content__footer">
+                footer
+            </div>
         </div>
     </main>
 </x-preferences-layout>

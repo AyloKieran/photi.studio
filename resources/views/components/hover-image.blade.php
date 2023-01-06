@@ -13,13 +13,7 @@
     $user = User::where('username', '@AyloKieran')->first();
 @endphp
 
-<script>
-    function navigateToPost(id) { // TO DO: move this to global js
-        window.location.href = "{{ route('post') }}/" + id;
-    }
-</script>
-
-<div {{ $navigatable == 'true' ? 'onclick=navigateToPost(' . $id . ')' : '' }} class="hoverImage"
+<div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $id]) . '")' : '' }} class="hoverImage"
     style="--background-colour: {{ $color }}">
     <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
         loading="lazy" decoding="async" />
@@ -28,7 +22,8 @@
             <div class="hoverImage__image--controls">
                 @if ($showUser)
                     <a class="control control__actionable" href="{{ route('profile', ['user' => $user]) }}">
-                        <img src="{{ $user->avatar }}" alt="{{ $user->name }}" loading="lazy" decoding="async">
+                        <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}" loading="lazy"
+                            decoding="async">
                     </a>
                 @endif
                 @auth

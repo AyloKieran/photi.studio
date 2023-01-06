@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title != '' ? $title . ' | ' : '' }}{{ config('app.name') }}</title>
     @vite(['resources/css/UI/main.scss'])
+    @vite(['resources/js/app.js'])
 </head>
 
 {{ $slot }}

@@ -94,7 +94,7 @@ $contentAsideWidth: 2rem;
             min-width: unset !important;
         }
 
-        &:has(.footer) {
+        &:has(.content__footer) {
             padding-bottom: 6rem; // TO DO: proper footer limit
         }
 

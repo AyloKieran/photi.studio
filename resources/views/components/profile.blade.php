@@ -5,7 +5,7 @@
         <div class="profile__section profile__section--user">
             <div class="profile__user">
                 <div class="profile__user-avatar">
-                    <img src="{{ $user->avatar }}" alt="{{ $user->name }}">
+                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}">
                 </div>
                 <div class="profile__user-info">
                     <div class="profile__user-info-name">

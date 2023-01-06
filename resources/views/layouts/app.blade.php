@@ -1,5 +1,6 @@
 @props(['title'])
 
+
 <x-base-layout title="{{ $title }}">
     @include('layouts.navigation')
 

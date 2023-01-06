@@ -15,4 +15,9 @@
     @include tv {
         --control--maxWidth: 25%;
     }
+
+    &:disabled, &>:disabled {
+        opacity: 0.5; // TO DO: variable
+        pointer-events: none;
+    }
 }
