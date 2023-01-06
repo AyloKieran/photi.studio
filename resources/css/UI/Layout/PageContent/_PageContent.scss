@@ -99,11 +99,11 @@ $contentAsideWidth: 2rem;
         }
 
         &:has(.modal--open) {
-            max-height: calc(var(--vh) - var(--header--height) - 56px); // TO DO: find what this 56px is and why its needed
+            max-height: calc(100vh - var(--header--height) - 56px); // TO DO: find what this 56px is and why its needed
             overflow: hidden;
 
             @include desktop {
-                max-height: calc(var(--vh) - 56px);
+                max-height: calc(100vh - 56px);
             }
         }
     }

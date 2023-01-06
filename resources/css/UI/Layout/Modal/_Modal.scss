@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     z-index: 10; // TO DO: variable
-    max-height: var(--vh);
+    max-height: 100vh;
     width: 100%;
     background-color: rgb(0 0 0 / 50%);
     backdrop-filter: blur(5px);

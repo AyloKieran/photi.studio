@@ -1,11 +1,11 @@
-function _setVH() {
-    let vh = window.innerHeight;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
+// function _setVH() {
+//     let vh = window.innerHeight;
+//     document.documentElement.style.setProperty('--vh', `${vh}px`);
+// }
 
-_setVH();
+// _setVH();
 
-window.addEventListener('resize', _setVH);
+// window.addEventListener('resize', _setVH);
 
 import './bootstrap';
 
