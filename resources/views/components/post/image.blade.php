@@ -10,9 +10,10 @@
         decoding="async">
     <div class="post__image--overlay">
         <div class="post__image--controls">
-            <div class="control control__actionable">
-                <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
-            </div>
+            <a href="{{ route('profile', ['user' => auth()->user()]) }}" class="control control__actionable">
+                <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}" loading="lazy"
+                    decoding="async">
+            </a>
             @auth
                 <div class="control control__actionable control__actionable--active">
                     <i class="icon fa fa-thumbs-up"></i>

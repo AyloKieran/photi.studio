@@ -1,10 +1,15 @@
+@php
+    $userLink = route('profile', ['user' => auth()->user()]);
+@endphp
+
 <div class="comment">
-    <a href="#">
-        <img class="comment__avatar" src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
+    <a href="{{ $userLink }}">
+        <img class="comment__avatar" src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}" loading="lazy"
+            decoding="async">
     </a>
     <div class="comment__holder">
         <div class="comment__info">
-            <a href="#" class="comment__author">@AyloKieran</a>
+            <a href="{{ $userLink }}" class="comment__author">@AyloKieran</a>
             <span class="comment__time">2d ago</span>
         </div>
         <p class="comment__text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>

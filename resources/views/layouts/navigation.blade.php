@@ -1,3 +1,7 @@
+@php
+    $user = auth()->user();
+@endphp
+
 <nav class="navigation">
     <input id="navigation__shown" type="checkbox">
     <div class="navigation__header">
@@ -12,9 +16,9 @@
         </div>
         <div class="navigation__auth">
             @auth
-                <a href="#" class="navigation__user">
-                    <img src="{{ auth()->user()->avatar }}" loading="lazy" decoding="async">
-                    <span>{{ auth()->user()->preferred_name }}</span>
+                <a href="{{ route('profile', ['user' => $user]) }}" class="navigation__user">
+                    <img src="{{ $user->avatar }}" loading="lazy" decoding="async">
+                    <span>{{ $user->preferred_name }}</span>
                 </a>
                 <div class="navigation__actions">
                     <a class="icon fa-solid fa-cog" href={{ route('preferences') }}></a>
@@ -29,13 +33,13 @@
         @else
             <div class="navigation__auth--actions">
                 <a href="{{ route('login') }}">
-                    <x-button primary>
+                    <x-button>
                         {{ __('Login') }}
                         <i class="icon fa-solid fa-arrow-right-to-bracket"></i>
                     </x-button>
                 </a>
                 <a href="{{ route('register') }}">
-                    <x-button>
+                    <x-button primary>
                         {{ __('Register') }}
                         <i class="icon fa-solid fa-user-plus"></i>
                     </x-button>

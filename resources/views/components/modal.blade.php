@@ -4,7 +4,7 @@
     <div class="modal__holder">
         <div class="modal__header">
             <x-header title="{{ $title }}" subtitle="{{ $subtitle }}">
-                <x-button onclick="console.log('close modal {{ $name }}')">
+                <x-button rounded onclick="console.log('close modal {{ $name }}')">
                     <i class="icon fa-solid fa-close"></i>
                 </x-button>
             </x-header>

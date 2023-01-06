@@ -1,17 +1,20 @@
 @props(['hoverable' => true, 'navigatable' => true, 'showUser' => true])
 
 @php
-    $tagName = $navigatable == 'true' ? 'a' : 'div';
-@endphp
-
-@php
+    $id = rand(0, 200);
     $width = rand(300, 900);
     $height = rand(300, 900);
     $image = "https://picsum.photos/$width/$height";
     $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
-<{{ $tagName }} {{ $navigatable == 'true' ? 'href=' . '/post' : '' }} class="hoverImage"
+<script>
+    function navigateToPost(id) { // TO DO: move this to global js
+        window.location.href = "{{ route('post') }}/" + id;
+    }
+</script>
+
+<div {{ $navigatable == 'true' ? 'onclick=navigateToPost(' . $id . ')' : '' }} class="hoverImage"
     style="--background-colour: {{ $color }}">
     <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
         loading="lazy" decoding="async" />
@@ -19,9 +22,10 @@
         <div class="hoverImage__image--overlay">
             <div class="hoverImage__image--controls">
                 @if ($showUser)
-                    <div class="control control__actionable">
-                        <img src="https://kierannoble.dev/assets/me.webp" loading="lazy" decoding="async">
-                    </div>
+                    <a class="control control__actionable" href="{{ route('profile', ['user' => auth()->user()]) }}">
+                        <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}" loading="lazy"
+                            decoding="async">
+                    </a>
                 @endif
                 @auth
                     <div class="control control__actionable control__actionable--active">
@@ -34,4 +38,4 @@
             </div>
         </div>
     @endif
-    </{{ $tagName }}>
+</div>

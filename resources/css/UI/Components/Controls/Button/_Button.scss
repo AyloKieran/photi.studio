@@ -21,4 +21,8 @@
     &--secondary {
         flex-grow: 0.5 !important;
     }
+
+    &--rounded {
+        border-radius: 30px; // TO DO: calculate this from button height
+    }
 }

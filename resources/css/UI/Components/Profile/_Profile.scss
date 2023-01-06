@@ -1,0 +1,120 @@
+@import "../../Utilities/Mixins/Mixins";
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: var(--spacing3);
+
+    @include desktop {
+        flex-direction: row;
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        background: var(--border--muted);
+        border-radius: var(--rounded--extralarge);
+        padding: var(--spacing6);
+
+        &-holder {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing3);
+            flex-grow: 1;
+
+            & .profile__section {
+                flex-grow: 0;
+            }
+        }
+
+        &--user {
+            margin: 0 auto;
+        }
+    }
+
+    &__user {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing3);
+        max-width: 400px;
+        margin: auto;
+
+        &-avatar {
+            display: flex;
+            justify-content: center;
+
+            & img {
+                border-radius: 50%;
+                width: 160px; // TO DO; variable
+            }
+        }
+
+        &-info {
+            &-name, &-username {
+                text-align: center;
+            }
+
+            &-name {
+                font-size: 1.5rem; // TO DO: variable
+                font-weight: 700; // TO DO: variable
+                color: var(--title__colour);
+            }
+
+            &-username {
+                font-size: var(--section__subtitle--size);
+                color: var(--subtitle__colour);
+            }
+        }
+
+        &-stat {
+            background-color: var(--action__background);
+            padding: var(--spacing1) var(--spacing3);
+            border-radius: var(--rounded--large);
+            font-size: 12px; // TO DO: variable
+
+            &s {
+                display: flex;
+                justify-content: center;
+                gap: var(--spacing3);
+                flex-grow: 1;
+
+                & > * {
+                    flex-grow: 1;
+                    flex-basis: 0;
+                }
+            }
+
+            &-count, &-label {
+                text-align: center;
+            }
+
+            &-count {
+                font-weight: 700; // TO DO: variable
+                color: var(--title__colour);
+                font-size: 13px; // TO DO: variable
+            }
+
+            &-label {
+                font-weight: 500; // TO DO: variable
+                color: var(--subtitle__colour);
+                margin-top: -3px; // TO DO: variable?
+            }
+        }
+
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            background-color: unset;
+            gap: var(--spacing3);
+
+            &-section {
+                display: flex;
+                gap: var(--spacing3);
+            }
+        }
+    }
+}
