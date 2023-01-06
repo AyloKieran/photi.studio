@@ -47,10 +47,19 @@
                         </div>
                     </div>
                     <div class="profile__user-actions-section">
-                        <x-button primary rounded>
-                            <i class="icon fa-solid fa-plus"></i>
-                            {{ __('Follow') }}
-                        </x-button>
+                        @auth
+                            @if ($user->id == auth()->user()->id)
+                                <x-button rounded href="{{ route('preferences.profile-information') }}">
+                                    <i class="icon fa-solid fa-cog"></i>
+                                    {{ __('Edit Profile') }}
+                                </x-button>
+                            @else
+                                <x-button primary rounded>
+                                    <i class="icon fa-solid fa-plus"></i>
+                                    {{ __('Follow') }}
+                                </x-button>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>

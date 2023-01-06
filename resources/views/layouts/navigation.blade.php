@@ -5,7 +5,7 @@
 <nav class="navigation">
     <input id="navigation__shown" type="checkbox">
     <div class="navigation__header">
-        <x-logo navFriendly="true" />
+        <x-logo navFriendly="true" navigatable="true" />
         <label class="navigation__toggle" for="navigation__shown">
             <i class="fa fa-bars"></i>
         </label>

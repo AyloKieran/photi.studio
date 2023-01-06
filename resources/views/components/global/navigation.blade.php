@@ -4,9 +4,11 @@
     </x-navigation.section>
 @endauth
 <x-navigation.section title="{{ __('Posts') }}">
-    <x-navigation.link title="{{ __('My Feed') }}" icon="fa-home" route="home" />
+    @auth
+        <x-navigation.link title="{{ __('My Feed') }}" icon="fa-home" route="home" />
+    @endauth
+    <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" route="trending" />
     <x-navigation.link title="{{ __('Search') }}" icon="fa-search" route="search" />
-    <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" />
 </x-navigation.section>
 @auth
     <x-navigation.section title="{{ __('Social') }}">
