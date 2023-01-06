@@ -13,7 +13,7 @@
 
         content: "Photi";
         font-family: 'Now';
-        font-weight: 800;
+        font-weight: var(--font--black);
         text-transform: uppercase;
         color: var(--title__colour);
         font-size: var(--size);
@@ -23,9 +23,9 @@
     &::after {
         content: ".studio";
         font-family: 'Now';
-        font-weight: 200;
-        font-size: 20px;
-        line-height: 20px;
+        font-weight: var(--font-light);
+        font-size: var(--text--extralarge);
+        line-height: var(--text--extralarge);
         color: var(--subtitle__colour);
     }
 

@@ -43,14 +43,14 @@
     }
 
     &__message {
-        font-size: 14px;
+        font-size: var(--text--medium);
         background-color: var(--border--muted);
         padding: var(--spacing2) var(--spacing4);
         border-radius: var(--rounded--medium);
         margin-top: var(--spacing1);
 
         & b {
-            font-weight: 900;
+            font-weight: var(--font--extrabold);
         }
     }
 

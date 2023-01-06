@@ -13,6 +13,10 @@ class BaseLayout extends Component
      */
     public function render()
     {
-        return view('layouts.base');
+        $upm = new \App\Managers\User\Preference\UserPreferenceManager();
+
+        $theme = $upm->getUserPreference(auth()->user(), "preference.user.theme");
+
+        return view('layouts.base')->with("theme", $theme);
     }
 }

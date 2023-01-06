@@ -8,7 +8,7 @@
         &-title {
             margin-left: var(--spacing1);
             font-size: var(--icon--size);
-            font-weight: 600; // TO DO: variable
+            font-weight: var(--font--semibold);
             color: var(--navigation__section-title);
         }
     }
@@ -26,7 +26,7 @@
         }
 
         &-title {
-            font-weight: 500; // TO DO: variable
+            font-weight: var(--font--medium);
             font-size: var(--section__subtitle--size);
             margin: auto 0;
         }

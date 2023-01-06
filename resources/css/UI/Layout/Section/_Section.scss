@@ -4,7 +4,7 @@
 
     &__title {
         color: var(--section__title-colour);
-        font-weight: 500; // TO DO: variable
+        font-weight: var(--font--medium);
         margin-bottom: var(--spacing1);
     }
 
@@ -14,7 +14,7 @@
         font-size: var(--section__subtitle--size);
     }
 
-    &__content { // TO DO: Remove?
+    &__content {
 
     }
 

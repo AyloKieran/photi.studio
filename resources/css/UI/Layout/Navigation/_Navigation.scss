@@ -125,7 +125,7 @@
         & span {
             margin: auto 0;
             font-size: var(--section__subtitle--size);
-            font-weight: 500; // TO DO: variable
+            font-weight: var(--font--medium);
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;

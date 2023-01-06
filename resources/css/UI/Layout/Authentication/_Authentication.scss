@@ -48,7 +48,7 @@
             border: var(--border--width) solid var(--border);
             border-radius: var(--rounded--large);
             padding: var(--spacing2);
-            font-size: 14px;  // TO DO: variable
+            font-size: var(--text--medium);
         }
 
         &--actions {
@@ -90,7 +90,7 @@
             & span {
                 margin: auto 0;
                 font-size: var(--section__subtitle--size);
-                font-weight: 500; // TO DO: variable
+                font-weight: var(--font--medium);
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;

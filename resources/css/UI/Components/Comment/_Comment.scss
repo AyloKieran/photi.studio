@@ -24,18 +24,18 @@
 
     &__author {
         color: var(--navigation__section-title);
-        font-size: 14px; // TO DO: variable
-        font-weight: 600; // TO DO: variable
+        font-size: var(--text--medium);
+        font-weight: var(--font--semibold);
     }
 
     &__time {
         color: var(--subtitle__color);
-        font-size: 10px; // TO DO: variable
+        font-size: var(--text--small);
         margin: auto 0;
     }
 
     &__text {
         color: var(--subtitle__color);
-        font-size: 12px; // TO DO: variable
+        font-size: var(--text--regular);
     }
 }

@@ -39,7 +39,7 @@
             height: calc(100% - .5rem);
             aspect-ratio: 1;
             border-radius: 50%;
-            background-color: white; // TO DO: Variable? (always white?)
+            background-color: white;
             margin-left: 0px;
             @include transition(margin-left);
         }

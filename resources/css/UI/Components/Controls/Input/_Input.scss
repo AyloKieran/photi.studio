@@ -17,7 +17,7 @@
 
     &--error {
         color: var(--error__colour);
-        font-size: 12px; // TO DO: variable
+        font-size: var(--text--regular);
         margin: var(--spacing1);
     }
 

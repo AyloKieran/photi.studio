@@ -6,7 +6,7 @@
 $properties: (
     //Property Name                         Light Theme                         Dark Theme
     ("--title__colour",                 "rgba(12 26 29)",                  "rgba(255 255 255)"),
-    ("--subtitle__colour",              "rgba(145 150 168)",                  "rgba(145 150 168)"),
+    ("--subtitle__colour",              "rgba(103 107 120)",                  "rgba(145 150 168)"),
     ("--default-text__colour",          "rgba(57 59 66)",                  "rgba(145 150 168)"),
     ("--border",                        "rgba(190 198 199)",                  "rgba(32 34 45)"),
     ("--border--muted",                 "rgba(217 217 217)",                  "rgba(23 23 32)"),
@@ -15,7 +15,7 @@ $properties: (
     ("--navigation__text",              "rgba(86 86 106)",                  "rgba(224 225 230)"),
     ("--navigation__text--active",      "rgba(0 0 0)",                  "rgba(255, 255, 255)"),
     ("--navigation__section-title",     "rgba(79 93 96)",                  "rgba(192 194 206)"),
-    ("--content__background",           "rgba(250 250 250)",                  "rgba(18 18 25)"),
+    ("--content__background",           "rgba(241 241 241)",                  "rgba(18 18 25)"),
     ("--action__background",            "rgba(216 218 227)",                  "rgba(32 34 45)"),
     ("--action__background--selected",  "rgba(190 190 200)",                  "rgba(18 18 25)"),
     ("--section__title-colour",         "rgba(18 19 23)",                  "rgba(232 233 237)"),
@@ -53,6 +53,23 @@ $properties: (
     @include desktop {
        --header--height: 6rem;
     }
+
+    --font--extralight: 100;
+    --font--light: 200;
+    --font--thin: 300;
+    --font--regular: 400;
+    --font--medium: 500;
+    --font--semibold: 600;
+    --font--bold: 700;
+    --font--black: 800;
+    --font--extrabold: 900;
+
+    --text--small: 10px;
+    --text--regular: 12px;
+    --text--medium: 14px;
+    --text--large: 18px;
+    --text--extralarge: 20px;
+    --text--enormous: 24px;
 }
 
 /* Dark Theme -------------------------------------------- */

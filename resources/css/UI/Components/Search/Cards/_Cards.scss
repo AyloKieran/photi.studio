@@ -16,11 +16,11 @@
 
     &-title {
         color: var(--title__colour);
-        font-weight: 600;
+        font-weight: var(--font--semibold);
     }
 
     &-subtitle {
-        font-size: 12px;
+        font-size: var(--text--regular);
     }
 
     @import "_User";

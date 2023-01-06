@@ -18,7 +18,7 @@
 
             &::before {
                 content: 'No comments yet';
-                font-size: 14px;
+                font-size: var(--text--medium);
                 text-align: center;
                 color: var(--subtitle__colour);
                 margin: auto;
@@ -48,7 +48,7 @@
         }
 
         &--feedback {
-            font-size: 10px; // TO DO: variable
+            font-size: var(--text--small);
             margin: auto 0;
             color: var(--subtitle__colour);
             margin-right: var(--spacing1);

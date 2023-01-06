@@ -36,7 +36,7 @@
 
     &__tags, &__comments {
         & .section__title {
-            font-size: 18px !important;
+            font-size: var(--text--large) !important;
             color: var(--subtitle__color) !important;
         }
     }

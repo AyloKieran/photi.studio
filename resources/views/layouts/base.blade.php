@@ -1,7 +1,7 @@
 @props(['title' => ''])
 
 <!DOCTYPE html>
-<html lang="en" class="theme--liht">
+<html lang="en" class="theme--{{ $theme }}">
 
 <head>
     <meta charset="UTF-8">
