@@ -14,8 +14,8 @@
     }
 
     &__link {
-        border-radius: var(--rounded--medium);
         display: flex;
+        border-radius: var(--rounded--medium);
         color: var(--navigation__text);
 
         &-icon {
@@ -39,6 +39,8 @@
         &--actionable {
             border: var(--border--width) dashed var(--border);
             justify-content: center;
+            color: var(--navigation__text);
+            background: unset;
 
             & .nav__link-title {
                 padding: var(--spacing2);

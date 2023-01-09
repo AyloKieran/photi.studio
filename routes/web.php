@@ -16,6 +16,10 @@ Route::get('/trending', function () {
     return view('pages.trending');
 })->name('trending');
 
+Route::get('/upload', function () {
+    return view('pages.upload');
+})->middleware('auth')->name('upload');
+
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
     Route::get('/profile', fn () => view('pages.onboarding.profile'))->name('onboarding.profile');

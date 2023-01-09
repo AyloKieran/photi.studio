@@ -1,0 +1,29 @@
+.error {
+    position: relative;
+    overflow: hidden;
+
+    &__holder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px); // TO DO: variable
+        background-color: rgba(0, 0, 0, 0.85);  // TO DO: variable
+    }
+
+    &__title {
+        color: var(--title__colour);
+        font-weight: var(--font--black);
+        font-size: 52px;
+    }
+
+    &__subtitle {
+        color: var(--subtitle__colour);
+        margin-bottom: var(--spacing3);
+    }
+}

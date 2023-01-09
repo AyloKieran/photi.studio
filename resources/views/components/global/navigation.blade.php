@@ -1,6 +1,6 @@
 @auth
     <x-navigation.section>
-        <x-navigation.link title="{{ __('Upload Photo') }}" actionable="true" />
+        <x-navigation.link title="{{ __('Upload Photo') }}" actionable="true" route="upload" />
     </x-navigation.section>
 @endauth
 <x-navigation.section title="{{ __('Posts') }}">

@@ -7,16 +7,16 @@ use App\Managers\User\Preference\UserPreferenceManager;
 
 class BaseLayout extends Component
 {
+    protected $__UserPreferenceManager;
+
     public function __construct()
     {
-        $__UserPreferenceManager = new UserPreferenceManager();
+        $this->__UserPreferenceManager = new UserPreferenceManager();
     }
 
     public function render()
     {
-        $upm = new \App\Managers\User\Preference\UserPreferenceManager();
-
-        $theme = $upm->getUserPreference("preference.user.theme", auth()->user());
+        $theme = $this->__UserPreferenceManager->getUserPreference("preference.user.theme", auth()->user());
 
         return view('layouts.base')->with("theme", $theme);
     }
