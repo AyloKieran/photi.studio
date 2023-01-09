@@ -9,7 +9,7 @@
         right: 0;
         background: var(--action__background);
         height: var(--header--height);
-        z-index: 1000; // TO DO: variable
+        z-index: var(--layer--navigation-header);
         padding: 0 var(--spacing4);
         display: flex;
         justify-content: space-between;
@@ -43,7 +43,7 @@
 
     &__bar {
         position: fixed;
-        z-index: 250; // TO DO: variable
+        z-index: var(--layer--navigation-shade);
         max-width: calc(var(--navigation--width) - (var(--spacing3) * 2));
         width: 100%;
         background-color: var(--navigation__background);
@@ -79,7 +79,7 @@
 
     &__shade {
         position: fixed;
-        z-index: 200; // TO DO: variable
+        z-index: var(--layer--navigation-bar);
         top: 0;
         bottom: 0;
         left: 0;

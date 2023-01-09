@@ -1,0 +1,49 @@
+&__user {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing3);
+    max-width: 400px;
+    margin: auto;
+
+    &-avatar {
+        display: flex;
+        justify-content: center;
+
+        & img {
+            border-radius: 50%;
+            width: 160px; // TO DO; variable
+        }
+    }
+
+    &-info {
+        &-name, &-username {
+            text-align: center;
+        }
+
+        &-name {
+            font-size: var(--title--size);
+            font-weight: var(--font--bold);
+            color: var(--title__colour);
+        }
+
+        &-username {
+            font-size: var(--section__subtitle--size);
+            color: var(--subtitle__colour);
+        }
+    }
+
+    @import "_Stat";
+
+    &-actions {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        background-color: unset;
+        gap: var(--spacing3);
+
+        &-section {
+            display: flex;
+            gap: var(--spacing3);
+        }
+    }
+}

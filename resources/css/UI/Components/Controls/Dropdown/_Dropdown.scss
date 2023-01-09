@@ -48,7 +48,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--navigation__dropdown--gap);
-        z-index: 1; // TO DO: variable
+        z-index: var(--layer--content);
 
         padding: var(--spacing2);
 

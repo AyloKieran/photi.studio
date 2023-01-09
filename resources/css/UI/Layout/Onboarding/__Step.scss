@@ -1,0 +1,60 @@
+&__step {
+    background-color: var(--border--muted);
+    padding: var(--spacing1) var(--spacing2);
+    border-radius: var(--rounded--extralarge);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text--regular);
+    justify-content: center;
+    text-align: center;
+    min-width: 60px;  // TO DO: variable
+
+    &::before {
+        content: "\f141";
+        font-family: 'Font Awesome 6 Free';
+        font-style: normal;
+        margin: auto;
+        font-size: var(--text--large);
+    }
+
+    &s {
+        display: flex;
+        gap: var(--spacing3);
+    }
+
+    &--connector {
+        flex-grow: 1;
+        margin: auto;
+        &::before {
+            content: "";
+            display: block;
+            height: 3px; // TO DO: variable
+            background-color: var(--border);
+            border-radius: var(--rounded--extralarge);
+        }
+    }
+
+    &--active {
+        background-color: var(--border);
+        color: var(--title__colour);
+
+        &::before {
+            content: "\f178";
+        }
+    }
+
+    &--complete {
+        background-color: darkcyan;
+        color: var(--title__colour);
+
+        &::before {
+            content: "\f00c";
+        }
+
+        & + .onboarding__step--connector {
+            &::before {
+                background-color: darkcyan;
+            }
+        }
+    }
+}

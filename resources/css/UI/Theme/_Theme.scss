@@ -70,6 +70,13 @@ $properties: (
     --text--large: 18px;
     --text--extralarge: 20px;
     --text--enormous: 24px;
+
+    --layer--background: 1;
+    --layer--content: 5;
+    --layer--navigation-bar: 10;
+    --layer--navigation-shade: 15;
+    --layer--navigation-header: 20;
+    --layer--overlay: 50;
 }
 
 /* Dark Theme -------------------------------------------- */

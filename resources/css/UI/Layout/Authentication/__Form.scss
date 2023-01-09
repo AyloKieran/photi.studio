@@ -1,0 +1,36 @@
+&__form {
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing4);
+
+        & .control {
+            --control--maxWidth: 100% !important;
+        }
+
+        & .authentication__form--actions {
+            margin-top: var(--spacing3);
+        }
+    }
+
+    &--message {
+        border: var(--border--width) solid var(--border);
+        border-radius: var(--rounded--large);
+        padding: var(--spacing2);
+        font-size: var(--text--medium);
+    }
+
+    &--actions {
+        display: flex;
+        gap: var(--spacing6);
+
+        & > a, button {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+    }
+
+    & .header {
+        margin-bottom: var(--spacing6);
+    }
+}

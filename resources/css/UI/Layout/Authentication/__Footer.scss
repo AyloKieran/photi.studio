@@ -1,0 +1,38 @@
+&__footer {
+    margin-top: auto;
+
+    &-actions {
+        display: flex;
+        justify-content: space-between;
+
+        & form {
+            margin-top: auto;
+        }
+    }
+
+    &-user {
+        display: flex;
+        flex-grow: 1;
+        gap: var(--spacing2);
+        min-width: 0;
+        text-decoration: none;
+        color: var(--subtitle__colour);
+        margin-top: var(--spacing2);
+
+        & span {
+            margin: auto 0;
+            font-size: var(--section__subtitle--size);
+            font-weight: var(--font--medium);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        & img {
+            height: 2rem;
+            border-radius: 50%;
+            border: var(--border--width) solid var(--subtitle__colour);
+            aspect-ratio: 1/1;
+        }
+    }
+}

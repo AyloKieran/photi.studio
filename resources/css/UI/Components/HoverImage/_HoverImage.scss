@@ -32,7 +32,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: 1; // TO DO: variable
+            z-index: var(--layer--content);
             display: flex;
             background-color: var(--colour);
             opacity: 0;

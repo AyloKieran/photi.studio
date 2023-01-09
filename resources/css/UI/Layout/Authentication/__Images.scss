@@ -1,0 +1,28 @@
+&__images {
+    position: absolute;
+    width: 110vw;
+    height: 175vh;
+    opacity: 0.35; // TO DO: variable
+    overflow: hidden;
+    flex-grow: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: rotate(-3deg) translate(-2%, -12%);
+    column-fill: balance;
+    column-count: 6;
+    display: none;
+
+    @include tablet() {
+        display: block;
+    }
+
+    @include desktop() {
+        column-count: 8;
+    }
+
+    @include tv() {
+        column-count: 10;
+    }
+}

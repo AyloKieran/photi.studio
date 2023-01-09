@@ -1,0 +1,21 @@
+&__card {
+    background-color: var(--content__background);
+    padding: var(--spacing4);
+    border-radius: var(--rounded--extralarge);
+
+    & .header {
+        margin-top: 0;
+
+        &__title, &__subtitle {
+            text-align: center;
+        }
+    }
+
+    & .authentication__footer-user {
+        margin-top: 0;
+    }
+
+    & form {
+        margin: auto;
+    }
+ }

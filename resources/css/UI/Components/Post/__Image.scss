@@ -1,7 +1,7 @@
 @import "../../Utilities/Mixins/Mixins";
 
 &__image {
-    --colour: rgba(255, 100, 50, .25); // TO DO: better variable name and variable
+    --colour: var(--border); // TO DO: better variable name and variable
 
     position: relative;
 

@@ -10,7 +10,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        z-index: 10;
+        z-index: var(--layer--overlay);
         min-width: 20rem;  // TO DO: variable
         display: flex;
         flex-direction: column;
@@ -29,108 +29,7 @@
 
     }
 
-    &__form {
-        & form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing4);
-
-            & .control {
-                --control--maxWidth: 100% !important;
-            }
-
-            & .authentication__form--actions {
-                margin-top: var(--spacing3);
-            }
-        }
-
-        &--message {
-            border: var(--border--width) solid var(--border);
-            border-radius: var(--rounded--large);
-            padding: var(--spacing2);
-            font-size: var(--text--medium);
-        }
-
-        &--actions {
-            display: flex;
-            gap: var(--spacing6);
-
-            & > a, button {
-                flex-basis: 0;
-                flex-grow: 1;
-            }
-        }
-
-        & .header {
-            margin-bottom: var(--spacing6);
-        }
-    }
-
-    &__footer {
-        margin-top: auto;
-
-        &-actions {
-            display: flex;
-            justify-content: space-between;
-
-            & form {
-                margin-top: auto;
-            }
-        }
-
-        &-user {
-            display: flex;
-            flex-grow: 1;
-            gap: var(--spacing2);
-            min-width: 0;
-            text-decoration: none;
-            color: var(--subtitle__colour);
-            margin-top: var(--spacing2);
-
-            & span {
-                margin: auto 0;
-                font-size: var(--section__subtitle--size);
-                font-weight: var(--font--medium);
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
-
-            & img {
-                height: 2rem;
-                border-radius: 50%;
-                border: var(--border--width) solid var(--subtitle__colour);
-                aspect-ratio: 1/1;
-            }
-        }
-    }
-
-    &__images {
-        position: absolute;
-        width: 110vw;
-        height: 175vh;
-        opacity: 0.35; // TO DO: variable
-        overflow: hidden;
-        flex-grow: 1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        transform: rotate(-3deg) translate(-2%, -12%);
-        column-fill: balance;
-        column-count: 6;
-        display: none;
-
-        @include tablet() {
-            display: block;
-        }
-
-        @include desktop() {
-            column-count: 8;
-        }
-
-        @include tv() {
-            column-count: 10;
-        }
-    }
+    @import "_Footer";
+    @import "_Form";
+    @import "_Images";
 }
