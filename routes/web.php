@@ -12,7 +12,7 @@ Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () 
     Route::get('/friends', fn () => view('pages.onboarding.friends'))->name('onboarding.friends');
 });
 
-Route::group(['middleware' => 'requireOnboarded'], function () {
+Route::group(['middleware' => ['requireOnboarded', 'requireVerifiedEmail']], function () {
     Route::get('', function () {
         return redirect()->route('home');
     });
