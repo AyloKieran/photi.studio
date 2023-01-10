@@ -3,7 +3,6 @@
 <x-base-layout title="{{ $title }}">
 
     <body class="wrapper authentication">
-        @include('components.authentication.images')
         <div class="authentication__auth">
             <div class="authentication__header">
                 <x-logo />
@@ -30,5 +29,6 @@
                 @endauth
             </div>
         </div>
+        @include('components.authentication.images')
     </body>
 </x-base-layout>

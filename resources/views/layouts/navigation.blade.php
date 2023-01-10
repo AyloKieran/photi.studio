@@ -17,7 +17,8 @@
         <div class="navigation__auth">
             @auth
                 <a href="{{ route('profile', ['user' => $user]) }}" class="navigation__user">
-                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}" loading="lazy" decoding="async">
+                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture" loading="lazy"
+                        decoding="async">
                     <span>{{ $user->preferred_name }}</span>
                 </a>
                 <div class="navigation__actions">

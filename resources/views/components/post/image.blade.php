@@ -8,7 +8,7 @@
 
 @php
     use App\Models\User;
-    $user = User::where('username', '@AyloKieran')->first();
+    $user = User::first();
 @endphp
 
 <div class="post__image" style='--imageURL: url("{{ $image }}"); --background-colour: {{ $color }}'">
@@ -17,7 +17,8 @@
     <div class="post__image--overlay">
         <div class="post__image--controls">
             <a href="{{ route('profile', ['user' => $user]) }}" class="control control__actionable">
-                <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}" loading="lazy" decoding="async">
+                <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture" loading="lazy"
+                    decoding="async">
             </a>
             @auth
                 <div class="control control__actionable control__actionable--active">

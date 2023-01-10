@@ -1,7 +1,6 @@
 @props(['title'])
 
-
-<x-base-layout title="{{ $title }}">
+<x-base-layout title="{!! $title !!}">
     @include('layouts.navigation')
 
     <body class="wrapper">

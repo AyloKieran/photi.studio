@@ -7,12 +7,21 @@ use App\Models\User;
 
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
-    Route::get('/profile', fn () => view('pages.onboarding.profile'))->name('onboarding.profile');
-    Route::get('/preferences', fn () => view('pages.onboarding.preferences'))->name('onboarding.preferences');
-    Route::get('/friends', fn () => view('pages.onboarding.friends'))->name('onboarding.friends');
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('', [\App\Http\Controllers\Onboarding\ProfileController::class, 'index'])->name('onboarding.profile');
+        Route::post('', [\App\Http\Controllers\Onboarding\ProfileController::class, 'store'])->name('onboarding.profile.store');
+    });
+    Route::group(['prefix' => 'preferences'], function () {
+        Route::get('', [\App\Http\Controllers\Onboarding\PreferencesController::class, 'index'])->name('onboarding.preferences');
+        Route::post('', [\App\Http\Controllers\Onboarding\PreferencesController::class, 'store'])->name('onboarding.preferences.store');
+    });
+    Route::group(['prefix' => 'friends'], function () {
+        Route::get('', [\App\Http\Controllers\Onboarding\FriendsController::class, 'index'])->name('onboarding.friends');
+        Route::post('', [\App\Http\Controllers\Onboarding\FriendsController::class, 'store'])->name('onboarding.friends.store');
+    });
 });
 
-Route::group(['middleware' => ['requireOnboarded', 'requireVerifiedEmail']], function () {
+Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], function () {
     Route::get('', function () {
         return redirect()->route('home');
     });

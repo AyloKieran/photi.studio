@@ -2,9 +2,8 @@
 
 <div class="control control__input">
     <textarea name={{ $name }} class="@if ($errors->has($name)) error @endif"
-        value="{{ old($name) != null ? old($name) : $value }}" placeholder="{{ $placeholder }}" rows={{ $rows }}
-        @if ($required) required @endif @if ($autofocus && !$errors->has($name)) autofocus @endif
-        autocomplete="{{ $autocomplete }}"></textarea>
+        placeholder="{{ $placeholder }}" rows={{ $rows }} @if ($required) required @endif
+        @if ($autofocus && !$errors->has($name)) autofocus @endif autocomplete="{{ $autocomplete }}">{{ old($name) != null ? old($name) : $value }}</textarea>
     @error($name)
         <p class="control__input--error">{{ $errors->first($name) }}</p>
     @enderror

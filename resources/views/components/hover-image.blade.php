@@ -10,7 +10,7 @@
 
 @php
     use App\Models\User;
-    $user = User::where('username', '@AyloKieran')->first();
+    $user = User::first();
 @endphp
 
 <div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $id]) . '")' : '' }} class="hoverImage"
@@ -22,8 +22,8 @@
             <div class="hoverImage__image--controls">
                 @if ($showUser)
                     <a class="control control__actionable" href="{{ route('profile', ['user' => $user]) }}">
-                        <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}" loading="lazy"
-                            decoding="async">
+                        <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture"
+                            loading="lazy" decoding="async">
                     </a>
                 @endif
                 @auth

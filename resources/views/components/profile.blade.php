@@ -5,7 +5,7 @@
         <div class="profile__section profile__section--user">
             <div class="profile__user">
                 <div class="profile__user-avatar">
-                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}">
+                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture">
                 </div>
                 <div class="profile__user-info">
                     <div class="profile__user-info-name">
@@ -28,10 +28,7 @@
                 <div class="section__title">
                     Bio
                 </div>
-                I am an experienced content writer and digital marketing expert, with a proven track record of writing
-                engaging, informative content. My diverse expertise creates powerful marketing campaigns that generate
-                ROI across a wide range of industries I am an experienced content writer and digital marketing expert,
-                with a proven track record of writing
+                {{ $user->bio }}
             </div>
             <div class="profile__section">
                 <div class="profile__user-actions" style="flex-wrap: wrap; max-width: 100vw;">

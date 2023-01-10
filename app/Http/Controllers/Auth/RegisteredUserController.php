@@ -35,14 +35,16 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:20', 'starts_with:@', 'unique:users'],
+            'username' => ['required', 'string', 'max:20', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $username = str_starts_with($request->username, '@') ? $request->username : '@' . $request->username;
+
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
+            'username' => $username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
