@@ -9,7 +9,7 @@
         border-radius: var(--rounded--extralarge);
         padding: var(--spacing6);
         width: 100%;
-        max-width: 800px; // TO DO: variable
+        max-width: var(--card--maxWidth-small);
     }
 
     &__header {

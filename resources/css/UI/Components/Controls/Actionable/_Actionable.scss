@@ -20,8 +20,8 @@
         left: 0;
         right: 0;
         height: calc(100% - 2px);
-        border-radius: 50%;
         border: 2px solid var(--action__background);
+        @include avatar;
     }
 
     &--active {

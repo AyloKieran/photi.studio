@@ -14,7 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid var(--border--muted); // TO DO: variable
+        border-bottom: 2px solid var(--border--muted);
 
         @include desktop {
             width: calc(var(--navigation--width) - calc(var(--spacing4) * 2));
@@ -34,7 +34,7 @@
             }
 
             & ~ .navigation__shade {
-                backdrop-filter: blur(2px); // TO DO: variable
+                backdrop-filter: blur(2px);
                 pointer-events: unset;
             }
 
@@ -132,10 +132,9 @@
         }
 
         & img {
-            height: 2rem;
-            border-radius: 50%;
             border: var(--border--width) solid var(--subtitle__colour);
-            aspect-ratio: 1/1;
+            @include avatar;
+            --avatar--size: 2rem;
         }
     }
 

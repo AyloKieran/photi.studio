@@ -3,6 +3,7 @@
     $width = rand(700, 1900);
     $height = rand(700, 1900);
     $image = "https://picsum.photos/id/$id/$width/$height/";
+    $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
 @php
@@ -10,7 +11,7 @@
     $user = User::where('username', '@AyloKieran')->first();
 @endphp
 
-<div class="post__image" style='--imageURL: url("{{ $image }}")'">
+<div class="post__image" style='--imageURL: url("{{ $image }}"); --background-colour: {{ $color }}'">
     <img src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px" loading="lazy"
         decoding="async">
     <div class="post__image--overlay">

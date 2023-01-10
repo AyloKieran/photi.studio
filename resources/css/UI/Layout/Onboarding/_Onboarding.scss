@@ -14,8 +14,7 @@
 
     @include tablet {
         padding: var(--spacing6);
-        backdrop-filter: blur(10px); // TO DO: variable
-        background-color: rgba(0, 0, 0, 0.85);  // TO DO: variable
+        @include backgroundImageCover;
     }
 
     &__header {
@@ -34,7 +33,7 @@
 
     &__holder, &__footer {
         margin: 0 auto;
-        max-width: 800px;  // TO DO: variable
+        max-width: var(--card--maxWidth-small);
         width: 100%;
     }
 

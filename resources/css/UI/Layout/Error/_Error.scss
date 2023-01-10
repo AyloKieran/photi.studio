@@ -12,8 +12,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        backdrop-filter: blur(10px); // TO DO: variable
-        background-color: rgba(0, 0, 0, 0.85);  // TO DO: variable
+        @include backgroundImageCover;
     }
 
     &__title {

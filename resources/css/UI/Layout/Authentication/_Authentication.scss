@@ -11,7 +11,7 @@
         top: 0;
         bottom: 0;
         z-index: var(--layer--overlay);
-        min-width: 20rem;  // TO DO: variable
+        min-width: var(--authentication--width);
         display: flex;
         flex-direction: column;
         padding: var(--spacing12) var(--spacing6) var(--spacing6);
@@ -21,7 +21,7 @@
         @include tablet() {
             left: unset;
             border-left: 2px solid var(--border);
-            max-width: 20rem; // TO DO: variable
+            max-width: var(--authentication--width);
         }
     }
 

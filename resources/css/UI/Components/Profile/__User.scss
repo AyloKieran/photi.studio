@@ -10,8 +10,8 @@
         justify-content: center;
 
         & img {
-            border-radius: 50%;
-            width: 160px; // TO DO; variable
+            @include avatar;
+            --avatar--size: 160px;
         }
     }
 

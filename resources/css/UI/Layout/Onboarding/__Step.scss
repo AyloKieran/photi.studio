@@ -7,7 +7,7 @@
     font-size: var(--text--regular);
     justify-content: center;
     text-align: center;
-    min-width: 60px;  // TO DO: variable
+    min-width: 60px;
 
     &::before {
         content: "\f141";
@@ -28,7 +28,7 @@
         &::before {
             content: "";
             display: block;
-            height: 3px; // TO DO: variable
+            height: 3px;
             background-color: var(--border);
             border-radius: var(--rounded--extralarge);
         }

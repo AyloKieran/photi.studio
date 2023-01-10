@@ -27,3 +27,15 @@
         @content;
     }
 }
+
+@mixin avatar {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: var(--avatar--size);
+    object-fit: cover;
+}
+
+@mixin backgroundImageCover {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.7);
+}

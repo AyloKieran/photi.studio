@@ -17,7 +17,7 @@
     }
 
     &:disabled, &>:disabled {
-        opacity: 0.5; // TO DO: variable
+        opacity: var(--control__disabled--opacity);
         pointer-events: none;
     }
 }

@@ -1,7 +1,7 @@
 @import "../../Utilities/Mixins/Mixins";
 
 .hoverImage {
-    --colour: rgba(26, 27, 36, 0.25); // TO DO: better variable name and variable
+    --overlay-colour: rgba(26, 27, 36, 0.25);
     --background-colour: var(--colour);
 
     position: relative;
@@ -19,12 +19,11 @@
 
     &__image {
         width: 100%;
-        max-height: calc(50vh); // TO DO: variable
-        min-height: 156px; // TO DO: variable (or calcuate from overlay controls)
+        max-height: calc(50vh);
+        min-height: 156px;
         height: auto;
         object-fit: cover;
         border-radius: var(--rounded--medium);
-        background: var(--colour); // TO DO: variable
 
         &--overlay {
             position: absolute;
@@ -34,7 +33,7 @@
             bottom: 0;
             z-index: var(--layer--content);
             display: flex;
-            background-color: var(--colour);
+            background-color: var(--overlay-colour);
             opacity: 0;
             --transition--length: 0.1s;
             @include transition(opacity);
@@ -50,7 +49,7 @@
             padding: var(--spacing3);
 
             & .control__actionable {
-                --actionable--size: 2.25rem; // TO DO: variable
+                --actionable--size: 2.25rem;
                 --actionable--opacity: 0.75;
 
                 &:has(img) {

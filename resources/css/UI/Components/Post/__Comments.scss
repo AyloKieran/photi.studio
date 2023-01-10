@@ -36,7 +36,7 @@
         flex-grow: 1;
         background: var(--action__background);
         padding: 0 var(--spacing2);
-        border-radius: 32px; // TO DO: variable
+        border-radius: 32px;
         color: var(--section__title-colour);
         display: flex;
         gap: var(--spacing1);
@@ -56,11 +56,11 @@
     }
 
     &-button {
-        height: 32px; // TO DO: variable
-        width: 32px; // TO DO: variable
+        height: 32px;
+        width: 32px;
         background: var(--action__background);
         border: none;
-        border-radius: 32px; // TO DO: variable
+        border-radius: 32px;
         color: var(--subtitle__colour);
 
         &:disabled {

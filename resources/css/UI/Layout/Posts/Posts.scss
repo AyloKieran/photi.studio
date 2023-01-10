@@ -1,11 +1,9 @@
 @import "../../Utilities/Mixins/Mixins";
 
 .posts {
-    --max-width: 1350px; // TO DO: variable
-
     column-count: 2;
     column-gap: var(--spacing4);
-    max-width: var(--max-width);
+    max-width: var(--posts--maxWidth);
     margin: 0 auto;
 
     @include tablet {
@@ -17,7 +15,6 @@
     }
 
     @include tv {
-        // --max-width: 1600px; //TO DO: move to tv+
         column-count: 5;
     }
 }
