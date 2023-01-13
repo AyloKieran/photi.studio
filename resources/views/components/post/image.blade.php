@@ -2,7 +2,7 @@
     $id = rand(0, 200);
     $width = rand(700, 1900);
     $height = rand(700, 1900);
-    $image = "https://picsum.photos/id/$id/$width/$height/";
+    $image = 'https://blobs.photi.studio/dev/posts/test/' . rand(1, 37) . '.jpg';
     $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
