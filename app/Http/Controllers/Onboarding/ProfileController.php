@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Onboarding;
 
 use App\Enums\BlobTypeEnum;
+use App\Enums\OnboardingStepEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Managers\Azure\Blobs\AzureBlobManager;
@@ -46,7 +47,7 @@ class ProfileController extends Controller
             $user->bio = $request->bio;
         }
 
-        $user->onboarding_step = 1;
+        $user->onboarding_step = OnboardingStepEnum::PREFERENCES;
         $user->save();
 
         return redirect()->route('onboarding.preferences');

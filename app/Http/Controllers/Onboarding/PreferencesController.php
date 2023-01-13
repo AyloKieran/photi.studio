@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Onboarding;
 
+use App\Enums\OnboardingStepEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class PreferencesController extends Controller
         // ]);
 
         $user = $request->user();
-        $user->onboarding_step = 2;
+        $user->onboarding_step = OnboardingStepEnum::FREINDS;
         $user->save();
 
         return redirect()->route('onboarding.friends');

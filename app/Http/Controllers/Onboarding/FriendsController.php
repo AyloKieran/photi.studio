@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Onboarding;
 
+use App\Enums\OnboardingStepEnum;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class FriendsController extends Controller
         // ]);
 
         $user = $request->user();
-        $user->onboarding_step = null;
+        $user->onboarding_step = OnboardingStepEnum::FINISHED;
         $user->save();
 
         return redirect(RouteServiceProvider::HOME);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\OnboardingStepEnum;
 use Closure;
 
 class RequireOnboarded
@@ -14,13 +15,13 @@ class RequireOnboarded
             return $next($request);
         }
 
-        if (is_numeric($user->onboarding_step)) {
+        if ($user->onboarding_step != OnboardingStepEnum::FINISHED) {
             switch ($user->onboarding_step) {
-                case 0:
+                case OnboardingStepEnum::PROFILE->value:
                     return redirect()->route('onboarding.profile');
-                case 1:
+                case OnboardingStepEnum::PREFERENCES->value:
                     return redirect()->route('onboarding.preferences');
-                case 2:
+                case OnboardingStepEnum::FREINDS->value:
                     return redirect()->route('onboarding.friends');
             }
         }
