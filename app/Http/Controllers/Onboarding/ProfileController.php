@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Onboarding;
 
+use App\Enums\BlobTypeEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Managers\Azure\Blobs\AzureBlobManager;
 
 class ProfileController extends Controller
 {
+
+    protected $__AzureBlobManager;
+
+    public function __construct()
+    {
+        $this->__AzureBlobManager = new AzureBlobManager();
+    }
+
     public function index()
     {
         return view('pages.onboarding.profile');
@@ -22,12 +32,14 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if ($request->has('profile-picture')) {
-            $avatarFile = request('profile-picture')->store('avatars');
-            $fileType = pathinfo($avatarFile, PATHINFO_EXTENSION);
-            $fileContents = file_get_contents(storage_path('app/' . $avatarFile));
-            $image = 'data:image/' . $fileType . ';base64,' . base64_encode($fileContents);
+            $avatarURL = $this->__AzureBlobManager->createBlob(request()->file('profile-picture'), BlobTypeEnum::POST_IMAGE);
 
-            $user->avatar = $image;
+            // $avatarFile = request('profile-picture')->store('avatars');
+            // $fileType = pathinfo($avatarFile, PATHINFO_EXTENSION);
+            // $fileContents = file_get_contents(storage_path('app/' . $avatarFile));
+            // $image = 'data:image/' . $fileType . ';base64,' . base64_encode($fileContents);
+
+            $user->avatar = $avatarURL;
         }
 
         if ($request->has('bio') && $request->bio != null) {
