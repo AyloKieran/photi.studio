@@ -2,7 +2,7 @@
     <div class="content__holder">
         <x-post :post=$post />
         <x-posts-holder>
-            @foreach (\App\Models\Post::inRandomOrder()->take(50)->get(); as $post)
+            @foreach ($post->relatedPostsByTag(); as $post)
                 <x-hover-image :post=$post />
             @endforeach
         </x-posts-holder>

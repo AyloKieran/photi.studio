@@ -21,23 +21,23 @@
         @endif
         <x-section title="{{ __('Posts') }}" href="{{ route('search', [$search]) }}">
             <x-search.line>
-                @foreach(\App\Models\Post::inRandomOrder()->take(7)->get(); as $post)
+                @foreach (\App\Models\Post::inRandomOrder()->take(7)->get(); as $post)
                     <x-search.cards.post :post=$post />
                 @endforeach
             </x-search.line>
         </x-section>
         <x-section title="{{ __('Tags') }}" href="{{ route('search', [$search]) }}">
             <x-search.line>
-                @for ($i = 0; $i < 7; $i++)
-                    <x-search.cards.tag />
-                @endfor
+                @foreach (\App\Models\Tag::withCount('posts')->orderBy('posts_count', 'desc')->take(7)->get(); as $tag)
+                    <x-search.cards.tag :tag=$tag />
+                @endforeach
             </x-search.line>
         </x-section>
         <x-section title="{{ __('Users') }}" href="{{ route('search', [$search]) }}">
             <x-search.line>
-                @for ($i = 0; $i < 7; $i++)
-                    <x-search.cards.user />
-                @endfor
+                @foreach (\App\Models\User::inRandomOrder()->take(7)->get() as $user)
+                    <x-search.cards.user :user=$user />
+                @endforeach
             </x-search.line>
         </x-section>
     </div>

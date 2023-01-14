@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Tag;
 
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     Route::group(['prefix' => '/search'], function () {
         Route::post('', fn (Request $request) => redirect()->route('search', ['search' => $request->search]))->name('search.lookup');
         Route::get('/{search?}', fn ($search = null) => view('pages.search')->with('search', $search))->name('search');
-        Route::get('/{tag}/tags', fn ($tag) => view('pages.search.tag')->with('tag', $tag))->name('search.tag');
+        Route::get('/{tag}/tags', fn (Tag $tag) => view('pages.search.tag')->with('tag', $tag))->name('search.tag');
         Route::get('/post/{post}', fn ($post) => view('pages.search.post')->with('post', $post))->name('search.post');
     });
     Route::get('/post/{post}', function (Post $post) {

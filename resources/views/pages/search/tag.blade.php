@@ -18,17 +18,17 @@
     ];
 @endphp
 
-<x-app-layout title="{{ __('#:tag Tagged Posts', ['tag' => $tag]) }}">
-    <x-header title="{{ __('\'#:tag\' Tagged Posts', ['tag' => $tag]) }}">
+<x-app-layout title="{{ __(':tag Tagged Posts', ['tag' => $tag->formatted_name]) }}">
+    <x-header title="{{ __('\':tag\' Tagged Posts', ['tag' => $tag->formatted_name]) }}">
     </x-header>
     <div class="content__holder">
         <x-posts-holder>
-            @for ($i = 0; $i < 50; $i++)
-                <x-hover-image />
-            @endfor
+            @foreach ($tag->getPostsWithTag()->take(50)->get() as $post)
+                <x-hover-image :post=$post />
+            @endforeach
         </x-posts-holder>
     </div>
-    <x-modal title="{{ __('Filter Posts') }}" subtitle="{{ __('Refine what you see by choosing from the options') }}"
+    {{-- <x-modal title="{{ __('Filter Posts') }}" subtitle="{{ __('Refine what you see by choosing from the options') }}"
         name="tester">
         <x-section title="{{ __('Likes') }}"
             subtitle="{{ __('What is the minimum number of likes a post should have?') }}">
@@ -41,5 +41,5 @@
             subtitle="{{ __('What is the minimum number of comments posts should have?') }}">
             <x-radio name="radio3" :values="$values" />
         </x-section>
-    </x-modal>
+    </x-modal> --}}
 </x-app-layout>
