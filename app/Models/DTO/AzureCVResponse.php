@@ -13,5 +13,5 @@ class AzureCVResponse
     public Color $color;
     public array $tags;
     public Description $description;
-    public MetaData $metadata;
+    public Metadata $metadata;
 }
