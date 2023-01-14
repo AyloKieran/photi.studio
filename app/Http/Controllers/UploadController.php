@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Managers\User\Post\UserPostImageManager;
 use App\Models\Post;
-use App\Models\User;
 
 class UploadController extends Controller
 {
@@ -38,7 +37,9 @@ class UploadController extends Controller
         $post->width = 100;
         $post->height = 100;
         $post->nsfw = false;
-        $post->accent_colour = "000000";
+        $post->r = 0;
+        $post->g = 0;
+        $post->b = 0;
 
         $this->__UserPostImageManager->managePostImage($post, $request->file('image'));
 

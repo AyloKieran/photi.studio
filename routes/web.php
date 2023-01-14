@@ -49,7 +49,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         Route::get('/{tag}/tags', fn ($tag) => view('pages.search.tag')->with('tag', $tag))->name('search.tag');
         Route::get('/post/{post}', fn ($post) => view('pages.search.post')->with('post', $post))->name('search.post');
     });
-    Route::get('/post/{post?}', function (Post $post = null) {
+    Route::get('/post/{post}', function (Post $post) {
         return view('pages.post')->with('post', $post);
     })->name('post');
     Route::get('/profile/{user}', function (User $user) {
