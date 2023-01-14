@@ -1,8 +1,5 @@
 @php
     $id = rand(0, 200);
-    $width = rand(700, 1900);
-    $height = rand(700, 1900);
-    $image = 'https://blobs.photi.studio/dev/posts/test/' . rand(1, 37) . '.jpg';
     $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
@@ -11,14 +8,15 @@
     $user = User::first();
 @endphp
 
-<div class="post__image" style='--imageURL: url("{{ $image }}"); --background-colour: {{ $color }}'">
-    <img src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px" loading="lazy"
+<div class="post__image"
+    style='--imageURL: url("{{ $post->image_original }}"); --background-colour: {{ $color }}'">
+    <img src="{{ $post->image_original }}" width="{{ $post->width }}px" height="{{ $post->height }}px" loading="lazy"
         decoding="async">
     <div class="post__image--overlay">
         <div class="post__image--controls">
-            <a href="{{ route('profile', ['user' => $user]) }}" class="control control__actionable">
-                <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture" loading="lazy"
-                    decoding="async">
+            <a href="{{ route('profile', ['user' => $post->author]) }}" class="control control__actionable">
+                <img src="{{ $post->author->avatar }}" alt="{{ $post->author->preferred_name }}'s Profile Picture"
+                    loading="lazy" decoding="async">
             </a>
             @auth
                 <div class="control control__actionable control__actionable--active">

@@ -1,5 +1,5 @@
-<a href="{{ route('post') }}" class="search__card"
-    style="--imageUrl: url(https://picsum.photos/id/{{ rand(1, 50) }}/{{ rand(200, 900) }}/{{ rand(200, 900) }})">
-    <span class="search__card-title">This is my post title</span>
-    <span class="search__card-subtitle">@AyloKieran</span>
+<a href="{{ route('post', ['post' => $post]) }}" class="search__card"
+    style="--imageUrl: url({{ $post->image_thumbnail }})">
+    <span class="search__card-title">{{ $post->title }}</span>
+    <span class="search__card-subtitle">{{ $post->author->preferred_name }}</span>
 </a>

@@ -1,29 +1,20 @@
-@props(['hoverable' => true, 'navigatable' => true, 'showUser' => true])
+@props(['post', 'hoverable' => true, 'navigatable' => true, 'showUser' => true])
 
 @php
-    $id = rand(0, 200);
-    $width = rand(300, 900);
-    $height = rand(300, 900);
-    $image = "https://picsum.photos/$width/$height";
     $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
 @endphp
 
-@php
-    use App\Models\User;
-    $user = User::first();
-@endphp
-
-<div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $id]) . '")' : '' }} class="hoverImage"
-    style="--background-colour: {{ $color }}">
-    <img class="hoverImage__image" src="{{ $image }}" width="{{ $width }}px" height="{{ $height }}px"
-        loading="lazy" decoding="async" />
+<div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $post]) . '")' : '' }}
+    class="hoverImage" style="--background-colour: {{ $color }}">
+    <img class="hoverImage__image" src="{{ $post->image_thumbnail }}" width="{{ $post->width }}px"
+        height="{{ $post->height }}px" loading="lazy" decoding="async" />
     @if ($hoverable == 'true')
         <div class="hoverImage__image--overlay">
             <div class="hoverImage__image--controls">
                 @if ($showUser)
-                    <a class="control control__actionable" href="{{ route('profile', ['user' => $user]) }}">
-                        <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture"
-                            loading="lazy" decoding="async">
+                    <a class="control control__actionable" href="{{ route('profile', ['user' => $post->author]) }}">
+                        <img src="{{ $post->author->avatar }}"
+                            alt="{{ $post->author->preferred_name }}'s Profile Picture" loading="lazy" decoding="async">
                     </a>
                 @endif
                 @auth

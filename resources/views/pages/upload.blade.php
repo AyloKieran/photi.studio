@@ -5,22 +5,26 @@
                 <x-header title="{{ __('Upload Photo') }}" subtitle="{{ __('text text text') }}" />
             </div>
             <div class="upload__content">
-                <x-section title="{{ __('Image File') }}"
-                    subtitle="{{ __('Ideally as high quality as you can, under 4MB') }}">
-                    <x-input name="test" type="file" required />
-                </x-section>
-                <x-section title="{{ __('Title') }}" subtitle="{{ __('Let people know what your post is about') }}">
-                    <x-input name="test" type="text" />
-                </x-section>
-                <x-section title="{{ __('Description') }}"
-                    subtitle="{{ __('Give people some more information about your photo\'s story') }}">
-                    <x-textarea name="test" />
-                </x-section>
+                <form method="POST" action="{{ route('upload.store') }}" id="uploadForm" enctype="multipart/form-data">
+                    @csrf
+                    <x-section title="{{ __('Image File') }}"
+                        subtitle="{{ __('Ideally as high quality as you can, under 10MB') }}">
+                        <x-input name="image" type="file" required />
+                    </x-section>
+                    <x-section title="{{ __('Title') }}"
+                        subtitle="{{ __('Let people know what your post is about') }}">
+                        <x-input name="title" type="text" required />
+                    </x-section>
+                    <x-section title="{{ __('Description') }}"
+                        subtitle="{{ __('Give people some more information about your photo\'s story') }}">
+                        <x-textarea name="description" />
+                    </x-section>
+                </form>
             </div>
             <div class="upload__footer">
                 <hr class="seperator" />
                 <div class="upload__footer-holder">
-                    <x-button primary>
+                    <x-button primary type="submit" form="uploadForm">
                         <i class="icon fa-solid fa-upload"></i>
                         {{ __('Upload') }}
                     </x-button>

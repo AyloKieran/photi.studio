@@ -1,7 +1,7 @@
 <div class="post__info">
-    @include('components.post.info.titles')
+    <x-post.info.titles :post=$post />
     {{-- <div class="seperator"></div> --}}
-    @include('components.post.info.tags')
+    <x-post.info.tags :post=$post />
     {{-- <hr class="seperator" /> --}}
-    @include('components.post.info.comments')
+    <x-post.info.comments :post=$post />
 </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Onboarding;
 
 use App\Http\Controllers\Controller;
 use App\Enums\OnboardingStepEnum;
-use App\Managers\User\Preference\Profiles\UserProfileAvatarManager;
+use App\Managers\User\Profiles\UserProfileAvatarManager;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -25,21 +25,14 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'profile-picture' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:1024'],
+            'profile-picture' => $this->__UserProfileAvatarManager->avatarValidationRules,
             'bio' => ['max:255'],
         ]);
 
         $user = $request->user();
 
         if ($request->has('profile-picture')) {
-
-            // $avatarFile = request('profile-picture')->store('avatars');
-            // $fileType = pathinfo($avatarFile, PATHINFO_EXTENSION);
-            // $fileContents = file_get_contents(storage_path('app/' . $avatarFile));
-            // $image = 'data:image/' . $fileType . ';base64,' . base64_encode($fileContents);
-
-
-            $user->avatar = $this->__UserProfileAvatarManager->updateAvatar($request->file('profile-picture'));
+            $this->__UserProfileAvatarManager->updateAvatar($user, $request->file('profile-picture'));
         }
 
         if ($request->has('bio') && $request->bio != null) {

@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Managers\User\Preference\Profiles;
+namespace App\Managers\User\Profiles;
 
 use App\Managers\BaseManager;
 use App\Managers\Azure\Blobs\AzureBlobManager;
 use App\Managers\Image\Adjustments\ImageAdjustmentManager;
 use App\Enums\BlobTypeEnum;
+use App\Models\User;
+use Illuminate\Http\UploadedFile;
 
 class UserProfileAvatarManager extends BaseManager
 {
     protected $__AzureBlobManager;
     protected $__ImageAdjustmentManager;
+
+    public $avatarValidationRules = ['image', 'mimes:jpeg,png,jpg,gif', 'max:4M'];
 
     function __construct()
     {
@@ -20,11 +24,11 @@ class UserProfileAvatarManager extends BaseManager
         $this->__ImageAdjustmentManager = new ImageAdjustmentManager();
     }
 
-    public function updateAvatar($file)
+    public function updateAvatar(User $user, UploadedFile $file)
     {
         $resizedAvatarFile = $this->__ImageAdjustmentManager->resizeImage($file, 160); // TO DO: make this a constant
         $avatarURL = $this->__AzureBlobManager->createBlobFromFile($resizedAvatarFile, BlobTypeEnum::AVATAR_IMAGE);
 
-        return $avatarURL;
+        $user->avatar = $avatarURL;
     }
 }

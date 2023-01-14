@@ -5,6 +5,7 @@ namespace App\Managers\Azure\Blobs;
 use App\Managers\BaseManager;
 use App\Enums\BlobTypeEnum;
 use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class AzureBlobManager extends BaseManager
@@ -25,9 +26,9 @@ class AzureBlobManager extends BaseManager
         return $baseURL . $blobPath;
     }
 
-    public function createBlob($blobContents, BlobTypeEnum $blobPath)
+    public function createBlob(UploadedFile $file, BlobTypeEnum $blobPath)
     {
-        $blobPath = $blobContents->store($blobPath->value, 'azure');
+        $blobPath = $file->store($blobPath->value, 'azure');
         return $this->generateUrl($blobPath);
     }
 

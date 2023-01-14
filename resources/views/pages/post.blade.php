@@ -1,10 +1,10 @@
-<x-app-layout title="{{ __('TEMP POST') }}">
+<x-app-layout title="{{ __(':postTitle - :postAuthor', ['postTitle' => $post->title, 'postAuthor' => $post->author->preferred_name]) }}">
     <div class="content__holder">
-        <x-post />
+        <x-post :post=$post />
         <x-posts-holder>
-            @for ($i = 0; $i < 50; $i++)
-                <x-hover-image />
-            @endfor
+            @foreach (\App\Models\Post::inRandomOrder()->take(50)->get(); as $post)
+                <x-hover-image :post=$post />
+            @endforeach
         </x-posts-holder>
     </div>
 </x-app-layout>

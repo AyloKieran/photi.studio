@@ -18,7 +18,7 @@
         }
     }
 
-    &__content {
+    &__content, &__content form {
         display: flex;
         flex-direction: column;
         gap: var(--spacing3);

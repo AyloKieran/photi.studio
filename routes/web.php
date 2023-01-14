@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
@@ -31,9 +32,12 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     Route::get('/trending', function () {
         return view('pages.trending');
     })->name('trending');
-    Route::get('/upload', function () {
-        return view('pages.upload');
-    })->middleware('auth')->name('upload');
+
+    Route::group(['prefix' => 'upload', 'middleware' => ['auth']], function () {
+        Route::get('', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload');
+        Route::post('', [\App\Http\Controllers\UploadController::class, 'store'])->name('upload.store');
+    });
+
     Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm', 'auth']], function () {
         Route::get('', fn () => redirect(route('preferences.profile-information')))->name('preferences');
         Route::get('/profile-information', fn () => view('pages.preferences.profile-information'))->name('preferences.profile-information');
@@ -45,8 +49,8 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         Route::get('/{tag}/tags', fn ($tag) => view('pages.search.tag')->with('tag', $tag))->name('search.tag');
         Route::get('/post/{post}', fn ($post) => view('pages.search.post')->with('post', $post))->name('search.post');
     });
-    Route::get('/post/{post?}', function ($post = null) {
-        return view('pages.post');
+    Route::get('/post/{post?}', function (Post $post = null) {
+        return view('pages.post')->with('post', $post);
     })->name('post');
     Route::get('/profile/{user}', function (User $user) {
         return view('pages.profile')->with('user', $user);

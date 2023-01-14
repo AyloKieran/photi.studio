@@ -1,7 +1,7 @@
 <x-onboarding-layout title="{{ __('How would you like to be seen on Photi?') }}" currentStep=1>
     <form method="POST" action="{{ route('onboarding.profile.store') }}" id="onboardingForm" enctype="multipart/form-data">
         @csrf
-        <x-section title="{{ __('Profile Picture') }}" subtitle="{{ __('Ideally a square image and under 1MB') }}">
+        <x-section title="{{ __('Profile Picture') }}" subtitle="{{ __('Ideally a square image') }}">
             <x-input type="file" name="profile-picture" />
         </x-section>
         <x-section title="{{ __('Bio') }}" subtitle="{{ __('Tell others a little bit about yourself') }}">

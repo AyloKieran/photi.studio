@@ -10,9 +10,9 @@
     </x-header>
     <div class="content__holder">
         <x-posts-holder>
-            @for ($i = 0; $i < 50; $i++)
-                <x-hover-image />
-            @endfor
+            @foreach (\App\Models\Post::all()->take(50); as $post)
+                <x-hover-image :post=$post />
+            @endforeach
         </x-posts-holder>
     </div>
 </x-app-layout>

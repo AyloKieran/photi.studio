@@ -18,7 +18,7 @@
 
         margin-top: var(--spacing2);
         display: grid;
-        grid-template-columns: repeat(var(--numberOfItems), auto);
+        grid-template-columns: repeat(var(--numberOfItems), 1fr);
         grid-gap: var(--spacing4);
 
         @include tablet {

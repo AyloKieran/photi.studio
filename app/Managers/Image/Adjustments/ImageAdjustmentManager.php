@@ -24,11 +24,23 @@ class ImageAdjustmentManager extends BaseManager
         $fileName = $image->hashName();
         $filePath = $this->generateFilePath($fileName);
 
-        $image = Image::make($image)->resize($width, $height, function ($constrant) {
-            $constrant->aspectRatio();
+        $image = Image::make($image)->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
         });
 
-        $image->save($filePath);
+        $image->save($filePath, 75, 'webp');
+
+        return new File($filePath);
+    }
+
+    public function convertImage(UploadedFile $image)
+    {
+        $fileName = $image->hashName();
+        $filePath = $this->generateFilePath($fileName);
+
+        $image = Image::make($image);
+        $image->save($filePath, 75, 'webp');
 
         return new File($filePath);
     }
