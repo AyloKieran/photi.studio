@@ -4,7 +4,6 @@ namespace App\Managers\Image\Adjustments;
 
 use App\Enums\FileTypeEnum;
 use App\Managers\BaseManager;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
 use Image;
 
@@ -20,7 +19,7 @@ class ImageAdjustmentManager extends BaseManager
         return storage_path() . "/app/" . $fileName;
     }
 
-    public function resizeImage(UploadedFile $image, $width, $height = null, FileTypeEnum $fileType = FileTypeEnum::WEBP)
+    public function resizeImage(File $image, $width, $height = null, FileTypeEnum $fileType = FileTypeEnum::WEBP)
     {
         $fileName = $image->hashName();
         $filePath = $this->generateFilePath($fileName);
@@ -35,7 +34,7 @@ class ImageAdjustmentManager extends BaseManager
         return new File($filePath);
     }
 
-    public function convertImage(UploadedFile $image, FileTypeEnum $fileType)
+    public function convertImage(File $image, FileTypeEnum $fileType)
     {
         $fileName = $image->hashName();
         $filePath = $this->generateFilePath($fileName);

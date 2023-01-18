@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Managers\Image\ImageFileManager;
 use Illuminate\Http\Request;
-use App\Managers\User\Post\UserPostImageManager;
 use App\Models\Post;
-use App\Models\Tag;
-use App\Models\PostTag;
+use App\Jobs\Posts\PostAnalyseMedia;
+use App\Jobs\Posts\PostCreation;
+use App\Jobs\Posts\PostUploadMedia;
+use Illuminate\Support\Facades\Bus;
 
 class UploadController extends Controller
 {
-
-    protected $__UserPostImageManager;
+    protected $__ImageFileManager;
 
     public function __construct()
     {
-        $this->__UserPostImageManager = new UserPostImageManager();
+        $this->__ImageFileManager = new ImageFileManager();
     }
 
     public function index()
@@ -34,17 +35,7 @@ class UploadController extends Controller
 
         $post = new Post();
         $post->user_id = $request->user()->id;
-
-        // TO DO: REMOVE
-        $post->r = 0;
-        $post->g = 0;
-        $post->b = 0;
-
-        $cvInfo = $this->__UserPostImageManager->uploadAndAnalyseImage($post, $request->file('image'));
-
-        $post->width = $cvInfo->metadata->width;
-        $post->height = $cvInfo->metadata->height;
-        $post->nsfw = $cvInfo->adult->isAdultContent || $cvInfo->adult->isRacyContent || $cvInfo->adult->isGoryContent;
+        $post->local_file_path = $this->__ImageFileManager->saveImageToFile(request()->file('image'));
 
         if ($request->has('title') && $request->title != null) {
             $post->title = $request->title;
@@ -56,28 +47,12 @@ class UploadController extends Controller
 
         $post->save();
 
-        // TO DO: move this to a separate manager
+        Bus::chain([
+            new PostCreation($post),
+            new PostUploadMedia($post),
+            new PostAnalyseMedia($post),
+        ])->dispatch();
 
-        $tags = array_map(function ($tag) {
-            return $tag['name'];
-        }, array_filter(
-            $cvInfo->tags,
-            function ($tag) {
-                return $tag['confidence'] > 0.8; // TO DO: make this a constant or user preference
-            }
-        ));
-
-        $tags = collect($tags)->map(function ($tagString) {
-            return Tag::firstOrCreate(['name' => trim($tagString)]);
-        });
-
-        foreach ($tags as $tag) {
-            PostTag::create([
-                'post_id' => $post->id,
-                'tag_id' => $tag->id
-            ]);
-        }
-
-        return redirect(route('post', ['post' => $post]));
+        return redirect(route('home'));
     }
 }

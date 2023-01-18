@@ -1,11 +1,11 @@
 @props(['post', 'hoverable' => true, 'navigatable' => true, 'showUser' => true])
 
 @php
-    $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
+    $colour = 'rgba(' . $post->r . ', ' . $post->g . ', ' . $post->b . ', 0.1);';
 @endphp
 
 <div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $post]) . '")' : '' }}
-    class="hoverImage" style="--background-colour: {{ $color }}">
+    class="hoverImage" style="--background-colour: {{ $colour }}">
     <img class="hoverImage__image" src="{{ $post->image_thumbnail }}" width="{{ $post->width }}px"
         height="{{ $post->height }}px" loading="lazy" decoding="async" />
     @if ($hoverable == 'true')

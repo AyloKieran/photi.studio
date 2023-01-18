@@ -7,7 +7,7 @@ use App\Managers\Azure\Blobs\AzureBlobManager;
 use App\Managers\Image\Adjustments\ImageAdjustmentManager;
 use App\Enums\BlobTypeEnum;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Http\File;
 
 class UserProfileAvatarManager extends BaseManager
 {
@@ -24,7 +24,7 @@ class UserProfileAvatarManager extends BaseManager
         $this->__ImageAdjustmentManager = new ImageAdjustmentManager();
     }
 
-    public function updateAvatar(User $user, UploadedFile $file)
+    public function updateAvatar(User $user, File $file)
     {
         $resizedAvatarFile = $this->__ImageAdjustmentManager->resizeImage($file, 160); // TO DO: make this a constant
         $avatarURL = $this->__AzureBlobManager->createBlobFromFile($resizedAvatarFile, BlobTypeEnum::AVATAR_IMAGE);

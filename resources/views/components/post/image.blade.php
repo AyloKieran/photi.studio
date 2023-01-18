@@ -1,6 +1,5 @@
 @php
-    $id = rand(0, 200);
-    $color = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.1);';
+    $color = 'rgba(' . $post->r . ', ' . $post->g . ', ' . $post->b . ', 0.25);';
 @endphp
 
 @php
@@ -26,9 +25,9 @@
                     <i class="icon fa fa-thumbs-down"></i>
                 </div>
             @endauth
-            <a href="{{ route('search.post', ['post' => $id]) }}" class="control control__actionable">
+            {{-- <a href="{{ route('search.post', ['post' => $post]) }}" class="control control__actionable">
                 <i class="icon fa fa-magnifying-glass-arrow-right"></i>
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>

@@ -4,17 +4,21 @@ namespace App\Http\Controllers\Onboarding;
 
 use App\Http\Controllers\Controller;
 use App\Enums\OnboardingStepEnum;
+use App\Managers\Image\ImageFileManager;
 use App\Managers\User\Profiles\UserProfileAvatarManager;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
 
     protected $__UserProfileAvatarManager;
+    protected $__ImageFileManager;
 
     public function __construct()
     {
         $this->__UserProfileAvatarManager = new UserProfileAvatarManager();
+        $this->__ImageFileManager = new ImageFileManager();
     }
 
     public function index()
@@ -32,7 +36,7 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if ($request->has('profile-picture')) {
-            $this->__UserProfileAvatarManager->updateAvatar($user, $request->file('profile-picture'));
+            $this->__UserProfileAvatarManager->updateAvatar($user, new File($this->__ImageFileManager->saveImageToFile(request()->file('profile-picture'))));
         }
 
         if ($request->has('bio') && $request->bio != null) {

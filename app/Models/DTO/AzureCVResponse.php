@@ -6,8 +6,9 @@ use App\Models\DTO\Models\Adult;
 use App\Models\DTO\Models\Color;
 use App\Models\DTO\Models\Description;
 use App\Models\DTO\Models\Metadata;
+use Illuminate\Database\Eloquent\Model;
 
-class AzureCVResponse
+class AzureCVResponse extends Model
 {
     public Adult $adult;
     public Color $color;

@@ -4,6 +4,7 @@ namespace App\Managers\Azure\ComputerVision;
 
 use App\Managers\BaseManager;
 use App\Managers\Reflection\ReflectionManager;
+use App\Models\DTO\AzureCVResponse;
 use Illuminate\Support\Facades\Http;
 
 class AzureComputerVisionManager extends BaseManager
@@ -25,7 +26,7 @@ class AzureComputerVisionManager extends BaseManager
     public function getComputerVisionData($imageURL)
     {
         $responseBody = $this->getComputerVisionDataFromAzure($imageURL);
-        return $this->__ReflectionManager->reflectToObject($responseBody);
+        return $this->__ReflectionManager->reflectToObject($responseBody, AzureCVResponse::class);
     }
 
     private function getComputerVisionDataFromAzure($imageURL)
