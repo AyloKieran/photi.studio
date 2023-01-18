@@ -10,7 +10,6 @@ use App\Enums\PostStatusEnum;
 use App\Managers\Azure\Blobs\AzureBlobManager;
 use App\Managers\Image\Adjustments\ImageAdjustmentManager;
 use Illuminate\Http\File;
-use Spatie\Async\Pool;
 
 class PostUploadMedia extends BasePostJob
 {
@@ -29,22 +28,14 @@ class PostUploadMedia extends BasePostJob
     {
         $image = new File($this->post->local_file_path);
 
-        $pool = Pool::create()->concurrency(3);
+        $convertedImage = $this->__ImageAdjustmentManager->convertImage($image, FileTypeEnum::WEBP);
+        $this->post->image_original = $this->__AzureBlobManager->createBlobFromFile($convertedImage, BlobTypeEnum::POST_IMAGE_ORIGINAL);
 
-        $pool[0] = async(function () use ($image) {
-            $convertedImage = $this->__ImageAdjustmentManager->convertImage($image, FileTypeEnum::WEBP);
-            $this->post->image_original = $this->__AzureBlobManager->createBlobFromFile($convertedImage, BlobTypeEnum::POST_IMAGE_ORIGINAL);
-        });
-        $pool[1] = async(function () use ($image) {
-            $resizedPostFile = $this->__ImageAdjustmentManager->resizeImage($image, 400); // TO DO: make this a constant
-            $this->post->image_thumbnail = $this->__AzureBlobManager->createBlobFromFile($resizedPostFile, BlobTypeEnum::POST_IMAGE_THUMBNAIL);
-        });
-        $pool[2] = async(function () use ($image) {
-            $convertedImage = $this->__ImageAdjustmentManager->convertImage($image, FileTypeEnum::JPEG);
-            $this->post->image_cv = $this->__AzureBlobManager->createBlobFromFile($convertedImage, BlobTypeEnum::POST_IMAGE_COMPUTERVISION);
-        });
+        $resizedPostFile = $this->__ImageAdjustmentManager->resizeImage($image, 400); // TO DO: make this a constant
+        $this->post->image_thumbnail = $this->__AzureBlobManager->createBlobFromFile($resizedPostFile, BlobTypeEnum::POST_IMAGE_THUMBNAIL);
 
-        await($pool);
+        $convertedImage = $this->__ImageAdjustmentManager->convertImage($image, FileTypeEnum::JPEG);
+        $this->post->image_cv = $this->__AzureBlobManager->createBlobFromFile($convertedImage, BlobTypeEnum::POST_IMAGE_COMPUTERVISION);
 
         $this->post->status = PostStatusEnum::ANALYSING->value;
         $this->post->save();
