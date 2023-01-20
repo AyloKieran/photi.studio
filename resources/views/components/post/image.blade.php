@@ -7,10 +7,9 @@
     $user = User::first();
 @endphp
 
-<div class="post__image"
-    style='--imageURL: url("{{ $post->image_original }}"); --background-colour: {{ $color }}'">
-    <img src="{{ $post->image_original }}" width="{{ $post->width }}px" height="{{ $post->height }}px" loading="lazy"
-        decoding="async">
+<div class="post__image" style='--imageURL: url("{{ $post->image_original }}"); --background-colour: {{ $color }}'>
+    <img src="{{ $post->image_original }}" width="{{ $post->width }}px" height="{{ $post->height }}px"
+        alt="{{ $post->caption }}" loading="lazy" decoding="async">
     <div class="post__image--overlay">
         <div class="post__image--controls">
             <a href="{{ route('profile', ['user' => $post->author]) }}" class="control control__actionable">

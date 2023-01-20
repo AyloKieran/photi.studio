@@ -22,9 +22,10 @@
                     <span>{{ $user->preferred_name }}</span>
                 </a>
                 <div class="navigation__actions">
-                    <a class="icon fa-solid fa-cog" href={{ route('preferences') }}></a>
+                    <a class="icon fa-solid fa-cog" href={{ route('preferences') }}
+                        aria-label="{{ __('Edit Preferences') }}"></a>
                     <i class="icon fa-solid fa-arrow-right-from-bracket"
-                        onclick="document.getElementById('logoutForm').submit()"></i>
+                        onclick="document.getElementById('logoutForm').submit()" alt="{{ __('Log Out') }}"></i>
                 </div>
             </div>
 

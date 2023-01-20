@@ -6,4 +6,5 @@
 
 <{{ $tagType }} @if ($navigatable) href="{{ route('home') }}" @endif
     class="logo @if ($navFriendly) logo--navFriendly @endif">
+    PHOTI
     </{{ $tagType }}>

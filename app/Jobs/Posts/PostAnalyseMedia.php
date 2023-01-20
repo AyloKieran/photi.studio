@@ -23,10 +23,10 @@ class PostAnalyseMedia extends BasePostJob
     {
         $cvInfo = $this->__AzureComputerVisionManager->getComputerVisionData($this->post->image_cv);
 
-
         $this->post->width = $cvInfo->metadata->width;
         $this->post->height = $cvInfo->metadata->height;
         $this->post->nsfw = $cvInfo->adult->isAdultContent || $cvInfo->adult->isRacyContent || $cvInfo->adult->isGoryContent;
+        $this->post->caption = array_values($cvInfo->description->captions)[0]["text"];
 
         list($r, $g, $b) = sscanf($cvInfo->color->accentColor, "%02x%02x%02x"); // TO DO: move this to a const
         $this->post->r = $r;
