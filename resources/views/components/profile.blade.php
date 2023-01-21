@@ -16,17 +16,17 @@
                     </div>
                 </div>
                 <div class="profile__user-stats">
-                    <x-profile.user.stat count="1688" label="{{ __('Posts') }}" />
-                    <x-profile.user.stat count="1920" label="{{ __('Following') }}" />
-                    <x-profile.user.stat count="1277" label="{{ __('Followers') }}" />
-                    <x-profile.user.stat count="5677" label="{{ __('Likes') }}" />
+                    <x-profile.user.stat count="{{ $user->posts->count() }}" label="{{ __('Posts') }}" />
+                    <x-profile.user.stat count="XXX" label="{{ __('Following') }}" />
+                    <x-profile.user.stat count="XXX" label="{{ __('Followers') }}" />
+                    <x-profile.user.stat count="XXX" label="{{ __('Likes') }}" />
                 </div>
             </div>
         </div>
         <div class="profile__section-holder">
             <div class="profile__section" style="flex-grow: 1;">
                 <div class="section__title">
-                    Bio
+                    {{ __('About :user', ['user' => $user->preferred_name]) }}
                 </div>
                 {{ $user->bio }}
             </div>

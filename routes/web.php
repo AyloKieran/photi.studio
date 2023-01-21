@@ -58,6 +58,12 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     })->name('profile');
 });
 
+Route::group(['prefix' => '/unsplash', 'middleware' => ['auth']], function () {
+    Route::get('login', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'login'])->name('unsplash.login');
+    Route::get('create-post', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'createPost'])->name('unsplash.createPost');
+    Route::get('create', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'create'])->name('unsplash.create');
+});
+
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');

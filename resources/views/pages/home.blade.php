@@ -7,7 +7,7 @@
     </x-header>
     <div class="content__holder">
         <x-posts-holder>
-            @foreach (\App\Models\Post::all()->take(50); as $post)
+            @foreach (\App\Models\Post::all() as $post)
                 <x-hover-image :post=$post />
             @endforeach
         </x-posts-holder>

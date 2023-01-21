@@ -1,5 +1,8 @@
 <div class="authentication__images">
-    @foreach (\App\Models\Post::inRandomOrder()->take(75)->get() as $post)
+    @php
+        $__ImageDisplayManager = new \App\Managers\Image\Display\ImageDisplayManager();
+    @endphp
+    @foreach ($__ImageDisplayManager->getAuthenticationImages() as $post)
         <x-hover-image :post=$post navigatable="false" hoverable="false" />
     @endforeach
 </div>
