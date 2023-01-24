@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
-            $table->uuid('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

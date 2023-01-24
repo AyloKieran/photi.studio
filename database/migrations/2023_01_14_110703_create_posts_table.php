@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('status', array_map(fn ($status) => $status->value, PostStatusEnum::cases()))->default(PostStatusEnum::PENDING->value);
             $table->longtext('title');
             $table->longtext('description')->nullable();
@@ -26,10 +26,11 @@ return new class extends Migration
             $table->integer('r')->nullable();
             $table->integer('g')->nullable();
             $table->integer('b')->nullable();
-            $table->longtext('local_file_path');
+            $table->longText('caption')->nullable();
             $table->longtext('image_original')->nullable();
             $table->longtext('image_thumbnail')->nullable();
             $table->longtext('image_cv')->nullable();
+            $table->longtext('local_file_path');
             $table->longtext('cv_info')->nullable();
             $table->timestamps();
         });
