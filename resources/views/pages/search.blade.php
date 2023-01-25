@@ -12,33 +12,50 @@
                 </x-button>
             </form>
         </x-section>
-        @if ($search != '')
-            <x-section title="{{ __('Test Message') }}" href="{{ route('search', [$search]) }}">
+        @php
+            $showMore = $search != '';
+            $postsRoute = route('search.posts', [$search]);
+            $tagsRoute = route('search.tags', [$search]);
+            $usersRoute = route('search.users', [$search]);
+        @endphp
+        <x-section title="{{ __('Posts') }}" href="{{ $showMore ? $postsRoute : '' }}">
+            @if (count($posts) > 0)
+                <x-search.line :content=$posts>
+                    @foreach ($posts as $post)
+                        <x-search.cards.post :post=$post />
+                    @endforeach
+                </x-search.line>
+            @else
                 <x-search.message>
-                    {{ __('There are no :type found for the search \':criteria\'.', ['type' => 'posts/tags/users', 'criteria' => $search]) }}
+                    {{ __('There are no posts found for the search \':criteria\'.', ['criteria' => $search]) }}
                 </x-search.message>
-            </x-section>
-        @endif
-        <x-section title="{{ __('Posts') }}" href="{{ route('search', [$search]) }}">
-            <x-search.line>
-                @foreach (\App\Models\Post::inRandomOrder()->take(7)->get(); as $post)
-                    <x-search.cards.post :post=$post />
-                @endforeach
-            </x-search.line>
+            @endif
         </x-section>
-        <x-section title="{{ __('Tags') }}" href="{{ route('search', [$search]) }}">
-            <x-search.line>
-                @foreach (\App\Models\Tag::withCount('posts')->orderBy('posts_count', 'desc')->take(7)->get(); as $tag)
-                    <x-search.cards.tag :tag=$tag />
-                @endforeach
-            </x-search.line>
+        <x-section title="{{ __('Tags') }}" href="{{ $showMore ? $tagsRoute : '' }}">
+            @if (count($tags) > 0)
+                <x-search.line>
+                    @foreach ($tags as $tag)
+                        <x-search.cards.tag :tag=$tag />
+                    @endforeach
+                </x-search.line>
+            @else
+                <x-search.message>
+                    {{ __('There are no tags found for the search \':criteria\'.', ['criteria' => $search]) }}
+                </x-search.message>
+            @endif
         </x-section>
-        <x-section title="{{ __('Users') }}" href="{{ route('search', [$search]) }}">
-            <x-search.line>
-                @foreach (\App\Models\User::inRandomOrder()->take(7)->get() as $user)
-                    <x-search.cards.user :user=$user />
-                @endforeach
-            </x-search.line>
+        <x-section title="{{ __('Users') }}" href="{{ $showMore ? $usersRoute : '' }}">
+            @if (count($users) > 0)
+                <x-search.line>
+                    @foreach ($users as $user)
+                        <x-search.cards.user :user=$user />
+                    @endforeach
+                </x-search.line>
+            @else
+                <x-search.message>
+                    {{ __('There are no users found for the search \':criteria\'.', ['criteria' => $search]) }}
+                </x-search.message>
+            @endif
         </x-section>
     </div>
 </x-app-layout>

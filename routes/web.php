@@ -59,10 +59,27 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         });
     });
     Route::group(['prefix' => '/search'], function () {
-        Route::post('', fn (Request $request) => redirect()->route('search', ['search' => $request->search]))->name('search.lookup');
-        Route::get('/{search?}', fn ($search = null) => view('pages.search')->with('search', $search))->name('search');
-        Route::get('/tag/{tag}', fn (Tag $tag) => view('pages.search.tag')->with('tag', $tag))->name('search.tag');
-        Route::get('/post/{post}', fn ($post) => view('pages.search.post')->with('post', $post))->name('search.post');
+        Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookup'])->name('search.lookup');
+        Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'show'])->name('search');
+
+        Route::group(['prefix' => '/posts'], function () {
+            Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showPosts'])->name('search.posts');
+            Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupPosts'])->name('search.posts.lookup');
+        });
+
+        Route::group(['prefix' => '/tags'], function () {
+            Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showTags'])->name('search.tags');
+            Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupTags'])->name('search.tags.lookup');
+        });
+
+        Route::group(['prefix' => '/users'], function () {
+            Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showUsers'])->name('search.users');
+            Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupUsers'])->name('search.users.lookup');
+        });
+
+        Route::group(['prefix' => '/tag'], function () {
+            Route::get("/{tag}", fn (Tag $tag) => view('pages.search.tag')->with('tag', $tag))->name("search.tag");
+        });
     });
     Route::get('/post/{post}', function (Post $post) {
         return view('pages.post')->with('post', $post);

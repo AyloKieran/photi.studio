@@ -2,6 +2,13 @@
     background: rgb(23, 23, 32);
     box-shadow: none;
 
+    & .search__card-title {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
     & img {
         margin-bottom: var(--spacing2);
         border: 4px solid var(--border);

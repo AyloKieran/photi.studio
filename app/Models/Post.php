@@ -8,6 +8,7 @@ use App\Traits\Uuids;
 use App\Traits\UsesRawDBQuery;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Managers\User\Preference\UserPreferenceManager;
 
 class Post extends Model
@@ -34,10 +35,10 @@ class Post extends Model
     public function relatedPostsByTag()
     {
         $__UserPreferenceManager = new UserPreferenceManager();
-        $limit = $__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, auth()->user()); // TO DO: User preference manager
-        $minimumRelatedTags = $__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, auth()->user()); // TO DO: User preference manager
+        $limit = $__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, auth()->user());
+        $minimumRelatedTags = $__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, auth()->user());
 
-        return static::modelsFromRawResults(\DB::select("
+        return static::modelsFromRawResults(DB::select("
         SELECT COUNT( * ) AS MatchingTagCount, Post.*
         FROM post_tag AS PostTag
         LEFT JOIN posts AS Post ON Post.id = PostTag.post_id

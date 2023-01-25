@@ -7,14 +7,23 @@ use App\Models\Post;
 use App\Jobs\Posts\PostAnalyseMedia;
 use App\Jobs\Posts\PostCreation;
 use App\Jobs\Posts\PostUploadMedia;
+use App\Managers\User\Profiles\UserProfileAvatarManager;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\File as File2;
 
 class UnsplashController extends Controller
 {
+    protected $__UserProfileAvatarManager;
+
+    function __construct()
+    {
+        $this->__UserProfileAvatarManager = new UserProfileAvatarManager();
+    }
+
     public function create()
     {
         for ($i = 0; $i < 50; $i++) {
@@ -32,19 +41,30 @@ class UnsplashController extends Controller
             return "Error";
         }
 
-        $username = "@us-" . $reponse['user']['username'];
+        $username = "@u" . $reponse['user']['username'];
         $user = User::firstOrNew(['username' => $username]);
         $user->name = $reponse['user']['name'];
         $user->email = $reponse['user']['username'] . "@unsplash.com";
         $user->password = bcrypt("password");
-        $user->save();
+
+        if (isset($reponse['user']['bio'])) {
+            $user->bio = $reponse['user']['bio'];
+        }
 
         $fileName = storage_path('app/' . uniqid() . '.jpg');
         File::put($fileName, Http::get($reponse['urls']['regular'])->body());
 
+        $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
+        $avatar = File::put($avatarFileName, Http::get($reponse['user']['profile_image']['large'])->body());
+
+        $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
+
+        $user->save();
+
         $post = new Post();
         $post->user_id = $user->id;
-        $post->title = "TEST POST";
+        $post->title = $reponse['alt_description'];
+        $post->description = $reponse['description'];
         $post->local_file_path = $fileName;
 
         $post->save();
