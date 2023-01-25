@@ -15,7 +15,17 @@
     }
 
     &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing2);
 
+        &:has(.profile) {
+            margin: auto 0;
+
+            & .profile {
+                width: 100%;
+            }
+        }
     }
 
     &:has(input[required], select[required], textarea[required]) {

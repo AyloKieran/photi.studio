@@ -41,7 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $__UserPreferenceManager = new UserPreferenceManager();
 
-        if ($__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PREFERRED_NAME->value, auth()->user()) == 'username') {
+        if ($__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PREFERRED_NAME, auth()->user()) == 'username') {
             return $this->username;
         } else {
             return $this->name;

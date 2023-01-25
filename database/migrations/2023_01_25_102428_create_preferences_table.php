@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Preference;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +17,8 @@ return new class extends Migration
         Schema::create('preferences', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name')->unique();
-            $table->longtext('default_value')->nullable();
+            $table->longtext('default_value');
+            $table->longText('validation');
             $table->timestamps();
         });
 

@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Onboarding;
+namespace App\Http\Controllers\Preferences;
 
 use App\Http\Controllers\Controller;
-use App\Enums\OnboardingStepEnum;
-use App\Managers\Image\ImageFileManager;
 use App\Managers\User\Profiles\UserProfileAvatarManager;
+use App\Managers\Image\ImageFileManager;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 
@@ -20,19 +19,27 @@ class ProfileController extends Controller
         $this->__ImageFileManager = new ImageFileManager();
     }
 
-    public function index()
+    public function show(Request $request)
     {
-        return view('pages.onboarding.profile');
+        return view('pages.preferences.profile')
+            ->with('user', $request->user());
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        $request->validate([
+        $toUpdate = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $request->user()->id . ',id',
             'profile-picture' => $this->__UserProfileAvatarManager->avatarValidationRules,
             'bio' => ['max:255'],
         ]);
 
+        $username = str_starts_with($request->username, '@') ? $request->username : '@' . $request->username;
+
         $user = $request->user();
+
+        $user->name = $toUpdate['name'];
+        $user->username = $username;
 
         if ($request->has('profile-picture')) {
             $this->__UserProfileAvatarManager->updateAvatar($user, new File($this->__ImageFileManager->saveImageToFile(request()->file('profile-picture'))));
@@ -42,9 +49,9 @@ class ProfileController extends Controller
             $user->bio = $request->bio;
         }
 
-        $user->onboarding_step = OnboardingStepEnum::PREFERENCES;
         $user->save();
 
-        return redirect()->route('onboarding.preferences');
+
+        return redirect()->back();
     }
 }

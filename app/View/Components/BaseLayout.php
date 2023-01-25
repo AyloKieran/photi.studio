@@ -17,7 +17,7 @@ class BaseLayout extends Component
 
     public function render()
     {
-        $theme = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME->value, auth()->user());
+        $theme = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME, auth()->user());
 
         return view('layouts.base')->with("theme", $theme);
     }

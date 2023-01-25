@@ -2,18 +2,19 @@
 
 namespace App\Managers\User\Preference;
 
+use App\Enums\PreferencesEnum;
 use App\Managers\BaseCachedManager;
 use App\Models\Preference;
 use App\Models\UserPreference;
 
 class UserPreferenceManager extends BaseCachedManager
 {
-    private function generateKey($key, $user)
+    private function generateKey(PreferencesEnum $key, $user)
     {
-        return "user_preference_{$user->id}_{$key}";
+        return "user_preference_{$user->id}_{$key->value}";
     }
 
-    public function getUserPreference($key, $user = null)
+    public function getUserPreference(PreferencesEnum $key, $user = null)
     {
         $preference = $this->getPreference($key);
 
@@ -31,22 +32,23 @@ class UserPreferenceManager extends BaseCachedManager
         });
     }
 
-    public function updateUserPreference($key, $user, $value)
+    public function updateUserPreference(PreferencesEnum $key, $value, $user)
     {
         $preference = $this->getPreference($key);
 
-        return $this->__CacheManager->getOrSet($this->generateKey($key, $user), function () use ($user, $preference, $value) {
-            return UserPreference::updateOrCreate([
-                'user_id' => $user->id,
-                'preference_id' => $preference->id,
-            ], [
-                'value' => $value,
-            ])->value;
-        });
+        $value = UserPreference::updateOrCreate([
+            'user_id' => $user->id,
+            'preference_id' => $preference->id,
+        ], [
+            'value' => $value,
+        ])->value;
+
+        return $this->__CacheManager->set($this->generateKey($key, $user), $value);
     }
 
-    private function getPreference($key)
+    public function getPreference(PreferencesEnum $key)
     {
+        $key = $key->value;
         return $this->__CacheManager->getOrSet($key, function () use ($key) {
             return Preference::where('name', $key)->first();
         }, 60 * 60 * 24 * 30);

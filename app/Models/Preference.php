@@ -13,5 +13,6 @@ class Preference extends Model
     protected $fillable = [
         'name',
         'default_value',
+        'validation',
     ];
 }

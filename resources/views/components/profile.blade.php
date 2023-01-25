@@ -46,7 +46,7 @@
                     <div class="profile__user-actions-section">
                         @auth
                             @if ($user->id == auth()->user()->id)
-                                <x-button rounded href="{{ route('preferences.profile-information') }}">
+                                <x-button rounded href="{{ route('preferences.profile') }}">
                                     <i class="icon fa-solid fa-cog"></i>
                                     {{ __('Edit Profile') }}
                                 </x-button>

@@ -14,7 +14,7 @@ class UserProfileAvatarManager extends BaseManager
     protected $__AzureBlobManager;
     protected $__ImageAdjustmentManager;
 
-    public $avatarValidationRules = ['image', 'mimes:jpeg,png,jpg,gif', 'max:4M'];
+    public $avatarValidationRules = ['image', 'mimes:jpeg,png,jpg,gif', 'max:8M'];
 
     function __construct()
     {
@@ -26,7 +26,7 @@ class UserProfileAvatarManager extends BaseManager
 
     public function updateAvatar(User $user, File $file)
     {
-        $resizedAvatarFile = $this->__ImageAdjustmentManager->resizeImage($file, 160); // TO DO: make this a constant
+        $resizedAvatarFile = $this->__ImageAdjustmentManager->resizeImage($file, 160, 160, true); // TO DO: make this a constant
         $avatarURL = $this->__AzureBlobManager->createBlobFromFile($resizedAvatarFile, BlobTypeEnum::AVATAR_IMAGE);
 
         $user->avatar = $avatarURL;

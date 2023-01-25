@@ -1,8 +1,12 @@
 @props(['name', 'values' => [], 'required' => false, 'autofocus' => false])
 
+@php
+    $selectText = arrayFindByFieldValue($values, 'checked', true);
+@endphp
+
 <div class="control control__dropdown">
     <div class="control__button">
-        <span class="control__button-text">Select...</span>
+        <span class="control__button-text">{{ isset($selectText) ? $selectText : __('Select...') }}</span>
         <i class="control__button-icon icon fa-solid fa-chevron-down"></i>
     </div>
     @if ($values[0] ?? false)

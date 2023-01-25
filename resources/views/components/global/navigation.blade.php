@@ -11,11 +11,11 @@
     <x-navigation.link title="{{ __('Search') }}" icon="fa-search" route="search" />
 </x-navigation.section>
 @auth
-    <x-navigation.section title="{{ __('Social') }}">
+    {{-- <x-navigation.section title="{{ __('Social') }}">
         <x-navigation.link title="{{ __('Notifications') }}" icon="fa-bell" />
         <x-navigation.link title="{{ __('Messages') }}" icon="fa-envelope" />
-    </x-navigation.section>
+    </x-navigation.section> --}}
 @endauth
-<x-navigation.section title="{{ __('Prototype') }}">
+{{-- <x-navigation.section title="{{ __('Prototype') }}">
     <x-navigation.link title="{{ __('Prototype Feedback') }}" icon="fa-swatchbook" />
-</x-navigation.section>
+</x-navigation.section> --}}

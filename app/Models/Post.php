@@ -15,12 +15,6 @@ class Post extends Model
     use HasFactory, UsesRawDBQuery, Uuids;
 
     protected $with = ['author'];
-    protected $__UserPreferenceManager;
-
-    function __construct()
-    {
-        $this->__UserPreferenceManager = new UserPreferenceManager();
-    }
 
     public function newQuery($onlyComplete = true)
     {
@@ -39,8 +33,9 @@ class Post extends Model
 
     public function relatedPostsByTag()
     {
-        $limit = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE->value, auth()->user()); // TO DO: User preference manager
-        $minimumRelatedTags = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value, auth()->user()); // TO DO: User preference manager
+        $__UserPreferenceManager = new UserPreferenceManager();
+        $limit = $__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, auth()->user()); // TO DO: User preference manager
+        $minimumRelatedTags = $__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, auth()->user()); // TO DO: User preference manager
 
         return static::modelsFromRawResults(\DB::select("
         SELECT COUNT( * ) AS MatchingTagCount, Post.*

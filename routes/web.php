@@ -40,9 +40,23 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     });
 
     Route::group(['prefix' => '/preferences', 'middleware' => ['password.confirm', 'auth']], function () {
-        Route::get('', fn () => redirect(route('preferences.profile-information')))->name('preferences');
-        Route::get('/profile-information', fn () => view('pages.preferences.profile-information'))->name('preferences.profile-information');
-        Route::get('/theme', fn () => view('pages.preferences.theme'))->name('preferences.theme');
+        Route::get('', fn () => redirect(route('preferences.profile')))->name('preferences');
+        Route::group(['prefix' => '/profile'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\ProfileController::class, 'show'])->name('preferences.profile');
+            Route::post('', [\App\Http\Controllers\Preferences\ProfileController::class, 'update'])->name('preferences.profile.update');
+        });
+        Route::group(['prefix' => '/theme'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\ThemeController::class, 'show'])->name('preferences.theme');
+            Route::post('', [\App\Http\Controllers\Preferences\ThemeController::class, 'update'])->name('preferences.theme.update');
+        });
+        Route::group(['prefix' => '/content'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\ContentController::class, 'show'])->name('preferences.content');
+            Route::post('', [\App\Http\Controllers\Preferences\ContentController::class, 'update'])->name('preferences.content.update');
+        });
+        Route::group(['prefix' => '/deactivate-profile'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'show'])->name('preferences.deactivate-profile');
+            Route::post('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'update'])->name('preferences.deactivate-profile.update');
+        });
     });
     Route::group(['prefix' => '/search'], function () {
         Route::post('', fn (Request $request) => redirect()->route('search', ['search' => $request->search]))->name('search.lookup');

@@ -19,7 +19,7 @@ class ImageAdjustmentManager extends BaseManager
         return storage_path() . "/app/" . $fileName;
     }
 
-    public function resizeImage(File $image, $width, $height = null, FileTypeEnum $fileType = FileTypeEnum::WEBP)
+    public function resizeImage(File $image, $width, $height = null, $crop = false, FileTypeEnum $fileType = FileTypeEnum::WEBP)
     {
         $fileName = $image->hashName();
         $filePath = $this->generateFilePath($fileName);
@@ -28,6 +28,10 @@ class ImageAdjustmentManager extends BaseManager
             $constraint->aspectRatio();
             $constraint->upsize();
         });
+
+        if ($crop) {
+            $image->fit($width, $height);
+        }
 
         $image->save($filePath, 75, $fileType->value);
 
