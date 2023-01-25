@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 
 class CacheManager
 {
-    protected $defaultCacheLength = 60;
+    protected $defaultCacheLength = 120;
 
     public function getOrSet($key, $value, $seconds = null)
     {
@@ -17,12 +17,13 @@ class CacheManager
     public function set($key, $value, $seconds = null)
     {
         $seconds = isset($seconds) ? $seconds : $this->defaultCacheLength;
-        return Cache::put($key, $value, $seconds);
+        Cache::put($key, $value, $seconds);
+        return $value;
     }
 
     public function setForever($key, $value)
     {
-        return Cache::put($key, $value);
+        return Cache::put($key, $value) ? $value : null;
     }
 
     public function remove($key)

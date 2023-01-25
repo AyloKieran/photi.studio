@@ -3,16 +3,24 @@
 namespace App\Models;
 
 use App\Enums\PostStatusEnum;
+use App\Enums\PreferencesEnum;
 use App\Traits\Uuids;
 use App\Traits\UsesRawDBQuery;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Managers\User\Preference\UserPreferenceManager;
 
 class Post extends Model
 {
     use HasFactory, UsesRawDBQuery, Uuids;
 
     protected $with = ['author'];
+    protected $__UserPreferenceManager;
+
+    function __construct()
+    {
+        $this->__UserPreferenceManager = new UserPreferenceManager();
+    }
 
     public function newQuery($onlyComplete = true)
     {
@@ -31,8 +39,8 @@ class Post extends Model
 
     public function relatedPostsByTag()
     {
-        $limit = 50; // TO DO: User preference manager
-        $minimumRelatedTags = 2; // TO DO: User preference manager
+        $limit = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE->value, auth()->user()); // TO DO: User preference manager
+        $minimumRelatedTags = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value, auth()->user()); // TO DO: User preference manager
 
         return static::modelsFromRawResults(\DB::select("
         SELECT COUNT( * ) AS MatchingTagCount, Post.*

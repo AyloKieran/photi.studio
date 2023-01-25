@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\PreferencesEnum;
+use App\Managers\User\Preference\UserPreferenceManager;
 use App\Traits\Uuids;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,9 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPreferredNameAttribute()
     {
-        $username = true;
+        $__UserPreferenceManager = new UserPreferenceManager();
 
-        if ($username) {
+        if ($__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PREFERRED_NAME->value, auth()->user()) == 'username') {
             return $this->username;
         } else {
             return $this->name;

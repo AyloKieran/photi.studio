@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Enums\PreferencesEnum;
 use Illuminate\View\Component;
 use App\Managers\User\Preference\UserPreferenceManager;
 
@@ -16,7 +17,7 @@ class BaseLayout extends Component
 
     public function render()
     {
-        $theme = $this->__UserPreferenceManager->getUserPreference("preference.user.theme", auth()->user());
+        $theme = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME->value, auth()->user());
 
         return view('layouts.base')->with("theme", $theme);
     }

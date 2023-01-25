@@ -16,7 +16,7 @@ class ImageDisplayManager extends BaseCachedManager
     public function getAuthenticationImages()
     {
         return $this->__CacheManager->getOrSet("authentication-images", function () {
-            return Post::where('nsfw', false)->inRandomOrder()->take(60)->get(); // TO DO: make this a constant
+            return Post::where('nsfw', false)->inRandomOrder()->take(75)->get(); // TO DO: make this a constant
         }, 60);
     }
 }

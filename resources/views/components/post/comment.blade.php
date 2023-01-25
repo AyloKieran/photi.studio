@@ -1,6 +1,6 @@
 @php
     use App\Models\User;
-    $user = User::first();
+    $user = auth()->user() ?? User::first();
 @endphp
 
 @php

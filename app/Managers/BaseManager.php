@@ -2,12 +2,14 @@
 
 namespace App\Managers;
 
+use Illuminate\Support\Facades\Auth;
+
 class BaseManager
 {
     protected $user;
 
     function __construct()
     {
-        $this->user = auth()->user();
+        $this->user = Auth::user();
     }
 }
