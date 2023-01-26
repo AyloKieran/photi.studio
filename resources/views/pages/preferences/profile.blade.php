@@ -15,7 +15,7 @@
                         <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}" loading="lazy"
                             decoding="async" />
                     </div>
-                    <x-input type="file" name="profile-picture" />
+                    <x-input-file name="profile-picture" />
                 </x-section>
                 <x-section title="{{ __('Bio') }}" subtitle="{{ __('Tell others a little bit about yourself') }}">
                     <x-textarea name="bio" value="{{ $user->bio }}" rows=4 />

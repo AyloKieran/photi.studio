@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('onboarding.profile.store') }}" id="onboardingForm" enctype="multipart/form-data">
         @csrf
         <x-section title="{{ __('Profile Picture') }}" subtitle="{{ __('Ideally a square image') }}">
-            <x-input type="file" name="profile-picture" />
+            <x-input-file name="profile-picture" />
         </x-section>
         <x-section title="{{ __('Bio') }}" subtitle="{{ __('Tell others a little bit about yourself') }}">
             <x-textarea name="bio" rows=3 />

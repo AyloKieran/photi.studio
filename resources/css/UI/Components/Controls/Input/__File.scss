@@ -1,0 +1,53 @@
+&--file {
+    position: relative;
+
+    & label {
+        $borderSize: 3px;
+
+        border: $borderSize solid var(--action__background);
+        padding: var(--spacing2);
+        border-radius: var(--rounded--large);
+        color: var(--subtitle__colour);
+        font-size: var(--text--regular);
+        display: flex;
+        gap: var(--spacing2);
+        cursor: pointer;
+        width: calc(var(--control--maxWidth) - calc(var(--spacing2) * 2) - calc(2 * $borderSize));
+        height: calc(var(--control--height) - calc(var(--spacing2) * 2) - calc(2 * $borderSize));
+
+        &:hover {
+            border: $borderSize solid var(--subtitle__colour);
+            color: var(--title__colour);
+        }
+
+        &:has(.control__input--error) {
+            border: $borderSize dashed var(--error__colour);
+            color: var(--error__colour);
+        }
+
+    }
+
+    & .control {
+        &__input {
+
+            flex-grow: 1;
+            display: flex;
+
+            & input {
+                all: unset;
+                display: block;
+                flex-grow: 1;
+
+                &::file-selector-button {
+                    display: none;
+                }
+            }
+
+            & .control__input--error {
+                margin: 0;
+                flex-shrink: 0;
+            }
+
+        }
+    }
+}

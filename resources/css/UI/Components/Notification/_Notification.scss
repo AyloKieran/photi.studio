@@ -22,7 +22,8 @@
         gap: var(--spacing2);
 
         @include desktop() {
-            max-width: var(--navigation--width);
+            // max-width: var(--navigation--width);
+            max-width: var(--notification--maxWidth);
         }
     }
 
