@@ -6,6 +6,7 @@
         </x-button>
     </x-header>
     <div class="content__holder">
+        @livewire('post-upload-progress')
         <x-posts-holder>
             @foreach (\App\Models\Post::all() as $post)
                 <x-hover-image :post=$post />

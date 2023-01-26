@@ -27,7 +27,6 @@ class PostUploadMedia extends BasePostJob
     {
         $image = new File($this->post->local_file_path);
 
-
         $convertedImage = $this->__ImageAdjustmentManager->convertImage($image, FileTypeEnum::WEBP);
         $this->post->image_original = $this->__AzureBlobManager->createBlobFromFile($convertedImage, BlobTypeEnum::POST_IMAGE_ORIGINAL);
 

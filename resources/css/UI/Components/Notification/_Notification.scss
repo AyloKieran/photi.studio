@@ -1,0 +1,37 @@
+.notification {
+    &__holder {
+        display: flex;
+        pointer-events: none;
+
+        @include desktop() {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: var(--layer--notifications);
+            padding: var(--spacing4);
+            justify-content: flex-end;
+        }
+    }
+
+    &__inner {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing2);
+
+        @include desktop() {
+            max-width: var(--navigation--width);
+        }
+    }
+
+    &__item {
+        background-color: var(--action__background);
+        padding: var(--spacing2);
+        border-radius: var(--rounded--medium);
+        pointer-events: auto;
+    }
+
+    @import "_Post";
+}

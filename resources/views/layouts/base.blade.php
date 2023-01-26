@@ -14,9 +14,11 @@
     <link rel="icon shortcut" href="{{ asset('favicon.png') }}">
     <title>{{ $title }}{{ config('app.name') }}</title>
     @vite(['resources/css/UI/main.scss'])
+    @livewireStyles
     @vite(['resources/js/app.js'])
 </head>
 
 {{ $slot }}
+@livewireScripts
 
 </html>

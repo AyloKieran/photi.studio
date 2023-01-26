@@ -34,6 +34,11 @@ class DefaultPreferenceSeederManager extends BaseManager
                 'default_value' => 'username',
                 'validation' => 'required|in:username,name',
             ],
+            [
+                'name' => PreferencesEnum::NOTIFICATION_TIME->value,
+                'default_value' => '15',
+                'validation' => 'required|integer|min:10|max:60',
+            ],
         ];
 
         foreach ($preferences as $preference) {

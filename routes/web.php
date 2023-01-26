@@ -90,12 +90,14 @@ Route::group(['prefix' => '/unsplash', 'middleware' => ['auth']], function () {
     Route::get('create', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'create'])->name('unsplash.create');
 });
 
-Route::get('/clear-cache', function () {
+Route::get('/update', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
     Artisan::call('config:clear');
     Artisan::call('view:clear');
-    return "Cleared";
+    $DPSM = new \App\Managers\Preferences\Seeders\DefaultPreferenceSeederManager();
+    $DPSM->run();
+    return "Cleared & Updated";
 });
 
 require __DIR__ . '/auth.php';

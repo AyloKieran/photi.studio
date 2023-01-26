@@ -40,6 +40,10 @@
                     subtitle="{{ __('How would you like user\'s names to be displayed?') }}">
                     <x-radio :name="$preferredNameKey" :values="$preferredNames" />
                 </x-section>
+                <x-section title="{{ __('Notification Display Length') }}"
+                    subtitle="{{ __('How long (in seconds) should post status notifcations be displayed for?') }}">
+                    <x-input :name="$notificationTimeKey" type="number" :value="$notificationTime" required />
+                </x-section>
                 <div class="content__footer">
                     <x-button secondary href="{{ route('preferences.theme') }}">{{ __('Cancel') }}</x-button>
                     <x-button primary type="submit">{{ __('Save') }}</x-button>

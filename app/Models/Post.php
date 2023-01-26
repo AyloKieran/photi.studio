@@ -21,9 +21,9 @@ class Post extends Model
 
     protected $with = ['author'];
 
-    public function newQuery($onlyComplete = true)
+    public function scopeComplete($query)
     {
-        return parent::newQuery($onlyComplete)->where('status', PostStatusEnum::COMPLETE->value);
+        return $query->where('status', PostStatusEnum::COMPLETE->value);
     }
 
     public function author()
