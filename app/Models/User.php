@@ -5,15 +5,19 @@ namespace App\Models;
 use App\Enums\PreferencesEnum;
 use App\Managers\User\Preference\UserPreferenceManager;
 use App\Traits\Uuids;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, Uuids;
+    use HasApiTokens, HasFactory, Notifiable, Uuids, SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['posts', 'preferences'];
 
     protected $fillable = [
         'name',
@@ -53,8 +57,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return 'username';
     }
 
-    function posts()
+    public function posts()
     {
         return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function preferences()
+    {
+        return $this->hasMany(UserPreference::class, 'user_id');
     }
 }

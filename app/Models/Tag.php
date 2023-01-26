@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory, Uuids, SoftDeletes;
 
     protected $fillable = ['name'];
 
@@ -20,6 +21,11 @@ class Tag extends Model
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public function getImage()
+    {
+        return $this->posts()->first()->image_thumbnail ?? "";
     }
 
     public function posts()

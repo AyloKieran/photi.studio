@@ -6,14 +6,18 @@ use App\Enums\PostStatusEnum;
 use App\Enums\PreferencesEnum;
 use App\Traits\Uuids;
 use App\Traits\UsesRawDBQuery;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Managers\User\Preference\UserPreferenceManager;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory, UsesRawDBQuery, Uuids;
+    use HasFactory, UsesRawDBQuery, Uuids, SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['tags'];
 
     protected $with = ['author'];
 

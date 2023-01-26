@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Tag;
@@ -61,24 +60,20 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     Route::group(['prefix' => '/search'], function () {
         Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookup'])->name('search.lookup');
         Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'show'])->name('search');
-
         Route::group(['prefix' => '/posts'], function () {
             Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showPosts'])->name('search.posts');
             Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupPosts'])->name('search.posts.lookup');
         });
-
         Route::group(['prefix' => '/tags'], function () {
             Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showTags'])->name('search.tags');
             Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupTags'])->name('search.tags.lookup');
         });
-
         Route::group(['prefix' => '/users'], function () {
             Route::get('/{search?}', [\App\Http\Controllers\SearchController::class, 'showUsers'])->name('search.users');
             Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookupUsers'])->name('search.users.lookup');
         });
-
         Route::group(['prefix' => '/tag'], function () {
-            Route::get("/{tag}", fn (Tag $tag) => view('pages.search.tag')->with('tag', $tag))->name("search.tag");
+            Route::get('/{tag}', [\App\Http\Controllers\SearchController::class, 'showTag'])->name('search.tag');
         });
     });
     Route::get('/post/{post}', function (Post $post) {

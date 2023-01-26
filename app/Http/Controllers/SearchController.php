@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Managers\Search\SearchManager;
+use App\Models\Tag;
 
 class SearchController extends Controller
 {
@@ -62,6 +63,12 @@ class SearchController extends Controller
         return view('pages.search.tags')
             ->with('tags', $this->__SearchManager->searchTags($search, 21))
             ->with('search', $search);
+    }
+
+    public function showTag(Tag $tag)
+    {
+        return view('pages.search.tag')
+            ->with('tag', $tag);
     }
 
     public function showUsers($search = null)
