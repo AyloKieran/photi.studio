@@ -4,12 +4,15 @@
 
     &__controls {
         display: flex;
-        // gap: var(--spacing2);
         max-width: 500px;
 
         & .control__input {
             --control--maxWidth: 100% !important;
             flex-grow: 1;
+
+            & input {
+                height: auto;
+            }
         }
     }
 

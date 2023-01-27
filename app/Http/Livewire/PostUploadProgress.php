@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Enums\PreferencesEnum;
 use App\Managers\User\Preference\UserPreferenceManager;
 use App\Models\Post;
+use App\Models\Scopes\CompleteScope;
 use Livewire\Component;
 
 class PostUploadProgress extends Component
@@ -22,7 +23,7 @@ class PostUploadProgress extends Component
 
     public function render()
     {
-        $this->posts = Post::where('user_id', auth()->user()->id)
+        $this->posts = Post::withoutGlobalScope(CompleteScope::class)->where('user_id', auth()->user()->id)
             ->where('updated_at', '>=', now()->subSeconds($this->__UserPreferenceManager->getUserPreference(PreferencesEnum::NOTIFICATION_TIME, auth()->user())))
             ->orderBy('created_at', 'desc')->get();
 

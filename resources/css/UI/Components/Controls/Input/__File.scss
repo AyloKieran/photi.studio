@@ -1,9 +1,9 @@
 &--file {
+    $borderSize: 3px;
+
     position: relative;
 
     & label {
-        $borderSize: 3px;
-
         border: $borderSize solid var(--action__background);
         padding: var(--spacing2);
         border-radius: var(--rounded--large);
@@ -37,6 +37,9 @@
                 all: unset;
                 display: block;
                 flex-grow: 1;
+                margin: calc(var(--spacing2) * -1) 0;
+                line-height: calc(var(--control--height) - calc(2 * $borderSize));
+
 
                 &::file-selector-button {
                     display: none;

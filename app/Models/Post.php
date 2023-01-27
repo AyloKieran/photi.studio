@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\PostStatusEnum;
 use App\Enums\PreferencesEnum;
 use App\Traits\Uuids;
 use App\Traits\UsesRawDBQuery;
@@ -11,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Managers\User\Preference\UserPreferenceManager;
+use App\Models\Scopes\CompleteScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -21,9 +21,9 @@ class Post extends Model
 
     protected $with = ['author'];
 
-    public function scopeComplete($query)
+    protected static function booted()
     {
-        return $query->where('status', PostStatusEnum::COMPLETE->value);
+        static::addGlobalScope(new CompleteScope);
     }
 
     public function author()

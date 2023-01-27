@@ -10,7 +10,6 @@
                     <x-section title="{{ __('Image File') }}"
                         subtitle="{{ __('Ideally as high quality as you can, under 10MB') }}">
                         <x-input-file name="image" required />
-                        {{-- <x-input type="file" name="image" required /> --}}
                     </x-section>
                     <x-section title="{{ __('Title') }}"
                         subtitle="{{ __('Let people know what your post is about') }}">
