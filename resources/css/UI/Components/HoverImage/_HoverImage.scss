@@ -2,7 +2,7 @@
 
 .hoverImage {
     --overlay-colour: rgba(26, 27, 36, 0.25);
-    --background-colour: var(--colour);
+    --background-colour: rgba(var(--r), var(--g), var(--b), 0.1);
 
     position: relative;
     margin-bottom: var(--spacing4);

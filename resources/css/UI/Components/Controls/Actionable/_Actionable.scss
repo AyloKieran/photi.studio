@@ -12,6 +12,7 @@
     width: var(--actionable--size);
     position: relative;
     opacity: var(--actionable--opacity);
+    border: 0;
 
     & > img {
         position: absolute;
@@ -25,6 +26,6 @@
     }
 
     &--active {
-        --actionable--opacity: 1 !important;
+        background: rgba(var(--r), var(--g), var(--b), var(--actionable--opacity));
     }
 }

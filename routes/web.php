@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-use App\Models\Post;
-use App\Models\Tag;
 
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
@@ -76,9 +74,13 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('/{tag}', [\App\Http\Controllers\SearchController::class, 'showTag'])->name('search.tag');
         });
     });
-    Route::get('/post/{post}', function (Post $post) {
-        return view('pages.post')->with('post', $post);
-    })->name('post');
+    Route::group(['prefix' => '/post'], function () {
+        Route::get('/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post');
+        Route::post('/{post}/like', [\App\Http\Controllers\PostController::class, 'like'])->name('post.like');
+        Route::post('/{post}/dislike', [\App\Http\Controllers\PostController::class, 'dislike'])->name('post.dislike');
+        Route::post('/{post}/none', [\App\Http\Controllers\PostController::class, 'none'])->name('post.none');
+    });
+
     Route::get('/profile/{user}', function (User $user) {
         return view('pages.profile')->with('user', $user);
     })->name('profile');

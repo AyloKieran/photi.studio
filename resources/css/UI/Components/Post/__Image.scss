@@ -1,8 +1,6 @@
 @import "../../Utilities/Mixins/Mixins";
 
 &__image {
-    --background-colour: var(--border); // TO DO: better variable name and variable
-
     position: relative;
 
     @include desktop() {
@@ -60,7 +58,7 @@
         height: 100%;
         border-radius: var(--rounded--extralarge);
         max-height: calc(700px - calc(var(--spacing6) * 2));
-        background-color: var(--background-colour);
+        background-color: rgba(var(--r), var(--g), var(--b));
         object-fit: cover;
 
         @include tablet {

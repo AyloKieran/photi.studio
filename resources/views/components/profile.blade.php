@@ -19,7 +19,7 @@
                     <x-profile.user.stat count="{{ $user->posts->count() }}" label="{{ __('Posts') }}" />
                     <x-profile.user.stat count="XXX" label="{{ __('Following') }}" />
                     <x-profile.user.stat count="XXX" label="{{ __('Followers') }}" />
-                    <x-profile.user.stat count="XXX" label="{{ __('Likes') }}" />
+                    <x-profile.user.stat count="{{ $user->postLikes() }}" label="{{ __('Likes') }}" />
                 </div>
             </div>
         </div>
