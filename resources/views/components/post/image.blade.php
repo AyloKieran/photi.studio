@@ -1,6 +1,11 @@
 @php
-    $liked = $post->selfRating() == \App\Enums\PostRatingEnum::LIKE->value;
-    $disliked = $post->selfRating() == \App\Enums\PostRatingEnum::DISLIKE->value;
+    $selfRating =
+        $post
+            ->ratings()
+            ->where('user_id', Auth::id())
+            ->first()?->rating ?? null;
+    $liked = $selfRating == \App\Enums\PostRatingEnum::LIKE->value;
+    $disliked = $selfRating == \App\Enums\PostRatingEnum::DISLIKE->value;
 @endphp
 
 <div class="post__image"

@@ -1,13 +1,19 @@
 @props(['post', 'hoverable' => true, 'navigatable' => true, 'showUser' => true])
 
 @php
-    $selfRating = $post->selfRating();
-    $liked = $selfRating == \App\Enums\PostRatingEnum::LIKE->value;
-    $disliked = $selfRating == \App\Enums\PostRatingEnum::DISLIKE->value;
+    if ($hoverable == 'true') {
+        $selfRating =
+            $post
+                ->ratings()
+                ->where('user_id', Auth::id())
+                ->first()?->rating ?? null;
+        $liked = $selfRating == \App\Enums\PostRatingEnum::LIKE->value;
+        $disliked = $selfRating == \App\Enums\PostRatingEnum::DISLIKE->value;
 
-    $likeFormID = 'likeForm' . $post->id;
-    $dislikeFormID = 'dislikeForm' . $post->id;
-    $noneFormID = 'noneForm' . $post->id;
+        $likeFormID = 'likeForm' . $post->id;
+        $dislikeFormID = 'dislikeForm' . $post->id;
+        $noneFormID = 'noneForm' . $post->id;
+    }
 @endphp
 
 <div {{ $navigatable == 'true' ? 'onclick=navigate("' . route('post', ['post' => $post]) . '")' : '' }}

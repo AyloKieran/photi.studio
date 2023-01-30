@@ -2,7 +2,6 @@
 
 namespace App\Managers\Image\Display;
 
-use App\Enums\PostStatusEnum;
 use App\Managers\BaseCachedManager;
 use App\Models\Post;
 

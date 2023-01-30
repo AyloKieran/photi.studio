@@ -52,16 +52,9 @@ class Post extends Model
         return $this->hasMany(PostUserRating::class, 'post_id');
     }
 
-    public function selfRating()
-    {
-        if (Auth::user())
-            return $this->ratings()->where('user_id', Auth::user()->id)->first()->rating ?? PostRatingEnum::NONE->value;
-        else
-            return PostRatingEnum::NONE->value;
-    }
-
     public function getRatingAttribute()
     {
+
         $ratings = $this->ratings()->get();
         return $ratings->where('rating', PostRatingEnum::LIKE->value)->count() - $ratings->where('rating', PostRatingEnum::DISLIKE->value)->count();
     }

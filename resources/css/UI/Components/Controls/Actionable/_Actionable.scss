@@ -13,6 +13,7 @@
     position: relative;
     opacity: var(--actionable--opacity);
     border: 0;
+    cursor: pointer;
 
     & > img {
         position: absolute;
@@ -26,6 +27,6 @@
     }
 
     &--active {
-        background: rgba(var(--r), var(--g), var(--b), var(--actionable--opacity));
+        background: rgba(var(--r), var(--g), var(--b), .9);
     }
 }

@@ -5,7 +5,8 @@
         <div class="profile__section profile__section--user">
             <div class="profile__user">
                 <div class="profile__user-avatar">
-                    <img src="{{ $user->avatar }}" alt="{{ $user->preferred_name }}'s Profile Picture">
+                    <img src="{{ $user->avatar }}"
+                        alt="{{ __(':user\'s Profile Picture', ['user' => $user->preferred_name]) }}">
                 </div>
                 <div class="profile__user-info">
                     <div class="profile__user-info-name">
@@ -33,7 +34,7 @@
             <div class="profile__section">
                 <div class="profile__user-actions" style="flex-wrap: wrap; max-width: 100vw;">
                     <div class="profile__user-actions-section">
-                        <div style="display: flex; gap: var(--spacing2);">
+                        {{-- <div style="display: flex; gap: var(--spacing2);">
                             @for ($i = 0; $i < 3; $i++)
                                 <a href="#"
                                     style="display: flex; flex-wrap: 0; gap: var(--spacing1); background-color: var(--action__background); padding: var(--spacing1) var(--spacing2); border-radius: var(--rounded--large); font-size: 12px; margin: auto 0;">
@@ -41,7 +42,7 @@
                                     @AyloKieran
                                 </a>
                             @endfor
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="profile__user-actions-section">
                         @auth

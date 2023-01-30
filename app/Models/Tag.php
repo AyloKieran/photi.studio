@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Managers\Cache\CacheManager;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,17 +13,17 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    public function getFormattedNameAttribute()
-    {
-        return "#" . $this->name;
-    }
-
     public function getRouteKeyName()
     {
         return 'name';
     }
 
-    public function getImage()
+    public function getFormattedNameAttribute()
+    {
+        return "#" . $this->name;
+    }
+
+    public function getImageAttribute()
     {
         return $this->posts()->first()->image_thumbnail ?? "";
     }
