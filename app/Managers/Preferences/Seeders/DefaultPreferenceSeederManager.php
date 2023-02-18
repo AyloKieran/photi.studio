@@ -39,6 +39,11 @@ class DefaultPreferenceSeederManager extends BaseManager
                 'default_value' => '15',
                 'validation' => 'required|integer|min:10|max:60',
             ],
+            [
+                'name' => PreferencesEnum::FEEDS_SHOW_INTERACTED->value,
+                'default_value' => 'false',
+                'validation' => 'required|in:true,false',
+            ],
         ];
 
         foreach ($preferences as $preference) {

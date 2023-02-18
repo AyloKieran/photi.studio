@@ -24,9 +24,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     Route::get('', function () {
         return redirect()->route('home');
     });
-    Route::get('/home', function () {
-        return !auth()->user() ? redirect()->route('trending') : view('pages.home');
-    })->name('home');
+    Route::get('/home', [\App\Http\Controllers\HomeController::class, 'show'])->name('home');
     Route::get('/trending', function () {
         return view('pages.trending');
     })->name('trending');
