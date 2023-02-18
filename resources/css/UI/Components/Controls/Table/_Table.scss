@@ -50,6 +50,7 @@
             & tr {
                 & th {
                     padding: var(--spacing2);
+                    width: 0%;
                 }
             }
         }
@@ -58,6 +59,14 @@
             color: var(--table__text--colour);
 
             & tr {
+                & a
+                {
+                    &:hover
+                    {
+                        text-decoration: underline;
+                    }
+                }
+
                 &:nth-child(2n) {
                     background-color: var(--table__row--even);
                 }
@@ -73,8 +82,10 @@
         }
 
         & tr {
+
             & > :first-child {
                 padding-left: var(--spacing3);
+                width: auto;
             }
 
             & > :last-child {

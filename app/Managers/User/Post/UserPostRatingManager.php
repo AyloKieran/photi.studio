@@ -24,7 +24,10 @@ class UserPostRatingManager extends BaseCachedManager
     public function getRating(Post $post, User $user)
     {
         $rating = $this->__CacheManager->getOrSet($this->generateKey($post, $user), function () use ($post, $user) {
-            return PostUserRating::where('post_id', $post->id)->where('user_id', $user->id)->first();
+
+            dd($post->userRating($user));
+
+            return $post->userRating($user)->first();
         });
 
         return $rating ? $rating->rating : PostRatingEnum::NONE->value;

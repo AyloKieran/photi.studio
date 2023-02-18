@@ -23,7 +23,7 @@
     </x-header>
     <div class="content__holder">
         <x-posts-holder>
-            @foreach ($tag->getPostsWithTag()->take(50)->get() as $post)
+            @foreach ($tag->posts()->take(50)->get() as $post)
                 <x-hover-image :post=$post />
             @endforeach
         </x-posts-holder>

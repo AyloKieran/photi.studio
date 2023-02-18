@@ -3,7 +3,7 @@
     <main class="content">
         <div class="content__holder">
             <x-section title="{{ __('My Likes') }}" subtitle="{{ __('All posts you\'ve interacted with') }}">
-                <div class="control control__table">
+                <div class="control control__table control__table--navigatable">
                     <table>
                         <thead>
                             <tr>

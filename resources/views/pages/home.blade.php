@@ -8,7 +8,7 @@
     <div class="content__holder">
         @livewire('post-upload-progress')
         <x-posts-holder>
-            @foreach (\App\Models\Post::all() as $post)
+            @foreach (\App\Models\Post::orderBy('created_at', 'desc')->take(50)->get() as $post)
                 <x-hover-image :post=$post />
             @endforeach
         </x-posts-holder>

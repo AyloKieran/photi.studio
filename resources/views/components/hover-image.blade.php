@@ -2,14 +2,10 @@
 
 @php
     if ($hoverable == 'true') {
-        $selfRating =
-            $post
-                ->ratings()
-                ->where('user_id', Auth::id())
-                ->first()?->rating ?? null;
+        $selfRating = $post->userRating?->rating ?? null;
         $liked = $selfRating == \App\Enums\PostRatingEnum::LIKE->value;
         $disliked = $selfRating == \App\Enums\PostRatingEnum::DISLIKE->value;
-
+    
         $likeFormID = 'likeForm' . $post->id;
         $dislikeFormID = 'dislikeForm' . $post->id;
         $noneFormID = 'noneForm' . $post->id;

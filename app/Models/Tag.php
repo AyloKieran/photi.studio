@@ -11,6 +11,8 @@ class Tag extends Model
 {
     use HasFactory, Uuids, SoftDeletes;
 
+    protected $with = ['posts'];
+
     protected $fillable = ['name'];
 
     public function getRouteKeyName()
@@ -33,11 +35,9 @@ class Tag extends Model
         return $this->belongsToMany(Post::class)->using(PostTag::class);
     }
 
-    public function getPostsWithTag()
+    public function getPostCountAttribute()
     {
-        return $this->posts()->whereHas('tags', function ($query) {
-            $query->where('name', $this->name);
-        });
+        return $this->posts()->count();
     }
 
     public function ratings()
