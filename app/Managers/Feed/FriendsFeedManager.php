@@ -5,6 +5,7 @@ namespace App\Managers\Feed;
 use App\Models\Post;
 use App\Models\User;
 use App\Enums\PreferencesEnum;
+use App\Enums\PostStatusEnum;
 use App\Managers\BaseCachedManager;
 use App\Managers\User\Preference\UserPreferenceManager;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,8 @@ class FriendsFeedManager extends BaseCachedManager
                 AND f1.follows_user_id = f2.user_id
                 WHERE f1.user_id <> '" . $user->id . "'
             )
+            AND Posts.deleted_at IS NULL
+            AND Posts.status = '" . PostStatusEnum::COMPLETE->value . "'
             ORDER BY created_at DESC
             LIMIT 0 , " . $limit . "
             ";
