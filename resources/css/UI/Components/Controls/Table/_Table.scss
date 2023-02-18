@@ -1,4 +1,5 @@
 &__table {
+    overflow-x: auto;
 
     &--holder {
         display: flex;
@@ -29,6 +30,7 @@
         white-space: nowrap;
         background: var(--action__background);
         font-size: var(--section__subtitle--size);
+        border-radius: var(--rounded--large);
 
         & tr {
             & th, td {
@@ -44,41 +46,41 @@
         & thead {
             color: var(--title__colour);
             border-bottom: var(--table__border--header);
-    
+
             & tr {
                 & th {
                     padding: var(--spacing2);
                 }
             }
         }
-    
+
         & tbody {
             color: var(--table__text--colour);
-    
+
             & tr {
                 &:nth-child(2n) {
                     background-color: var(--table__row--even);
                 }
             }
         }
-    
+
         & tfoot {
             color: var(--section__title-colour);
-    
+
             & tr {
                 border-top: var(--table__border--footer);
             }
         }
-    
+
         & tr {
             & > :first-child {
                 padding-left: var(--spacing3);
             }
-    
+
             & > :last-child {
                 padding-right: var(--spacing3);
             }
         }
-    
+
     }
 }

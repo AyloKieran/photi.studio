@@ -42,7 +42,7 @@ class UnsplashController extends Controller
         }
 
         $username = "@u" . $reponse['user']['username'];
-        $user = User::firstOrNew(['username' => $username]);
+        $user = User::firstOrNew(['username' => $username, 'email' => $reponse['user']['username'] . "@unsplash.com"]);
         $user->name = $reponse['user']['name'];
         $user->email = $reponse['user']['username'] . "@unsplash.com";
         $user->password = bcrypt("password");
@@ -63,7 +63,7 @@ class UnsplashController extends Controller
 
         $post = new Post();
         $post->user_id = $user->id;
-        $post->title = $reponse['alt_description'];
+        $post->title = $reponse['alt_description'] ?? "Untitled";
         $post->description = $reponse['description'];
         $post->local_file_path = $fileName;
 

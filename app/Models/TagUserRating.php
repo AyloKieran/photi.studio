@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PostUserRating extends Model
+class TagUserRating extends Model
 {
     use HasFactory, Uuids, SoftDeletes;
 
     protected $fillable = [
-        'post_id',
+        'tag_id',
         'user_id',
         'rating',
     ];
 
-    public function post()
+    public function tag()
     {
-        return $this->belongsTo(Post::class, 'post_id');
+        return $this->belongsTo(Tag::class);
     }
 }

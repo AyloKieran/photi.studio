@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PostUserRating;
 use App\Enums\PostRatingEnum;
 use App\Managers\BaseCachedManager;
+use App\Models\TagUserRating;
 
 class UserPostRatingManager extends BaseCachedManager
 {
@@ -29,8 +30,51 @@ class UserPostRatingManager extends BaseCachedManager
         return $rating ? $rating->rating : PostRatingEnum::NONE->value;
     }
 
+    private function getRatingDifference(Post $post, PostRatingEnum $rating)
+    {
+        $postUserRating = $post->userRating->rating ?? PostRatingEnum::NONE->value;
+        $rating = $rating->value;
+
+        if ($postUserRating == PostRatingEnum::NONE->value) {
+            if ($rating == PostRatingEnum::LIKE->value) {
+                return 1;
+            }
+            if ($rating == PostRatingEnum::DISLIKE->value) {
+                return -1;
+            }
+        }
+        if ($postUserRating == PostRatingEnum::LIKE->value) {
+            if ($rating == PostRatingEnum::DISLIKE->value) {
+                return -2;
+            }
+            if ($rating == PostRatingEnum::NONE->value) {
+                return -1;
+            }
+        }
+        if ($postUserRating == PostRatingEnum::DISLIKE->value) {
+            if ($rating == PostRatingEnum::LIKE->value) {
+                return 2;
+            }
+            if ($rating == PostRatingEnum::NONE->value) {
+                return 1;
+            }
+        }
+    }
+
     public function setRating(Post $post, User $user, PostRatingEnum $rating)
     {
+        // TO DO: move this to a separate manager, maybe a job too (for performance)
+        $post->tags->each(function ($tag) use ($user, $post, $rating) {
+            $tagUserRating = TagUserRating::firstOrCreate([
+                'tag_id' => $tag->id,
+                'user_id' => $user->id,
+            ]);
+
+            $tagUserRating->rating = $tagUserRating->rating + $this->getRatingDifference($post, $rating);
+            $tagUserRating->save();
+        });
+
+
         $rating = PostUserRating::updateOrCreate(
             [
                 'post_id' => $post->id,

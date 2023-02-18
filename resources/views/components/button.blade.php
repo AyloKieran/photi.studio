@@ -1,4 +1,4 @@
-@props(['primary' => false, 'type' => 'button', 'disabled' => false, 'href' => null, 'rounded' => false, 'onclick' => null, 'form' => null])
+@props(['primary' => false, 'type' => 'button', 'disabled' => false, 'href' => null, 'rounded' => false, 'onclick' => null, 'form' => null, 'onClick' => null])
 
 @php
     $tagType = isset($href) ? 'a' : 'button';
@@ -9,6 +9,7 @@
     type="{{ $type }}" @if ($onclick != null) onclick="{{ $onclick }}" @endif
     @if (isset($href)) href="{{ $href }}" @endif
     @if (isset($form)) form="{{ $form }}" @endif
-    @if ($disabled) disabled @endif>
+    @if ($disabled) disabled @endif
+    @if (isset($onClick)) onclick="{{ $onClick }}" @endif>
     {{ $slot }}
     </{{ $tagType }}>

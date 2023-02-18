@@ -37,14 +37,15 @@ class SearchManager extends BaseCachedManager
         return $this->__CacheManager->getOrSet($this->generateKey("tags", $query, $limit), function () use ($query, $limit) {
             if (!isset($query)) {
                 return Tag::withCount('posts')
-                    ->has('posts', '>', 0)
-                    ->orderBy('posts_count', 'desc')
+                    ->withSum('ratings', 'rating')
+                    ->orderBy('ratings_sum_rating', 'DESC')
                     ->take($limit)->get();
             }
 
             return Tag::withCount('posts')
-                ->has('posts', '>', 0)
-                ->orderBy('posts_count', 'desc')->where('name', 'like', '%' . $query . '%')
+                ->withSum('ratings', 'rating')
+                ->orderBy('ratings_sum_rating', 'DESC')
+                ->where('name', 'like', '%' . $query . '%')
                 ->take($limit)->get();
         });
     }

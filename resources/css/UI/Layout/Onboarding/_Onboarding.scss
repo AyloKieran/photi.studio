@@ -61,6 +61,10 @@
         & .control {
             --control--maxWidth: 100% !important;
         }
+
+        & .footer {
+            margin-top: calc(var(--spacing3) * -1);
+        }
     }
 
     @import "_Step";

@@ -39,4 +39,9 @@ class Tag extends Model
             $query->where('name', $this->name);
         });
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(TagUserRating::class, 'tag_id');
+    }
 }

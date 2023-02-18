@@ -54,6 +54,15 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'show'])->name('preferences.deactivate-profile');
             Route::post('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'update'])->name('preferences.deactivate-profile.update');
         });
+        Route::group(['prefix' => '/posts'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\PostsController::class, 'show'])->name('preferences.posts');
+        });
+        Route::group(['prefix' => '/likes'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\LikesController::class, 'show'])->name('preferences.likes');
+        });
+        Route::group(['prefix' => '/tags'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\TagsController::class, 'show'])->name('preferences.tags');
+        });
     });
     Route::group(['prefix' => '/search'], function () {
         Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookup'])->name('search.lookup');

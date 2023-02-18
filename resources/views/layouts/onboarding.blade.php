@@ -25,9 +25,11 @@
                     <div class="onboarding__content">
                         {{ $slot }}
                     </div>
-                    <x-footer>
-                        {{ $footer }}
-                    </x-footer>
+                    @isset($footer)
+                        <x-footer>
+                            {{ $footer }}
+                        </x-footer>
+                    @endisset
                 </div>
             </div>
             <div class="onboarding__footer">

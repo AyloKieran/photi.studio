@@ -52,6 +52,11 @@ class Post extends Model
         return $this->hasMany(PostUserRating::class, 'post_id');
     }
 
+    public function userRating()
+    {
+        return $this->hasOne(PostUserRating::class, 'post_id')->where('user_id', Auth::id());
+    }
+
     public function getRatingAttribute()
     {
 

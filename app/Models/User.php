@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Uuids, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['posts', 'preferences', 'postRatings'];
+    protected $cascadeDeletes = ['posts', 'preferences', 'postRatings', 'tagRatings'];
 
     protected $fillable = [
         'name',
@@ -60,6 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function postLikes()
     {
         return $this->posts->sum('rating');
+    }
+
+    public function tagRatings()
+    {
+        return $this->hasMany(TagUserRating::class, 'user_id');
     }
 
     public function posts()
