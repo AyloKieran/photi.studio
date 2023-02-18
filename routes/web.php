@@ -44,9 +44,9 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('', [\App\Http\Controllers\Preferences\ThemeController::class, 'show'])->name('preferences.theme');
             Route::post('', [\App\Http\Controllers\Preferences\ThemeController::class, 'update'])->name('preferences.theme.update');
         });
-        Route::group(['prefix' => '/content'], function () {
-            Route::get('', [\App\Http\Controllers\Preferences\ContentController::class, 'show'])->name('preferences.content');
-            Route::post('', [\App\Http\Controllers\Preferences\ContentController::class, 'update'])->name('preferences.content.update');
+        Route::group(['prefix' => '/feeds'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\FeedsController::class, 'show'])->name('preferences.feeds');
+            Route::post('', [\App\Http\Controllers\Preferences\FeedsController::class, 'update'])->name('preferences.feeds.update');
         });
         Route::group(['prefix' => '/deactivate-profile'], function () {
             Route::get('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'show'])->name('preferences.deactivate-profile');

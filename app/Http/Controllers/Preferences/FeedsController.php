@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Managers\User\Preference\UserPreferenceManager;
 use Illuminate\Http\Request;
 
-class ContentController extends Controller
+class FeedsController extends Controller
 {
     protected $__UserPreferenceManager;
 
@@ -18,7 +18,7 @@ class ContentController extends Controller
 
     public function show(Request $request)
     {
-        return view('pages.preferences.content')
+        return view('pages.preferences.feeds')
             ->with('pageSizeKey', PreferencesEnum::THEME_PAGE_SIZE->value)
             ->with('pageSize', $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, $request->user()))
             ->with('minimumMatchingTagsKey', PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value)

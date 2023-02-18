@@ -35,12 +35,19 @@ class HomeFeedManager extends BaseManager
         IN (
             SELECT PostTagB.tag_id
             FROM tag_user_ratings AS PostTagB
-            WHERE user_id = '" . $user->id . "'
+            WHERE user_id = '" . $user->id . "'";
+
+        // TO DO: move this somewhere
+        if ($user->postRatings->count() > 5) {
+            $query = $query . "
             AND rating > (
                 SELECT AVG(rating) from tag_user_ratings
                 WHERE user_id = '" . $user->id . "'
-            )
-        )";
+            )";
+        }
+
+
+        $query = $query . ")";
 
         if (!$includeInteracted) {
             $query = $query . "

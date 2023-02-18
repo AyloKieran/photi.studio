@@ -10,7 +10,11 @@
     </x-header>
     <div class="content__holder">
         <x-posts-holder>
-            @foreach (\App\Models\Post::all()->take(50); as $post)
+            @php
+                $man = new \App\Managers\Feed\TrendingFeedManager();
+                $posts = $man->generateTrendingFeed();
+            @endphp
+            @foreach ($posts as $post)
                 <x-hover-image :post=$post />
             @endforeach
         </x-posts-holder>
