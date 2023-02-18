@@ -15,6 +15,11 @@ class HomeController extends Controller
         $this->__HomeFeedManager = new HomeFeedManager();
     }
 
+    public function index()
+    {
+        return redirect()->route('home');
+    }
+
     public function show(Request $request)
     {
         if (!$request->user()) {

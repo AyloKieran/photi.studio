@@ -1,6 +1,5 @@
-<x-app-layout title="{{ __('Trending') }}">
-    <x-header title="{{ __('Trending') }}"
-        subtitle="{{ __('Have a look at some of the most popular posts from the last week') }}" />
+<x-app-layout title="{{ __('Friends') }}">
+    <x-header title="{{ __('Friends') }}" subtitle="{{ __('Have a look at what your friends have been up to') }}" />
     <div class="content__holder">
         <x-posts-holder>
             @foreach ($posts as $post)

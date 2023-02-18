@@ -18,8 +18,8 @@
                 </div>
                 <div class="profile__user-stats">
                     <x-profile.user.stat count="{{ $user->posts->count() }}" label="{{ __('Posts') }}" />
-                    <x-profile.user.stat count="XXX" label="{{ __('Following') }}" />
-                    <x-profile.user.stat count="XXX" label="{{ __('Followers') }}" />
+                    <x-profile.user.stat count="{{ $user->following->count() }}" label="{{ __('Following') }}" />
+                    <x-profile.user.stat count="{{ $user->followers->count() }}" label="{{ __('Followers') }}" />
                     <x-profile.user.stat count="{{ $user->postLikes() }}" label="{{ __('Likes') }}" />
                 </div>
             </div>
@@ -52,10 +52,23 @@
                                     {{ __('Edit Profile') }}
                                 </x-button>
                             @else
-                                <x-button primary rounded>
-                                    <i class="icon fa-solid fa-plus"></i>
-                                    {{ __('Follow') }}
-                                </x-button>
+                                @if (auth()->user()->isFollowing($user))
+                                    <form method="POST" action="{{ route('profile.unfollow', ['user' => $user]) }}">
+                                        @csrf
+                                        <x-button rounded type="submit">
+                                            <i class="icon fa-solid fa-check"></i>
+                                            {{ __('Following') }}
+                                        </x-button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('profile.follow', ['user' => $user]) }}">
+                                        @csrf
+                                        <x-button primary rounded type="submit">
+                                            <i class="icon fa-solid fa-plus"></i>
+                                            {{ __('Follow') }}
+                                        </x-button>
+                                    </form>
+                                @endif
                             @endif
                         @endauth
                     </div>

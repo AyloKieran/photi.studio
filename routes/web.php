@@ -21,13 +21,10 @@ Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () 
 });
 
 Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], function () {
-    Route::get('', function () {
-        return redirect()->route('home');
-    });
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'show'])->name('home');
-    Route::get('/trending', function () {
-        return view('pages.trending');
-    })->name('trending');
+    Route::get('/trending', [\App\Http\Controllers\TrendingController::class, 'show'])->name('trending');
+    Route::get('/friends', [\App\Http\Controllers\FriendsController::class, 'show'])->name('friends');
 
     Route::group(['prefix' => 'upload', 'middleware' => ['auth']], function () {
         Route::get('', [\App\Http\Controllers\UploadController::class, 'index'])->name('upload');
@@ -52,15 +49,9 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'show'])->name('preferences.deactivate-profile');
             Route::post('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'update'])->name('preferences.deactivate-profile.update');
         });
-        Route::group(['prefix' => '/posts'], function () {
-            Route::get('', [\App\Http\Controllers\Preferences\PostsController::class, 'show'])->name('preferences.posts');
-        });
-        Route::group(['prefix' => '/likes'], function () {
-            Route::get('', [\App\Http\Controllers\Preferences\LikesController::class, 'show'])->name('preferences.likes');
-        });
-        Route::group(['prefix' => '/tags'], function () {
-            Route::get('', [\App\Http\Controllers\Preferences\TagsController::class, 'show'])->name('preferences.tags');
-        });
+        Route::get('/posts', [\App\Http\Controllers\Preferences\PostsController::class, 'show'])->name('preferences.posts');
+        Route::get('/likes', [\App\Http\Controllers\Preferences\LikesController::class, 'show'])->name('preferences.likes');
+        Route::get('/tags', [\App\Http\Controllers\Preferences\TagsController::class, 'show'])->name('preferences.tags');
     });
     Route::group(['prefix' => '/search'], function () {
         Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookup'])->name('search.lookup');
@@ -87,10 +78,11 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         Route::post('/{post}/dislike', [\App\Http\Controllers\PostController::class, 'dislike'])->name('post.dislike');
         Route::post('/{post}/none', [\App\Http\Controllers\PostController::class, 'none'])->name('post.none');
     });
-
-    Route::get('/profile/{user}', function (User $user) {
-        return view('pages.profile')->with('user', $user);
-    })->name('profile');
+    Route::group(['prefix' => '/profile'], function () {
+        Route::get('/{user}', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
+        Route::post('/{user}/follow', [\App\Http\Controllers\ProfileController::class, 'follow'])->name('profile.follow');
+        Route::post('/{user}/unfollow', [\App\Http\Controllers\ProfileController::class, 'unfollow'])->name('profile.unfollow');
+    });
 });
 
 Route::group(['prefix' => '/unsplash', 'middleware' => ['auth']], function () {
