@@ -21,8 +21,8 @@ class DefaultPreferenceSeederManager extends BaseManager
             ],
             [
                 'name' => PreferencesEnum::THEME_PAGE_SIZE->value,
-                'default_value' => '50',
-                'validation' => 'required|integer|min:1|max:100',
+                'default_value' => '75',
+                'validation' => 'required|integer|min:1|max:150',
             ],
             [
                 'name' => PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value,

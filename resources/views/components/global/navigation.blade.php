@@ -3,16 +3,15 @@
         <x-navigation.link title="{{ __('Upload Photo') }}" actionable="true" route="upload" />
     </x-navigation.section>
 @endauth
-<x-navigation.section title="{{ __('Feeds') }}">
-    @auth
+@auth
+    <x-navigation.section title="{{ __('Feeds') }}">
         <x-navigation.link title="{{ __('Home') }}" icon="fa-home" route="home" />
-    @endauth
-    <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" route="trending" />
-    @auth
+        <x-navigation.link title="{{ __('Following') }}" icon="fa-id-card" route="following" />
         <x-navigation.link title="{{ __('Friends') }}" icon="fa-users" route="friends" />
-    @endauth
-</x-navigation.section>
+    </x-navigation.section>
+@endauth
 <x-navigation.section title="{{ __('Explore') }}">
+    <x-navigation.link title="{{ __('Trending') }}" icon="fa-arrow-trend-up" route="trending" />
     <x-navigation.link title="{{ __('Search') }}" icon="fa-search" route="search" />
 </x-navigation.section>
 {{-- @auth --}}

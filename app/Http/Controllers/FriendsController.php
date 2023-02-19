@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class FriendsController extends Controller
 {
-
     private $__FriendsFeedManager;
 
     public function __construct()

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
@@ -24,6 +23,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'show'])->name('home');
     Route::get('/trending', [\App\Http\Controllers\TrendingController::class, 'show'])->name('trending');
+    Route::get('/following', [\App\Http\Controllers\FollowingController::class, 'show'])->name('following');
     Route::get('/friends', [\App\Http\Controllers\FriendsController::class, 'show'])->name('friends');
 
     Route::group(['prefix' => 'upload', 'middleware' => ['auth']], function () {
