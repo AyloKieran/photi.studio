@@ -6,8 +6,8 @@
 @auth
     <x-navigation.section title="{{ __('Feeds') }}">
         <x-navigation.link title="{{ __('Home') }}" icon="fa-home" route="home" />
-        <x-navigation.link title="{{ __('Following') }}" icon="fa-id-card" route="following" />
-        <x-navigation.link title="{{ __('Friends') }}" icon="fa-users" route="friends" />
+        <x-navigation.link title="{{ __('Following') }}" icon="fa-users-viewfinder" route="following" />
+        <x-navigation.link title="{{ __('Friends') }}" icon="fa-people-group" route="friends" />
     </x-navigation.section>
 @endauth
 <x-navigation.section title="{{ __('Explore') }}">

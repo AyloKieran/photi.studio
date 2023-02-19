@@ -23,7 +23,14 @@ class FollowingController extends Controller
         $user = $request->user();
         $limit = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, $user);
 
-        $posts = Post::whereIn('user_id', $user->following->pluck('follows_user_id'))->take($limit)->get();
+        $posts = Post::whereIn(
+            'user_id',
+            $user
+                ->following
+                ->pluck('follows_user_id')
+        )
+            ->orderBy('created_at', 'DESC')
+            ->take($limit)->get();
 
         return view('pages.following')
             ->with('posts', $posts);
