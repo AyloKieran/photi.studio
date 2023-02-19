@@ -68,4 +68,9 @@ class Post extends Model
     {
         return $this->__PostTagManager->getRelatedPostsByTag($this);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }

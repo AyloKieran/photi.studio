@@ -52,6 +52,10 @@
             margin: auto 0;
             color: var(--subtitle__colour);
             margin-right: var(--spacing1);
+
+            &--error {
+                color: var(--error__colour);
+            }
         }
     }
 

@@ -1,9 +1,5 @@
 @php
-    use App\Models\User;
-    $user = auth()->user() ?? User::first();
-@endphp
-
-@php
+    $user = $comment->author;
     $userLink = route('profile', ['user' => $user]);
 @endphp
 
@@ -15,8 +11,8 @@
     <div class="comment__holder">
         <div class="comment__info">
             <a href="{{ $userLink }}" class="comment__author">{{ $user->preferred_name }}</a>
-            <span class="comment__time">2d ago</span>
+            <span class="comment__time">{{ $comment->created_at->diffForHumans(null, false, true) }}</span>
         </div>
-        <p class="comment__text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p class="comment__text">{{ $comment->commentText }}</p>
     </div>
 </div>

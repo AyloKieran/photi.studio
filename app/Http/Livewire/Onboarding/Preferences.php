@@ -49,7 +49,10 @@ class Preferences extends Component
     public function render()
     {
         $this->canSubmit = count($this->selectedTags) > 4;
-        $this->tags = Tag::where('name', 'like', '%' . $this->search . '%')->withSum('ratings', 'rating')->orderBy('ratings_sum_rating', 'DESC')->take(5)->get();
+        $this->tags = Tag::where('name', 'like', '%' . $this->search . '%')
+            ->withSum('ratings', 'rating')
+            ->orderBy('ratings_sum_rating', 'DESC')
+            ->take(5)->get();
 
         return view('livewire.onboarding.preferences')->with('canSubmit', $this->canSubmit);
     }
