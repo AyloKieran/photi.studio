@@ -22,7 +22,7 @@
                                 </td>
                                 <td>{{ $post->rating }}</td>
                                 <td>{{ $post->status }}</td>
-                                <td>{{ $post->created_at }}</td>
+                                <td>{{ $post->created_at->diffForHumans(null, false, true) }}</td>
                             </tr>
                         @empty
                             <tr>

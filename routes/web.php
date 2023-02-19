@@ -52,6 +52,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         Route::get('/posts', [\App\Http\Controllers\Preferences\PostsController::class, 'show'])->name('preferences.posts');
         Route::get('/likes', [\App\Http\Controllers\Preferences\LikesController::class, 'show'])->name('preferences.likes');
         Route::get('/tags', [\App\Http\Controllers\Preferences\TagsController::class, 'show'])->name('preferences.tags');
+        Route::get('/comments', [\App\Http\Controllers\Preferences\CommentsController::class, 'show'])->name('preferences.comments');
     });
     Route::group(['prefix' => '/search'], function () {
         Route::post('/', [\App\Http\Controllers\SearchController::class, 'lookup'])->name('search.lookup');

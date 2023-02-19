@@ -20,7 +20,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $rating->rating }}</td>
-                                <td>{{ $rating->updated_at }}</td>
+                                <td>{{ $rating->updated_at->diffForHumans(null, false, true) }}</td>
                             </tr>
                         @empty
                             <tr>

@@ -9,6 +9,7 @@
                             <tr>
                                 <th>{{ __('Tag') }}</th>
                                 <th>{{ __('Rating') }}</th>
+                                <th>{{ __('Last Updated') }}</th>
                             </tr>
                         </thead>
                         @forelse ($tagsData as $tagData)
@@ -19,6 +20,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $tagData->rating }}</td>
+                                <td>{{ $tagData->updated_at->diffForHumans(null, false, true) }}</td>
                             </tr>
                         @empty
                             <tr>

@@ -15,6 +15,6 @@
         <x-navigation.link title="{{ __('Posts') }}" icon="fa-camera" route="preferences.posts" />
         <x-navigation.link title="{{ __('Likes') }}" icon="fa-thumbs-up" route="preferences.likes" />
         <x-navigation.link title="{{ __('Tag Ratings') }}" icon="fa-tags" route="preferences.tags" />
-        {{-- <x-navigation.link title="{{ __('Comments') }}" icon="fa-book" /> --}}
+        <x-navigation.link title="{{ __('Comments') }}" icon="fa-book" route="preferences.comments" />
     </x-navigation.section>
 </div>
