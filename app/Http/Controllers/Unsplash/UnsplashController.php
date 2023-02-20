@@ -50,44 +50,48 @@ class UnsplashController extends Controller
                     return "Error";
                 }
 
-                $username = "@" . $photo['user']['username'];
-                $user = User::firstOrNew([
-                    'username' => $username,
-                    'email' => $username . "@unsplash.com"
-                ]);
-                $user->name = $photo['user']['name'];
-                $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
+                try {
+                    $username = "@" . $photo['user']['username'];
+                    $user = User::firstOrNew([
+                        'username' => $username,
+                        'email' => $username . "@unsplash.com"
+                    ]);
+                    $user->name = $photo['user']['name'];
+                    $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
 
-                if (isset($photo['user']['bio'])) {
-                    $user->bio = $photo['user']['bio'];
+                    if (isset($photo['user']['bio'])) {
+                        $user->bio = $photo['user']['bio'];
+                    }
+
+                    $fileName = storage_path('app/' . uniqid() . '.jpg');
+                    File::put($fileName, Http::get($photo['urls']['regular'])->body());
+
+                    $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
+                    File::put($avatarFileName, Http::get($photo['user']['profile_image']['large'])->body());
+
+                    $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
+
+                    $user->save();
+
+                    $post = new Post();
+                    $post->user_id = $user->id;
+                    $post->title = $photo['alt_description'] ?? "Untitled";
+                    $post->description = $photo['description'];
+                    $post->local_file_path = $fileName;
+                    $post->unsplash_id = $photo['id'];
+
+                    $post->save();
+
+                    Bus::chain([
+                        new PostCreation($post),
+                        new PostUploadMedia($post),
+                        new PostAnalyseMedia($post),
+                    ])->dispatch();
+
+                    $count++;
+                } catch (\Exception $e) {
+                    // return $e->getMessage();
                 }
-
-                $fileName = storage_path('app/' . uniqid() . '.jpg');
-                File::put($fileName, Http::get($photo['urls']['regular'])->body());
-
-                $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
-                File::put($avatarFileName, Http::get($photo['user']['profile_image']['large'])->body());
-
-                $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
-
-                $user->save();
-
-                $post = new Post();
-                $post->user_id = $user->id;
-                $post->title = $photo['alt_description'] ?? "Untitled";
-                $post->description = $photo['description'];
-                $post->local_file_path = $fileName;
-                $post->unsplash_id = $photo['id'];
-
-                $post->save();
-
-                Bus::chain([
-                    new PostCreation($post),
-                    new PostUploadMedia($post),
-                    new PostAnalyseMedia($post),
-                ])->dispatch();
-
-                $count++;
             }
         }
 
