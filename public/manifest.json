@@ -34,10 +34,11 @@
             "description": "Your personal profile page"
         }
     ],
-    "icons": {
-        "512x512": {
-            "path": "/icon-512x512.png",
-            "purpose": "any maskable"
+    "icons": [
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
         }
-    }
+    ]
 }
