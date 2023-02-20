@@ -36,7 +36,7 @@
     ],
     "icons": {
         "512x512": {
-            "path": "/icons/icon-72x72.png",
+            "path": "/icon-512x512.png",
             "purpose": "any maskable"
         }
     }
