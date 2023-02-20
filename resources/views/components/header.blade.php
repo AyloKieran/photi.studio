@@ -5,7 +5,7 @@
         <div class="header__titles">
             <h1 class="header__title">{!! $title !!}</h1>
             @if ($subtitle != '')
-                <h2 class="header__subtitle">{{ $subtitle }}</h2>
+                <h2 class="header__subtitle">{!! $subtitle !!}</h2>
             @endif
         </div>
         @if ($slot && $slot != '')

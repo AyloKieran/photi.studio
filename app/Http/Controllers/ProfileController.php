@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserFollowing;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -32,5 +33,10 @@ class ProfileController extends Controller
     {
         return view('pages.profile')
             ->with('user', $user);
+    }
+
+    public function self(Request $request)
+    {
+        return redirect()->route('profile', $request->user());
     }
 }

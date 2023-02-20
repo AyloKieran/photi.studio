@@ -10,4 +10,5 @@ enum PreferencesEnum: string
     case SEARCH_MINIMUM_MATCHING_TAGS = 'preference_search_minimumMatchingTags';
     case NOTIFICATION_TIME = 'preference_notification_time';
     case FEEDS_SHOW_INTERACTED = 'preference_feeds_showInteracted';
+    case FEEDS_SHOW_NSFW = 'preference_feeds_showNsfw';
 }

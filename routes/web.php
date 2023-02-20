@@ -80,6 +80,7 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
         Route::post('/{post}/none', [\App\Http\Controllers\PostController::class, 'none'])->name('post.none');
     });
     Route::group(['prefix' => '/profile'], function () {
+        Route::get('', [\App\Http\Controllers\ProfileController::class, 'self'])->middleware(['auth'])->name('profile.index');
         Route::get('/{user}', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile');
         Route::post('/{user}/follow', [\App\Http\Controllers\ProfileController::class, 'follow'])->name('profile.follow');
         Route::post('/{user}/unfollow', [\App\Http\Controllers\ProfileController::class, 'unfollow'])->name('profile.unfollow');

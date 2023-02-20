@@ -1,4 +1,4 @@
-<x-app-layout title="{{ __(':name', ['name' => $user->preferred_name]) }}">
+<x-app-layout title="{{ __(':name - :username', ['name' => $user->name, 'username' => $user->username]) }}">
     <div class="content__holder">
         <x-profile :user=$user />
         <x-posts-holder>

@@ -21,7 +21,19 @@
                                     </a>
                                 </td>
                                 <td>{{ $post->rating }}</td>
-                                <td>{{ $post->status }}</td>
+                                <td>
+                                    @if ($post->status == \App\Enums\PostStatusEnum::FAILED->value)
+                                        <i class="icon fa-solid fa-image"></i>
+                                    @endif
+                                    @if ($post->status == \App\Enums\PostStatusEnum::COMPLETE->value)
+                                        <i class="icon fa-solid fa-check"></i>
+                                    @endif
+                                    @if (
+                                        $post->status == \App\Enums\PostStatusEnum::PENDING->value ||
+                                            $post->status == \App\Enums\PostStatusEnum::CONVERTING_UPLOADING->value)
+                                        <i class="icon fa-solid fa-cloud-arrow-up"></i>
+                                    @endif
+                                </td>
                                 <td>{{ $post->created_at->diffForHumans(null, false, true) }}</td>
                             </tr>
                         @empty

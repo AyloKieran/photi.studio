@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Scopes\CompleteScope;
+use App\Models\Scopes\NsfwScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -35,6 +36,7 @@ class Post extends Model
     protected static function booted()
     {
         static::addGlobalScope(new CompleteScope);
+        static::addGlobalScope(new NsfwScope);
     }
 
     public function author()

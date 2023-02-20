@@ -82,10 +82,12 @@
         }
 
         & tr {
+            text-align: center;
 
             & > :first-child {
                 padding-left: var(--spacing3);
                 width: auto;
+                text-align: left;
             }
 
             & > :last-child {

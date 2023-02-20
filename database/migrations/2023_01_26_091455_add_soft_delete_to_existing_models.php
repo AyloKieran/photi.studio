@@ -11,7 +11,6 @@ return new class extends Migration
         'posts',
         'tags',
         'post_tag',
-        'preferences',
         'user_preferences',
     ];
 

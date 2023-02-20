@@ -24,17 +24,21 @@ class FeedsController extends Controller
             ->with('minimumMatchingTagsKey', PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value)
             ->with('minimumMatchingTags', $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, $request->user()))
             ->with('showInteractedKey', PreferencesEnum::FEEDS_SHOW_INTERACTED->value)
-            ->with('showInteracted', $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::FEEDS_SHOW_INTERACTED, $request->user()));
+            ->with('showInteracted', $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::FEEDS_SHOW_INTERACTED, $request->user()))
+            ->with('showNsfwKey', PreferencesEnum::FEEDS_SHOW_NSFW->value)
+            ->with('showNsfw', $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::FEEDS_SHOW_NSFW, $request->user()));
     }
 
     public function update(Request $request)
     {
         $request[PreferencesEnum::FEEDS_SHOW_INTERACTED->value] = $request->has(PreferencesEnum::FEEDS_SHOW_INTERACTED->value) ? 'true' : 'false';
+        $request[PreferencesEnum::FEEDS_SHOW_NSFW->value] = $request->has(PreferencesEnum::FEEDS_SHOW_NSFW->value) ? 'true' : 'false';
 
         $toUpdate = $request->validate([
             PreferencesEnum::THEME_PAGE_SIZE->value => $this->__UserPreferenceManager->getPreference(PreferencesEnum::THEME_PAGE_SIZE)->validation,
             PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS->value => $this->__UserPreferenceManager->getPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS)->validation,
             PreferencesEnum::FEEDS_SHOW_INTERACTED->value => $this->__UserPreferenceManager->getPreference(PreferencesEnum::FEEDS_SHOW_INTERACTED)->validation,
+            PreferencesEnum::FEEDS_SHOW_NSFW->value => $this->__UserPreferenceManager->getPreference(PreferencesEnum::FEEDS_SHOW_NSFW)->validation,
         ]);
 
         foreach ($toUpdate as $key => $value) {

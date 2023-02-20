@@ -33,54 +33,67 @@ class UnsplashController extends Controller
 
     public function createPost()
     {
-        $reponse = Http::withHeaders([
+        $responses = Http::withHeaders([
             "Authorization" => "Bearer " . env("UNSPLASH_ACCESS_TOKEN")
-        ])->get("https://api.unsplash.com/photos/random")->json();
+        ])->get("https://api.unsplash.com/photos/random", [
+            "count" => 30,
+        ])->json();
 
-        if (!isset($reponse['urls']['regular'])) {
-            return "Error";
+        foreach ($responses as $photo) {
+            $existingPost = Post::where('unsplash_id', $photo['id'])->first();
+
+            if ($existingPost) {
+                continue;
+            }
+
+            if (!isset($photo['urls']['regular'])) {
+                return "Error";
+            }
+
+            $username = "@" . $photo['user']['username'];
+            $user = User::firstOrNew([
+                'username' => $username,
+                'email' => $username . "@unsplash.com"
+            ]);
+            $user->name = $photo['user']['name'];
+            $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
+
+            if (isset($photo['user']['bio'])) {
+                $user->bio = $photo['user']['bio'];
+            }
+
+            $fileName = storage_path('app/' . uniqid() . '.jpg');
+            File::put($fileName, Http::get($photo['urls']['regular'])->body());
+
+            $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
+            $avatar = File::put($avatarFileName, Http::get($photo['user']['profile_image']['large'])->body());
+
+            $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
+
+            $user->save();
+
+            $post = new Post();
+            $post->user_id = $user->id;
+            $post->title = $photo['alt_description'] ?? "Untitled";
+            $post->description = $photo['description'];
+            $post->local_file_path = $fileName;
+            $post->unsplash_id = $photo['id'];
+
+            $post->save();
+
+            Bus::chain([
+                new PostCreation($post),
+                new PostUploadMedia($post),
+                new PostAnalyseMedia($post),
+            ])->dispatch();
         }
 
-        $username = "@u" . $reponse['user']['username'];
-        $user = User::firstOrNew(['username' => $username, 'email' => $reponse['user']['username'] . "@unsplash.com"]);
-        $user->name = $reponse['user']['name'];
-        $user->email = $reponse['user']['username'] . "@unsplash.com";
-        $user->password = bcrypt("password");
-
-        if (isset($reponse['user']['bio'])) {
-            $user->bio = $reponse['user']['bio'];
-        }
-
-        $fileName = storage_path('app/' . uniqid() . '.jpg');
-        File::put($fileName, Http::get($reponse['urls']['regular'])->body());
-
-        $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
-        $avatar = File::put($avatarFileName, Http::get($reponse['user']['profile_image']['large'])->body());
-
-        $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
-
-        $user->save();
-
-        $post = new Post();
-        $post->user_id = $user->id;
-        $post->title = $reponse['alt_description'] ?? "Untitled";
-        $post->description = $reponse['description'];
-        $post->local_file_path = $fileName;
-
-        $post->save();
-
-        Bus::chain([
-            new PostCreation($post),
-            new PostUploadMedia($post),
-            new PostAnalyseMedia($post),
-        ])->dispatch();
-
-        return redirect()->route('post', $post);
+        return "COMPLETE";
     }
 
     public function login(Request $request)
     {
-        $reponse = Http::post("https://unsplash.com/oauth/token", [
+        $photo = Http::post("https://unsplash.com/oauth/token", [
             "client_id" => env("UNSPLASH_CLIENT_ID"),
             "client_secret" => env("UNSPLASH_CLIENT_SECRET"),
             "redirect_uri" => "urn:ietf:wg:oauth:2.0:oob",
@@ -88,6 +101,6 @@ class UnsplashController extends Controller
             "grant_type" => "authorization_code"
         ]);
 
-        return $reponse;
+        return $photo;
     }
 }

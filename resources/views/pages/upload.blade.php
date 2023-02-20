@@ -2,7 +2,7 @@
     <div class="upload">
         <div class="upload__holder">
             <div class="upload__header">
-                <x-header title="{{ __('Upload Photo') }}" subtitle="{{ __('text text text') }}" />
+                <x-header title="{{ __('Upload Photo') }}" />
             </div>
             <div class="upload__content">
                 <form method="POST" action="{{ route('upload.store') }}" id="uploadForm" enctype="multipart/form-data">

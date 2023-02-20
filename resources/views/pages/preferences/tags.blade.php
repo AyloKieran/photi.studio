@@ -9,7 +9,7 @@
                             <tr>
                                 <th>{{ __('Tag') }}</th>
                                 <th>{{ __('Rating') }}</th>
-                                <th>{{ __('Last Updated') }}</th>
+                                <th>{{ __('Updated') }}</th>
                             </tr>
                         </thead>
                         @forelse ($tagsData as $tagData)

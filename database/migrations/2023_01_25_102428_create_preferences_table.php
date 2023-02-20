@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longtext('default_value');
             $table->longText('validation');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         $__DefaultPreferenceSeederManager = new DefaultPreferenceSeederManager();

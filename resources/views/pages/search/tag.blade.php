@@ -19,8 +19,8 @@
 @endphp
 
 <x-app-layout title="{{ __(':tag Tagged Posts', ['tag' => $tag->formatted_name]) }}">
-    <x-header title="{{ __('\':tag\' Tagged Posts', ['tag' => $tag->formatted_name]) }}">
-    </x-header>
+    <x-header title="{{ __('\':tag\' Tagged Posts', ['tag' => $tag->formatted_name]) }}"
+        subtitle="{{ __(':count Posts', ['count' => $tag->posts()->count()]) }}" />
     <div class="content__holder">
         <x-posts-holder>
             @foreach ($tag->posts()->take(50)->get() as $post)

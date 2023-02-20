@@ -9,7 +9,7 @@
                             <tr>
                                 <th>{{ __('Title') }}</th>
                                 <th>{{ __('Rating') }}</th>
-                                <th>{{ __('Last Updated') }}</th>
+                                <th>{{ __('Updated') }}</th>
                             </tr>
                         </thead>
                         @forelse ($ratings as $rating)
@@ -19,7 +19,14 @@
                                         {{ $rating->post->title }}
                                     </a>
                                 </td>
-                                <td>{{ $rating->rating }}</td>
+                                <td>
+                                    @if ($rating->rating == \App\Enums\PostRatingEnum::LIKE->value)
+                                        <i class="icon fa-solid fa-thumbs-up"></i>
+                                    @endif
+                                    @if ($rating->rating == \App\Enums\PostRatingEnum::DISLIKE->value)
+                                        <i class="icon fa-solid fa-thumbs-down"></i>
+                                    @endif
+                                </td>
                                 <td>{{ $rating->updated_at->diffForHumans(null, false, true) }}</td>
                             </tr>
                         @empty

@@ -16,6 +16,10 @@
                     subtitle="{{ __('Should feeds show posts that you have liked or disliked?') }}">
                     <x-toggle :name="$showInteractedKey" :value="$showInteracted" required />
                 </x-section>
+                <x-section title="{{ __('Include NSFW Posts In Feeds') }}"
+                    subtitle="{{ __('Should feeds show posts that are 18+?') }}">
+                    <x-toggle :name="$showNsfwKey" :value="$showNsfw" required />
+                </x-section>
                 <div class="content__footer">
                     <x-button secondary href="{{ route('preferences.feeds') }}">{{ __('Cancel') }}</x-button>
                     <x-button primary type="submit">{{ __('Save') }}</x-button>

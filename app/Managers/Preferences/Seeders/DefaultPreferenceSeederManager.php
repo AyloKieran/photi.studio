@@ -44,6 +44,11 @@ class DefaultPreferenceSeederManager extends BaseManager
                 'default_value' => 'false',
                 'validation' => 'required|in:true,false',
             ],
+            [
+                'name' => PreferencesEnum::FEEDS_SHOW_NSFW->value,
+                'default_value' => 'false',
+                'validation' => 'required|in:true,false',
+            ],
         ];
 
         foreach ($preferences as $preference) {
