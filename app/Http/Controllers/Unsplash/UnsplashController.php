@@ -26,13 +26,17 @@ class UnsplashController extends Controller
 
     public function create()
     {
-        for ($i = 0; $i < 50; $i++) {
-            $this->createPost();
+        $count = 0;
+        for ($i = 0; $i < 5; $i++) {
+            $count += $this->createPost();
         }
+
+        return $count;
     }
 
     public function createPost()
     {
+        $count = 0;
         $responses = Http::withHeaders([
             "Authorization" => "Bearer " . env("UNSPLASH_ACCESS_TOKEN")
         ])->get("https://api.unsplash.com/photos/random", [
@@ -40,55 +44,54 @@ class UnsplashController extends Controller
         ])->json();
 
         foreach ($responses as $photo) {
-            $existingPost = Post::where('unsplash_id', $photo['id'])->first();
+            if (!Post::where('unsplash_id', $photo['id'])->exists()) {
 
-            if ($existingPost) {
-                continue;
+                if (!isset($photo['urls']['regular'])) {
+                    return "Error";
+                }
+
+                $username = "@" . $photo['user']['username'];
+                $user = User::firstOrNew([
+                    'username' => $username,
+                    'email' => $username . "@unsplash.com"
+                ]);
+                $user->name = $photo['user']['name'];
+                $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
+
+                if (isset($photo['user']['bio'])) {
+                    $user->bio = $photo['user']['bio'];
+                }
+
+                $fileName = storage_path('app/' . uniqid() . '.jpg');
+                File::put($fileName, Http::get($photo['urls']['regular'])->body());
+
+                $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
+                File::put($avatarFileName, Http::get($photo['user']['profile_image']['large'])->body());
+
+                $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
+
+                $user->save();
+
+                $post = new Post();
+                $post->user_id = $user->id;
+                $post->title = $photo['alt_description'] ?? "Untitled";
+                $post->description = $photo['description'];
+                $post->local_file_path = $fileName;
+                $post->unsplash_id = $photo['id'];
+
+                $post->save();
+
+                Bus::chain([
+                    new PostCreation($post),
+                    new PostUploadMedia($post),
+                    new PostAnalyseMedia($post),
+                ])->dispatch();
+
+                $count++;
             }
-
-            if (!isset($photo['urls']['regular'])) {
-                return "Error";
-            }
-
-            $username = "@" . $photo['user']['username'];
-            $user = User::firstOrNew([
-                'username' => $username,
-                'email' => $username . "@unsplash.com"
-            ]);
-            $user->name = $photo['user']['name'];
-            $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
-
-            if (isset($photo['user']['bio'])) {
-                $user->bio = $photo['user']['bio'];
-            }
-
-            $fileName = storage_path('app/' . uniqid() . '.jpg');
-            File::put($fileName, Http::get($photo['urls']['regular'])->body());
-
-            $avatarFileName = storage_path('app/' . uniqid() . '.jpg');
-            $avatar = File::put($avatarFileName, Http::get($photo['user']['profile_image']['large'])->body());
-
-            $this->__UserProfileAvatarManager->updateAvatar($user, new File2($avatarFileName));
-
-            $user->save();
-
-            $post = new Post();
-            $post->user_id = $user->id;
-            $post->title = $photo['alt_description'] ?? "Untitled";
-            $post->description = $photo['description'];
-            $post->local_file_path = $fileName;
-            $post->unsplash_id = $photo['id'];
-
-            $post->save();
-
-            Bus::chain([
-                new PostCreation($post),
-                new PostUploadMedia($post),
-                new PostAnalyseMedia($post),
-            ])->dispatch();
         }
 
-        return "COMPLETE";
+        return $count;
     }
 
     public function login(Request $request)
