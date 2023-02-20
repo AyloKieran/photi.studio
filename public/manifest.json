@@ -33,5 +33,11 @@
             "url": "/profile",
             "description": "Your personal profile page"
         }
-    ]
+    ],
+    "icons": {
+        "512x512": {
+            "path": "/icons/icon-72x72.png",
+            "purpose": "any maskable"
+        }
+    }
 }
