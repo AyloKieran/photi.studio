@@ -44,7 +44,7 @@ class UnsplashController extends Controller
         ])->json();
 
         foreach ($responses as $photo) {
-            if (!Post::where('unsplash_id', $photo['id'])->exists()) {
+            if (!Post::where('unsplash_id', $photo['id'])->first() != null) {
 
                 if (!isset($photo['urls']['regular'])) {
                     return "Error";
