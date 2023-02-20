@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon shortcut" href="{{ asset('favicon.png') }}">
+    <link rel="manifest" href="./manifest.json">
     <title>{{ $title }}{{ config('app.name') }}</title>
     @vite(['resources/css/UI/main.scss'])
     @livewireStyles
@@ -20,5 +21,18 @@
 
 {{ $slot }}
 @livewireScripts
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(
+                function(registration) {
+                    console.log('Service worker registration successful');
+                },
+                function(err) {
+                    console.log('Service worker registration failed', err);
+                });
+        });
+    }
+</script>
 
 </html>

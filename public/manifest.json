@@ -1,0 +1,37 @@
+{
+    "name": "Photi.Studio",
+    "short_name": "Photi",
+    "start_url": "/",
+    "display": "fullscreen",
+    "background_color": "#000019",
+    "status_bar": "#20222D",
+    "theme_color": "#008b8b",
+    "scope": "/",
+    "orientation": "any",
+    "service_worker": {
+        "src": "/sw.js",
+        "scope": "/"
+    },
+    "shortcuts": [
+        {
+            "name": "Upload Photo",
+            "url": "/upload",
+            "description": "Upload a photo to your account"
+        },
+        {
+            "name": "Home",
+            "url": "/home",
+            "description": "Your personal home page"
+        },
+        {
+            "name": "Search",
+            "url": "/search",
+            "description": "Search for photos"
+        },
+        {
+            "name": "Profile",
+            "url": "/profile",
+            "description": "Your personal profile page"
+        }
+    ]
+}

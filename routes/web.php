@@ -93,6 +93,10 @@ Route::group(['prefix' => '/unsplash', 'middleware' => ['auth']], function () {
     Route::get('create', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'create'])->name('unsplash.create');
 });
 
+Route::get('/offline', function () {
+    return view('pages.offline');
+})->name('offline');
+
 Route::get('/update', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');

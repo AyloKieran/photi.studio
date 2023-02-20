@@ -54,7 +54,7 @@ class SearchManager extends BaseCachedManager
     {
         return $this->__CacheManager->getOrSet($this->generateKey("users", $query, $limit), function () use ($query, $limit) {
             if (!isset($query)) {
-                return User::all()->take($limit);
+                return User::withCount('followers')->orderBy('followers_count', 'DESC')->take($limit)->get();
             }
 
             return User::where('name', 'like', '%' . $query . '%')

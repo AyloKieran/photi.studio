@@ -6,12 +6,20 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/UI/main.scss',
-                'resources/css/app.css',
                 'resources/js/app.js',
             ],
             refresh: true,
         }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/[name].js`,
+                chunkFileNames: `assets/[name].js`,
+                assetFileNames: `assets/[name].[ext]`
+            }
+        },
+    },
     resolve: {
         alias: {
             '@assets': '/resources/assets',
