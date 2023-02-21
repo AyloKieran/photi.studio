@@ -26,8 +26,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4">
-                                    {{ __('You haven\'t commented anything yet.') }}
+                                <td colspan="4" class="control__table--empty">
+                                    {{ __('You haven\'t posted any comments yet.') }}
                                 </td>
                             </tr>
                         @endforelse

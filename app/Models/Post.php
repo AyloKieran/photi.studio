@@ -24,7 +24,7 @@ class Post extends Model
     protected $__PostTagManager;
 
     protected $cascadeDeletes = ['tags'];
-    protected $with = ['author', 'userRating'];
+    protected $with = ['author', 'userRating', 'comments'];
 
     public function __construct()
     {

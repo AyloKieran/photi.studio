@@ -23,6 +23,13 @@
         }
     }
 
+    &--empty {
+        font-size: var(--text--medium);
+        text-align: center !important;
+        color: var(--subtitle__colour);
+        opacity: 0.75;
+    }
+
     & table {
         width: 100%;
         text-align: left;

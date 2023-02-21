@@ -2,6 +2,8 @@
     @forelse ($comments as $comment)
         <x-post.comment :comment=$comment />
     @empty
-        There are no comments yet.
+        <span class="post__comments-holder--feedback">
+            {{ __('No comments yet. Be the first to comment!') }}
+        </span>
     @endforelse
 </div>

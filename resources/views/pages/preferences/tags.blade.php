@@ -24,7 +24,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4">
+                                <td colspan="4" class="control__table--empty">
                                     {{ __('You haven\'t rated any tags yet.') }}
                                 </td>
                             </tr>

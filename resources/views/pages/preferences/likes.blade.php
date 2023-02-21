@@ -31,8 +31,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4">
-                                    {{ __('You haven\'t liked anything yet.') }}
+                                <td colspan="4" class="control__table--empty">
+                                    {{ __('You haven\'t rated any posts yet.') }}
                                 </td>
                             </tr>
                         @endforelse

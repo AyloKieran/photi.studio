@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Preferences;
 
 use App\Http\Controllers\Controller;
-use App\Models\PostComment;
+use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        $comments = PostComment::with('post')->where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+        $comments = $request->user()->comments()->get();
 
         return view('pages.preferences.comments')->with('comments', $comments);
     }

@@ -8,21 +8,21 @@
         display: flex;
         flex-direction: column;
         gap: var(--spacing2);
-        max-height: calc(39px * 9 - 1px); // TO DO: variable // comment height * number of comments - border
         margin-right: calc(var(--spacing4) * -1);
         overflow-y: auto;
         overflow-x: hidden;
 
-        &:empty {
-            min-height: 100px;
+        &--feedback {
+            font-size: var(--text--medium);
+            text-align: center;
+            color: var(--subtitle__colour);
+            opacity: 0.75;
+            margin: var(--spacing6) auto;
 
-            &::before {
-                content: 'No comments yet';
-                font-size: var(--text--medium);
-                text-align: center;
-                color: var(--subtitle__colour);
+            @include tablet() {
                 margin: auto;
             }
+
         }
     }
 

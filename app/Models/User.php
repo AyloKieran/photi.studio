@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Uuids, SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['posts', 'preferences', 'postRatings', 'tagRatings'];
+    protected $cascadeDeletes = ['posts', 'preferences', 'postRatings', 'tagRatings', 'comments'];
 
     protected $fillable = [
         'name',
@@ -95,5 +95,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isFollowing(User $user)
     {
         return $this->following->contains('follows_user_id', $user->id);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class, 'user_id');
     }
 }
