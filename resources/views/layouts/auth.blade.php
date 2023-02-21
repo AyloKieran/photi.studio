@@ -1,6 +1,7 @@
 @props(['title'])
 
 <x-base-layout title="{{ $title }}">
+    <x-loader />
 
     <body class="wrapper authentication">
         <div class="authentication__auth">

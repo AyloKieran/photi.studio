@@ -40,6 +40,9 @@
         </div>
     </x-section>
     <x-footer>
+        <x-button secondary onClick="window.livewire.emit('save')">
+            {{ __('Skip') }}
+        </x-button>
         <x-button primary onClick="window.livewire.emit('save')">
             {{ __('Finish') }}
         </x-button>

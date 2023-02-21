@@ -1,5 +1,7 @@
 .header {
-    margin-top: var(--spacing3);
+    @include tablet() {
+        margin-top: var(--spacing3);
+    }
 
     &__title {
         font-size: var(--title--size);

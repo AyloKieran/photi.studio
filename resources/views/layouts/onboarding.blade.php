@@ -5,6 +5,7 @@
 @endphp
 
 <x-base-layout title="{{ $title }}">
+    <x-loader />
 
     <body class="wrapper authentication">
         @include('components.authentication.images')

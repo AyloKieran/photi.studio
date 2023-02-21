@@ -1,10 +1,12 @@
 @props(['title', 'subtitle'])
 
 <x-base-layout title="{{ $title }}">
+    <x-loader />
 
     <body class="wrapper error">
         @include('components.authentication.images')
         <div class="error__holder">
+            <x-logo />
             <div class="error__title">
                 {!! $title !!}
             </div>

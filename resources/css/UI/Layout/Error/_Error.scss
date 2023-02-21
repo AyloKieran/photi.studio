@@ -1,6 +1,7 @@
 .error {
     position: relative;
     overflow: hidden;
+    --opacity: 0.75 !important;
 
     &__holder {
         position: absolute;
@@ -8,11 +9,17 @@
         left: 0;
         right: 0;
         bottom: 0;
+        padding: var(--spacing4);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         @include backgroundImageCover;
+
+        & .logo {
+            position: absolute;
+            top: var(--spacing24);
+        }
     }
 
     &__title {
@@ -24,5 +31,6 @@
     &__subtitle {
         color: var(--subtitle__colour);
         margin-bottom: var(--spacing3);
+        text-align: center;
     }
 }

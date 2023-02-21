@@ -10,5 +10,15 @@ Alpine.start();
 document.addEventListener("touchstart", function () { }, false);
 
 window.navigate = function (path) { // TO DO: better way to do this?
+    document.getElementById("loader").classList.add("loader--shown");
     window.location.href = path;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("loader").classList.remove("loader--shown");
+});
+
+window.onbeforeunload = function () {
+    document.getElementById("loader").classList.add("loader--shown");
+};
+

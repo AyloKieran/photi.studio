@@ -2,8 +2,8 @@
     "name": "Photi.Studio",
     "short_name": "Photi",
     "start_url": "/",
-    "display": "fullscreen",
-    "background_color": "#000019",
+    "display": "standalone",
+    "background_color": "#121219",
     "status_bar": "#20222D",
     "theme_color": "#008b8b",
     "scope": "/",
@@ -36,9 +36,10 @@
     ],
     "icons": [
         {
-            "src": "/icon-512x512.png",
+            "src": "/favicon.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
 }

@@ -1,6 +1,6 @@
 @import "../../Utilities/Mixins/Mixins";
 
-$contentAsideWidth: 2rem;
+$contentAsideWidth: 1.5rem;
 
 .pageContent {
     position: relative;
@@ -15,7 +15,7 @@ $contentAsideWidth: 2rem;
         &:checked {
             & ~ .pageContent__main {
                 // ViewPort - content aside padding - Width of Content Aside - Main Padding
-                min-width: calc(100vw - (calc(var(--spacing3) * 2)) - $contentAsideWidth - var(--border--width) - calc(var(--spacing12) * 2));
+                min-width: calc(100vw - (calc(var(--spacing3) * 2)) - $contentAsideWidth - var(--border--width) - calc(var(--spacing8) * 2));
             }
 
             & ~ .pageContent__aside {
@@ -23,6 +23,10 @@ $contentAsideWidth: 2rem;
 
                 & .nav {
                     opacity: 1;
+                }
+
+                & .pageContent__aside-label {
+                    display: none;
                 }
 
                 & label {
@@ -59,8 +63,19 @@ $contentAsideWidth: 2rem;
         & label {
             margin-left: auto;
             margin-right: auto;
-            @include transition(margin-right)
+            @include transition(margin-right);
 
+            & .icon {
+                width: 100%;
+            }
+        }
+
+        &-label {
+            display: block;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            padding-bottom: var(--spacing4);
+            font-weight: var(--font--bold);
         }
 
         & .nav {
@@ -86,8 +101,8 @@ $contentAsideWidth: 2rem;
     &__main {
         flex-grow: 1;
         overflow-y: auto;
-        padding: var(--spacing7);
         position: relative;
+        padding: var(--spacing4);
 
         @include tablet {
             padding: var(--spacing7) var(--spacing12);

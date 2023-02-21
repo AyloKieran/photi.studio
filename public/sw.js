@@ -1,4 +1,4 @@
-const VERSION = '1.0.0',
+const VERSION = '1.0.1',
     CACHE_NAME = 'photi-v' + VERSION,
     CACHE_URLS = [
         '/offline',
