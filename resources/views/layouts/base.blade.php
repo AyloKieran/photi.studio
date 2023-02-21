@@ -19,11 +19,10 @@
     <meta name="description" content="A social media platform for photographers.">
     @vite(['resources/css/UI/main.scss'])
     @livewireStyles
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/register-sw.js'])
 </head>
 
 {{ $slot }}
 @livewireScripts
-<script src="/register-sw.js" defer></script>
 
 </html>

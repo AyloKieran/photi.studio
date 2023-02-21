@@ -1,4 +1,4 @@
-const VERSION = '1.0.2',
+const VERSION = new URL(location).searchParams.get('v'),
     CACHE_NAME = 'photi-v' + VERSION,
     CACHE_URLS = [
         '/offline',
@@ -35,7 +35,7 @@ self.addEventListener("install", event => {
                 // Cache busting
                 _urls = CACHE_URLS.map(url => {
                     let _url = new URL(url, location.origin);
-                    _url.searchParams.append('v', Date.now());
+                    _url.searchParams.append('v', VERSION);
                     return _url.href;
                 });
 
