@@ -24,18 +24,6 @@
 
 {{ $slot }}
 @livewireScripts
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js').then(
-                function(registration) {
-                    console.log('Service worker registration successful');
-                },
-                function(err) {
-                    console.log('Service worker registration failed', err);
-                });
-        });
-    }
-</script>
+<script src="/register-sw.js" defer></script>
 
 </html>

@@ -1,4 +1,4 @@
-const VERSION = '1.0.1',
+const VERSION = '1.0.2',
     CACHE_NAME = 'photi-v' + VERSION,
     CACHE_URLS = [
         '/offline',
@@ -32,7 +32,14 @@ self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                return cache.addAll(CACHE_URLS);
+                // Cache busting
+                _urls = CACHE_URLS.map(url => {
+                    let _url = new URL(url, location.origin);
+                    _url.searchParams.append('v', Date.now());
+                    return _url.href;
+                });
+
+                return cache.addAll(_urls);
             })
     )
 });
@@ -55,11 +62,8 @@ self.addEventListener("fetch", event => {
         caches.match(event.request)
             .then(response => {
                 if (response) {
-                    // console.log('Cache:', event.request.url);
                     return response;
                 }
-
-                // console.log('Fetch:', event.request.url);
                 return fetch(event.request);
             })
             .catch(() => {
