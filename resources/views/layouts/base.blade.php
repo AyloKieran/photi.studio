@@ -19,10 +19,18 @@
     <meta name="description" content="A social media platform for photographers.">
     @vite(['resources/css/UI/main.scss'])
     @livewireStyles
-    @vite(['resources/js/app.js', 'resources/js/register-sw.js'])
+    @vite(['resources/js/app.js'])
 </head>
 
 {{ $slot }}
 @livewireScripts
+
+<script>
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '/build/assets/register-sw.js?t=' + Date.now();
+    head.appendChild(script);
+</script>
 
 </html>
