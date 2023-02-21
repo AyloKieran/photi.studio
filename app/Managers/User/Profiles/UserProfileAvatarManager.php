@@ -14,7 +14,7 @@ class UserProfileAvatarManager extends BaseManager
     protected $__AzureBlobManager;
     protected $__ImageAdjustmentManager;
 
-    public $avatarValidationRules = ['image', 'mimes:jpeg,png,jpg,gif', 'max:8M'];
+    public $avatarValidationRules = ['image', 'mimes:jpeg,png,jpg,gif', 'max:8192'];
 
     function __construct()
     {

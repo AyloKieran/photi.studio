@@ -51,10 +51,9 @@ class UnsplashController extends Controller
                 }
 
                 try {
-                    $username = "@" . $photo['user']['username'];
                     $user = User::firstOrNew([
-                        'username' => $username,
-                        'email' => $username . "@unsplash.com"
+                        'username' => "@" . $photo['user']['username'],
+                        'email' => "kieran+us" . $photo['user']['username'] . "@unsplash.com"
                     ]);
                     $user->name = $photo['user']['name'];
                     $user->password = bcrypt("password" . $photo['user']['username'] . $photo['id']);
