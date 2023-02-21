@@ -1,8 +1,11 @@
 <div class="nav">
     <x-navigation.section title="{{ __('Account') }}">
         <x-navigation.link title="{{ __('Profile') }}" icon="fa-user" route="preferences.profile" />
-        {{-- <x-navigation.link title="{{ __('Change Password') }}" icon="fa-key" /> --}}
-        <x-navigation.link title="{{ __('Deactivate Profile') }}" icon="fa-trash" route="preferences.deactivate-profile" />
+        <x-navigation.link title="{{ __('Linked Profiles') }}" icon="fa-circle-nodes"
+            route="preferences.linked-profiles" />
+        <x-navigation.link title="{{ __('Change Password') }}" icon="fa-key" route="preferences.change-password" />
+        <x-navigation.link title="{{ __('Deactivate Profile') }}" icon="fa-trash"
+            route="preferences.deactivate-profile" />
     </x-navigation.section>
     <x-navigation.section title="{{ __('Application') }}">
         <x-navigation.link title="{{ __('Theme') }}" icon="fa-brush" route="preferences.theme" />

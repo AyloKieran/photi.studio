@@ -101,4 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(PostComment::class, 'user_id');
     }
+
+    public function linkedProfiles()
+    {
+        return $this->hasMany(UserLinkedProfiles::class, 'user_id');
+    }
 }

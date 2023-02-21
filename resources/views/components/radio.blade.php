@@ -1,4 +1,4 @@
-@props(['name', 'values' => [], 'required' => false, 'autofocus' => false])
+@props(['name', 'values' => [], 'required' => false, 'autofocus' => false, 'wire' => null])
 
 @php
     $selectText = arrayFindByFieldValue($values, 'checked', true);
@@ -14,7 +14,7 @@
             @foreach ($values as $value)
                 <label class="control__dropdown-item">
                     <input type="radio" name="{{ $name }}" value="{{ $value->value }}"
-                        @if ($value->checked ?? false) checked @endif>
+                        @if ($value->checked ?? false) checked @endif wire:click="checked('{{ $value->value }}')">
                     <div class="control__dropdown-item-text">
                         <span>{{ $value->key }}</span>
                         <i class="control__dropdown-item-checked icon fa-solid fa-check"></i>

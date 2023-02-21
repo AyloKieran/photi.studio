@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Preferences;
 
 use App\Http\Controllers\Controller;
-use App\Models\TagUserRating;
 
 class PostsController extends Controller
 {

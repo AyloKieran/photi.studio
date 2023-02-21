@@ -34,15 +34,22 @@
             <div class="profile__section">
                 <div class="profile__user-actions" style="flex-wrap: wrap; max-width: 100vw;">
                     <div class="profile__user-actions-section">
-                        {{-- <div style="display: flex; gap: var(--spacing2);">
-                            @for ($i = 0; $i < 3; $i++)
+                        <div style="display: flex; gap: var(--spacing2);">
+                            @foreach ($user->linkedProfiles as $profile)
+                                <a href="{{ $profile->url }}"
+                                    style="display: flex; flex-wrap: 0; gap: var(--spacing1); background-color: var(--action__background); padding: var(--spacing1) var(--spacing2); border-radius: var(--rounded--large); font-size: 12px; margin: auto 0;">
+                                    <i class="icon fa-brands fa-{{ $profile->platform }}" style="color: white;"></i>
+                                    {{ ucfirst($profile->platform) }}
+                                </a>
+                            @endforeach
+                            {{-- @for ($i = 0; $i < 3; $i++)
                                 <a href="#"
                                     style="display: flex; flex-wrap: 0; gap: var(--spacing1); background-color: var(--action__background); padding: var(--spacing1) var(--spacing2); border-radius: var(--rounded--large); font-size: 12px; margin: auto 0;">
                                     <i class="icon fa-brands fa-twitter" style="color: white;"></i>
                                     @AyloKieran
                                 </a>
-                            @endfor
-                        </div> --}}
+                            @endfor --}}
+                        </div>
                     </div>
                     <div class="profile__user-actions-section">
                         @auth

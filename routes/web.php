@@ -37,6 +37,13 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('', [\App\Http\Controllers\Preferences\ProfileController::class, 'show'])->name('preferences.profile');
             Route::post('', [\App\Http\Controllers\Preferences\ProfileController::class, 'update'])->name('preferences.profile.update');
         });
+        Route::group(['prefix' => '/linked-profiles'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\LinkedProfilesController::class, 'show'])->name('preferences.linked-profiles');
+        });
+        Route::group(['prefix' => '/change-password'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\ChangePasswordController::class, 'show'])->name('preferences.change-password');
+            Route::post('', [\App\Http\Controllers\Preferences\ChangePasswordController::class, 'update'])->name('preferences.change-password.update');
+        });
         Route::group(['prefix' => '/theme'], function () {
             Route::get('', [\App\Http\Controllers\Preferences\ThemeController::class, 'show'])->name('preferences.theme');
             Route::post('', [\App\Http\Controllers\Preferences\ThemeController::class, 'update'])->name('preferences.theme.update');
