@@ -20,7 +20,7 @@
             gap: var(--spacing6);
         }
 
-        & > div {
+        & > .post__image, .post__info {
             flex-grow: 1;
             flex-basis: 0;
         }

@@ -2,7 +2,6 @@
 
 &__image {
     position: relative;
-
     @include desktop() {
         margin: var(--spacing6);
         margin-right: 0;
