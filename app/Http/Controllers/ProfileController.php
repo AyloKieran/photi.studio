@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserFollowing;
 use Illuminate\Http\Request;
+use App\Notifications\NewFollower;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,8 @@ class ProfileController extends Controller
             'user_id' => auth()->user()->id,
             'follows_user_id' => $user->id,
         ]);
+
+        $user->notify(new NewFollower(auth()->user()));
 
         return redirect()->back();
     }

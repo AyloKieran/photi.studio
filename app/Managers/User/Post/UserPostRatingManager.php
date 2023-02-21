@@ -8,6 +8,7 @@ use App\Models\PostUserRating;
 use App\Enums\PostRatingEnum;
 use App\Managers\BaseCachedManager;
 use App\Models\TagUserRating;
+use App\Notifications\NewLike;
 
 class UserPostRatingManager extends BaseCachedManager
 {
@@ -77,8 +78,7 @@ class UserPostRatingManager extends BaseCachedManager
             $tagUserRating->save();
         });
 
-
-        $rating = PostUserRating::updateOrCreate(
+        $userRating = PostUserRating::updateOrCreate(
             [
                 'post_id' => $post->id,
                 'user_id' => $user->id,
@@ -88,6 +88,11 @@ class UserPostRatingManager extends BaseCachedManager
             ]
         );
 
-        return $this->__CacheManager->set($this->generateKey($post, $user), $rating);
+        if ($rating->value == PostRatingEnum::LIKE->value) {
+
+            $post->author->notify(new NewLike($post, $user));
+        }
+
+        return $this->__CacheManager->set($this->generateKey($post, $user), $userRating);
     }
 }

@@ -98,10 +98,7 @@ Route::get('/offline', function () {
 })->name('offline');
 
 Route::get('/update', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('route:clear');
-    Artisan::call('config:clear');
-    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
     $DPSM = new \App\Managers\Preferences\Seeders\DefaultPreferenceSeederManager();
     $DPSM->run();
     return "Cleared & Updated";
