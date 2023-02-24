@@ -61,7 +61,10 @@ class LinkedProfiles extends Component
     {
         $this->generateDropdown();
         $this->showURL = $this->platform != null;
-        $this->canSubmit = $this->platform != null && $this->url != null && $this->url != $this->current->url && filter_var($this->url, FILTER_VALIDATE_URL);
+        $this->canSubmit = $this->platform != null
+            && $this->url != null
+            && isset($this->current) ? $this->current->url != $this->url : true
+            && filter_var($this->url, FILTER_VALIDATE_URL);
         return view('livewire.preferences.linkedprofiles');
     }
 }
