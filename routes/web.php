@@ -100,6 +100,10 @@ Route::group(['prefix' => '/unsplash', 'middleware' => ['auth']], function () {
     Route::get('create', [\App\Http\Controllers\Unsplash\UnsplashController::class, 'create'])->name('unsplash.create');
 });
 
+Route::get('privacy-policy', function () {
+    return view('pages.privacy-policy');
+})->name('privacy-policy');
+
 Route::get('/offline', function () {
     return view('pages.offline');
 })->name('offline');

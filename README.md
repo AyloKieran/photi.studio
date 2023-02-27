@@ -1,66 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Photi.Studio
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Photi's Trending Page][trending]][photi_link]
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introduction 🎯
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Photi.Studio is built using [Laravel][laravel_link], [Laravel Livewire][livewire_link], [Azure Blob Storage][blobs_link] and [Azure Cognitive Services][cv_link].
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Photi was created for university module's assessment, and is currently being assessed. <sup><sub>_A grade will be updated here as soon as it is available._</sub></sup>
 
-## Learning Laravel
+You can **[try it now][photi_link]** or _[build it yourself](#getting-started-🚀)_.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Getting Started 🚀
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+It is assumed that you have a basic understanding of Laravel and Shell commands. Please refer to documention of these before raising an issue 😊.
 
-## Laravel Sponsors
+### Initial Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+To get a local copy of the source code working, you will need to run the following commands:
 
-### Premium Partners
+```sh
+git clone https://github.com/AyloKieran/photi.studio.git
+cd photi.studio
+cp .env.example .env
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Once this has completed, you will need to edit the `.env` to fill in the following variables:
 
-## Contributing
+### Database Connection
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Setup your database credentials:
 
-## Code of Conduct
+```env
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Azure Blob Storage
 
-## Security Vulnerabilities
+Connect your [Azure Blob Storage][blobs_link] account (and optionally set a custom storage URL for blobs):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+AZURE_STORAGE_NAME=
+AZURE_STORAGE_KEY=
+AZURE_STORAGE_CONTAINER=
+AZURE_STORAGE_URL=    << OPTIONAL >>
+```
 
-## License
+### Azure Computer Vision
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Connect your [Azure Computer Vision][cv_link] resource:
+
+```env
+AZURE_CV_KEY=
+AZURE_CV_ENDPOINT=
+```
+
+### Unsplash
+
+OPTIONAL: Connect to the [Unsplash API][unsplash_link] to generate test user posts:
+
+```env
+UNSPLASH_CLIENT_ID=    << OPTIONAL >>
+UNSPLASH_CLIENT_SECRET=    << OPTIONAL >>
+UNSPLASH_ACCESS_TOKEN=    << OPTIONAL >>
+```
+
+### Mail Server
+
+Connect to your email server to send authentication emails and user notifications:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+MAIL_FROM_ADDRESS=
+```
+
+You are now set to [start the server](#starting-the-server-🎢).
+
+---
+
+## Starting the Server 🎢
+
+To start the web server, run the following command:
+
+```sh
+php artisan serve
+```
+
+If you require live updates from the UI, run the following command in a new command prompt window:
+
+```sh
+npm run dev
+```
+
+## Updating 🗞️
+
+An update script has been provided which fully updates the application and clears all caches and is recommended for almost every use case:
+
+```sh
+sh update.sh
+```
+
+However, if you would like more control over your update process, you can run the following commands:
+
+```sh
+npm install
+composer install -n --optimize-autoloader
+php artisan migrate
+npm run build
+php artisan optimize:clear
+```
+
+---
+
+## Support 🧑‍⚕️
+
+This project is not indended to be used anywhere outside of an academic setting, however, I am willing to help you out if you are genuinely interested!
+Please [open an issue][issue_link] or send an email to: [howdy@kierannoble.dev][email_link]
+
+[trending]: /docs/trending.png
+[photi_link]: https://photi.studio/
+[laravel_link]: https://laravel.com/
+[livewire_link]: https://laravel-livewire.com/
+[blobs_link]: https://azure.microsoft.com/en-gb/products/storage/blobs
+[cv_link]: https://azure.microsoft.com/en-us/products/cognitive-services/computer-vision
+[unsplash_link]: https://unsplash.com/developers
+[issue_link]: https://github.com/AyloKieran/photi.studio/issues/new
+[email_link]: mailto:howdy@kierannoble.dev
