@@ -10,7 +10,7 @@
 
 Photi was created for university module's assessment, and is currently being assessed. <sup><sub>_A grade will be updated here as soon as it is available._</sub></sup>
 
-You can **[try it now][photi_link]** or _[build it yourself](#getting-started-🚀)_.
+You can try it now **[on Web][photi_link]**, on **[Google Play][gplay_link]** or _[build it yourself](#getting-started-🚀)_.
 
 ---
 
@@ -130,6 +130,7 @@ Please [open an issue][issue_link] or send an email to: [howdy@kierannoble.dev][
 
 [trending]: /docs/trending.png
 [photi_link]: https://photi.studio/
+[gplay_link]: https://play.google.com/store/apps/details?id=studio.photi.twa
 [laravel_link]: https://laravel.com/
 [livewire_link]: https://laravel-livewire.com/
 [blobs_link]: https://azure.microsoft.com/en-gb/products/storage/blobs
