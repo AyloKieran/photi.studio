@@ -49,7 +49,7 @@ Connect your [Azure Blob Storage][blobs_link] account (and optionally set a cust
 AZURE_STORAGE_NAME=
 AZURE_STORAGE_KEY=
 AZURE_STORAGE_CONTAINER=
-AZURE_STORAGE_URL=    << OPTIONAL >>
+AZURE_STORAGE_URL=    <OPTIONAL>
 ```
 
 ### Azure Computer Vision
@@ -66,9 +66,9 @@ AZURE_CV_ENDPOINT=
 OPTIONAL: Connect to the [Unsplash API][unsplash_link] to generate test user posts:
 
 ```env
-UNSPLASH_CLIENT_ID=    << OPTIONAL >>
-UNSPLASH_CLIENT_SECRET=    << OPTIONAL >>
-UNSPLASH_ACCESS_TOKEN=    << OPTIONAL >>
+UNSPLASH_CLIENT_ID=    <OPTIONAL>
+UNSPLASH_CLIENT_SECRET=    <OPTIONAL>
+UNSPLASH_ACCESS_TOKEN=    <OPTIONAL>
 ```
 
 ### Mail Server
