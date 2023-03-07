@@ -10,7 +10,7 @@
 
 Photi was created for university module's assessment, and is currently being assessed. <sup><sub>_A grade will be updated here as soon as it is available._</sub></sup>
 
-You can try it now **[on Web][photi_link]**, on **[Google Play][gplay_link]** or _[build it yourself](#getting-started-🚀)_.
+You can try it now **[on Web][photi_link]**, on **[Google Play][gplay_link]** or _[build it yourself](#getting-started-)_.
 
 ---
 
@@ -85,7 +85,7 @@ MAIL_ENCRYPTION=
 MAIL_FROM_ADDRESS=
 ```
 
-You are now set to [start the server](#starting-the-server-🎢).
+You are now set to [start the server](#starting-the-server-).
 
 ---
 
