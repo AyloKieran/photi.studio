@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Managers\Image\ImageFileManager;
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Notifications\NewPost;
 use App\Jobs\Posts\PostAnalyseMedia;
 use App\Jobs\Posts\PostCreation;
 use App\Jobs\Posts\PostUploadMedia;
 use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\Notification;
+
 
 class UploadController extends Controller
 {
@@ -48,9 +47,6 @@ class UploadController extends Controller
         }
 
         $post->save();
-
-
-        Notification::send($request->user()->followers->pluck('user'), new NewPost($post));
 
         Bus::chain([
             new PostCreation($post),
