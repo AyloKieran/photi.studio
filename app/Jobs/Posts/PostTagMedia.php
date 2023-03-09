@@ -8,9 +8,6 @@ use App\Models\Tag;
 use App\Models\PostTag;
 use App\Enums\PostStatusEnum;
 use App\Managers\Azure\ComputerVision\AzureComputerVisionManager;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\NewPost;
-use App\Models\User;
 
 class PostTagMedia extends BasePostJob
 {
@@ -49,7 +46,7 @@ class PostTagMedia extends BasePostJob
             ]);
         }
 
-        Notification::send($this->post->author->followers->pluck('user'), new NewPost($this->post));
+        dispatch(new SendNotifications($this->post));
 
         $this->post->status = PostStatusEnum::COMPLETE->value;
         $this->post->save();

@@ -21,8 +21,10 @@ class CreatePosts implements ShouldQueue
             "count" => 30,
         ])->json();
 
-        foreach ($responses as $photo) {
-            CreatePost::dispatch($photo);
+        if (isset($responses)) {
+            foreach ($responses as $photo) {
+                CreatePost::dispatch($photo);
+            }
         }
     }
 }
