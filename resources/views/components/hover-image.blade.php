@@ -16,7 +16,8 @@
     class="hoverImage" style="--r: {{ $post->r }}; --g: {{ $post->g }}; --b: {{ $post->b }}">
     <img class="hoverImage__image" src="{{ $post->image_thumbnail }}" width="{{ $post->width }}px"
         height="{{ $post->height }}px" alt="{{ $post->caption }}" loading="lazy" decoding="async"
-        onerror="this.style.opacity='0'; this.parentElement.style.setProperty('--opacity', '.5')" />
+        onerror="this.style.opacity='0'; this.parentElement.style.setProperty('--opacity', '.5')"
+        onContextMenu="return false;" />
     @if ($hoverable == 'true')
         <div class="hoverImage__image--overlay">
             <form method="POST" action="{{ route('post.like', ['post' => $post]) }}" id="{{ $likeFormID }}">
