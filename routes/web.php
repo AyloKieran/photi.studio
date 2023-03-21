@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/install', function () {
+    return view('pages.install');
+});
+
 Route::group(['prefix' => '/onboarding', 'middleware' => ['auth']], function () {
     Route::get('', fn () => redirect(route('onboarding.profile')))->name('onboarding');
     Route::group(['prefix' => 'profile'], function () {
