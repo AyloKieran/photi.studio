@@ -25,7 +25,7 @@ window.onbeforeunload = function () {
 let url = new URL(window.location.href),
     isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-isMobile ?
+isMobile && !window.matchMedia('(display-mode: standalone)').matches ?
     url.pathname == "/install" ?
         null
         : window.location.replace(url.origin + "/install")
