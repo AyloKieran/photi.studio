@@ -9,13 +9,13 @@
             let deferredPrompt,
                 button = document.getElementById('installPWA');
 
-            function navigateHome() {
-                window.location.replace("{{ route('home') }}");
-            }
+            // function navigateHome() {
+            //     window.location.replace("{{ route('home') }}");
+            // }
 
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                navigateHome();
-            }
+            // if (window.matchMedia('(display-mode: standalone)').matches) {
+            //     navigateHome();
+            // }
 
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
@@ -36,7 +36,8 @@
                         } = await deferredPrompt.userChoice;
                         if (outcome === 'accepted') {
                             deferredPrompt = null;
-                            navigateHome();
+                            // navigateHome();
+                            button.innerText = "{{ __('Already Installed') }}";
                         }
                     }
                 })

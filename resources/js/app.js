@@ -22,13 +22,13 @@ window.onbeforeunload = function () {
     document.getElementById("loader").classList.add("loader--shown");
 };
 
-let url = new URL(window.location.href),
-    isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// let url = new URL(window.location.href),
+//     isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-isMobile && !window.matchMedia('(display-mode: standalone)').matches ?
-    url.pathname == "/install" ?
-        null
-        : window.location.replace(url.origin + "/install")
-    : null;
+// isMobile && !window.matchMedia('(display-mode: standalone)').matches ?
+//     url.pathname == "/install" ?
+//         null
+//         : window.location.replace(url.origin + "/install")
+//     : null;
 
-window.isMobile = isMobile;
+// window.isMobile = isMobile;
