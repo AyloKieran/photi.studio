@@ -24,8 +24,6 @@
             });
 
             if (deferredPrompt !== undefined) {
-                navigateHome();
-            } else {
                 button.innerText = "{{ __('Already Installed') }}";
             }
 
