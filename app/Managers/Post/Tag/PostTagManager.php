@@ -13,16 +13,16 @@ class PostTagManager extends BaseManager
 {
     protected $__UserPreferenceManager;
 
-    public function __construct()
+    public function __construct(UserPreferenceManager $userPreferenceManager)
     {
         parent::__construct();
-        $this->__UserPreferenceManager = new UserPreferenceManager();
+        $this->__UserPreferenceManager = $userPreferenceManager ?? new UserPreferenceManager();
     }
 
     public function getRelatedPostsByTag(Post $post)
     {
-        $limit = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, auth()->user());
-        $minimumRelatedTags = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, auth()->user());
+        $limit = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::THEME_PAGE_SIZE, $this->user);
+        $minimumRelatedTags = $this->__UserPreferenceManager->getUserPreference(PreferencesEnum::SEARCH_MINIMUM_MATCHING_TAGS, $this->user);
 
         return Post::modelsFromRawResults(DB::select("
             SELECT COUNT( * ) AS MatchingTagCount, Post.*

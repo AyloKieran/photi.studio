@@ -12,16 +12,10 @@ use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 
-class ReflectionManager extends BaseManager
+class ReflectionManager
 {
-    function __construct()
-    {
-        parent::__construct();
-    }
-
     private function getSerializer()
     {
-
         $encoders = [new JsonEncoder()];
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor(), new ReflectionExtractor()]);
         $normalizers = [new ArrayDenormalizer(), new ObjectNormalizer(null, null, null, $extractor)];
