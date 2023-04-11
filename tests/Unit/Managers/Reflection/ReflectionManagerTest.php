@@ -34,9 +34,5 @@ class ReflectionManagerTest extends TestCase
 
         $this->assertEquals("John Doe", $result->name);
         $this->assertEquals(25, $result->age);
-
-        for ($i = 0; $i < 100; $i++) {
-            $this->testReflectToObject_classMatches();
-        }
     }
 }

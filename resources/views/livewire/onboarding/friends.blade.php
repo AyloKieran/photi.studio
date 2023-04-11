@@ -20,11 +20,13 @@
                             </td>
                             @if (in_array($user->id, $selectedUsers))
                                 <td wire:click="removeUser('{{ $user->id }}')">
-                                    <i class="icon fa-solid fa-minus"></i>
+                                    <i class="icon fa-solid fa-minus" wire:loading.remove></i>
+                                    <i class="icon fa-solid fa-spinner fa-spin" wire:loading></i>
                                 </td>
                             @else
                                 <td wire:click="addUser('{{ $user->id }}')">
-                                    <i class="icon fa-solid fa-plus"></i>
+                                    <i class="icon fa-solid fa-plus" wire:loading.remove></i>
+                                    <i class="icon fa-solid fa-spinner fa-spin" wire:loading></i>
                                 </td>
                             @endif
                         </tr>

@@ -17,11 +17,13 @@
                             <td>{{ $tag->name }}</td>
                             @if (in_array($tag->id, $selectedTags))
                                 <td style="width: 1%;" wire:click="removeTag('{{ $tag->id }}')">
-                                    <i class="icon fa-solid fa-minus"></i>
+                                    <i class="icon fa-solid fa-minus" wire:loading.remove></i>
+                                    <i class="icon fa-solid fa-spinner fa-spin" wire:loading></i>
                                 </td>
                             @else
                                 <td style="width: 1%;" wire:click="addTag('{{ $tag->id }}')">
-                                    <i class="icon fa-solid fa-plus"></i>
+                                    <i class="icon fa-solid fa-plus" wire:loading.remove></i>
+                                    <i class="icon fa-solid fa-spinner fa-spin" wire:loading></i>
                                 </td>
                             @endif
                         </tr>

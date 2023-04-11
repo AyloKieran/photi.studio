@@ -13,10 +13,10 @@ class PostTagManager extends BaseManager
 {
     protected $__UserPreferenceManager;
 
-    public function __construct(UserPreferenceManager $userPreferenceManager)
+    public function __construct()
     {
         parent::__construct();
-        $this->__UserPreferenceManager = $userPreferenceManager ?? new UserPreferenceManager();
+        $this->__UserPreferenceManager = new UserPreferenceManager();
     }
 
     public function getRelatedPostsByTag(Post $post)
