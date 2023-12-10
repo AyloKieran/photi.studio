@@ -23,7 +23,7 @@ class SearchManager extends BaseCachedManager
     {
         return $this->__CacheManager->getOrSet($this->generateKey("posts", $query, $limit), function () use ($query, $limit) {
             if (!isset($query)) {
-                return Post::all()->take($limit);
+                return Post::take($limit)->get();
             }
 
             return Post::where('title', 'like', '%' . $query . '%')
