@@ -49,6 +49,21 @@ class DefaultPreferenceSeederManager extends BaseManager
                 'default_value' => 'false',
                 'validation' => 'required|in:true,false',
             ],
+            [
+                'name' => PreferencesEnum::COMMUNICATIONS_NEW_LIKE->value,
+                'default_value' => 'false',
+                'validation' => 'required|in:true,false',
+            ],
+            [
+                'name' => PreferencesEnum::COMMUNICATIONS_NEW_FOLLOW->value,
+                'default_value' => 'true',
+                'validation' => 'required|in:true,false',
+            ],
+            [
+                'name' => PreferencesEnum::COMMUNICATIONS_NEW_POST->value,
+                'default_value' => 'false',
+                'validation' => 'required|in:true,false',
+            ],
         ];
 
         foreach ($preferences as $preference) {

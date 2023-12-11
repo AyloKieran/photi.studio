@@ -5,9 +5,11 @@
         <x-navigation.link title="{{ __('Deactivate Profile') }}" icon="fa-trash"
             route="preferences.deactivate-profile" />
     </x-navigation.section>
-    <x-navigation.section title="{{ __('Application') }}">
+    <x-navigation.section title="{{ __('Preferences') }}">
         <x-navigation.link title="{{ __('Theme') }}" icon="fa-brush" route="preferences.theme" />
         <x-navigation.link title="{{ __('Feeds') }}" icon="fa-pager" route="preferences.feeds" />
+        <x-navigation.link title="{{ __('Communications') }}" icon="fa-tower-broadcast"
+            route="preferences.communications" />
     </x-navigation.section>
     <x-navigation.section title="{{ __('Social') }}">
         <x-navigation.link title="{{ __('Linked Profiles') }}" icon="fa-circle-nodes"

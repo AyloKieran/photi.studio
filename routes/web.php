@@ -56,6 +56,10 @@ Route::group(['middleware' => ['requireVerifiedEmail', 'requireOnboarded']], fun
             Route::get('', [\App\Http\Controllers\Preferences\FeedsController::class, 'show'])->name('preferences.feeds');
             Route::post('', [\App\Http\Controllers\Preferences\FeedsController::class, 'update'])->name('preferences.feeds.update');
         });
+        Route::group(['prefix' => '/communications'], function () {
+            Route::get('', [\App\Http\Controllers\Preferences\CommunicationsController::class, 'show'])->name('preferences.communications');
+            Route::post('', [\App\Http\Controllers\Preferences\CommunicationsController::class, 'update'])->name('preferences.communications.update');
+        });
         Route::group(['prefix' => '/deactivate-profile'], function () {
             Route::get('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'show'])->name('preferences.deactivate-profile');
             Route::post('', [\App\Http\Controllers\Preferences\DeactivateProfileController::class, 'update'])->name('preferences.deactivate-profile.update');

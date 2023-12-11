@@ -6,15 +6,20 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\PostUserRating;
 use App\Enums\PostRatingEnum;
+use App\Enums\PreferencesEnum;
 use App\Managers\BaseCachedManager;
+use App\Managers\User\Preference\UserPreferenceManager;
 use App\Models\TagUserRating;
 use App\Notifications\NewLike;
 
 class UserPostRatingManager extends BaseCachedManager
 {
+    protected $__UserPreferenceManager;
+
     public function __construct()
     {
         parent::__construct();
+        $this->__UserPreferenceManager = new UserPreferenceManager();
     }
 
     private function generateKey(Post $post, User $user)
@@ -89,8 +94,9 @@ class UserPostRatingManager extends BaseCachedManager
         );
 
         if ($rating->value == PostRatingEnum::LIKE->value) {
-
-            $post->author->notify(new NewLike($post, $user));
+            if ($this->__UserPreferenceManager->getUserPreference(PreferencesEnum::COMMUNICATIONS_NEW_LIKE, $user) == 'true') {
+                $post->author->notify(new NewLike($post, $user));
+            }
         }
 
         return $this->__CacheManager->set($this->generateKey($post, $user), $userRating);

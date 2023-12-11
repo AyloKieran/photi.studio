@@ -11,4 +11,7 @@ enum PreferencesEnum: string
     case NOTIFICATION_TIME = 'preference_notification_time';
     case FEEDS_SHOW_INTERACTED = 'preference_feeds_showInteracted';
     case FEEDS_SHOW_NSFW = 'preference_feeds_showNsfw';
+    case COMMUNICATIONS_NEW_LIKE = 'preference_communications_newLike';
+    case COMMUNICATIONS_NEW_FOLLOW = 'preference_communications_newFollow';
+    case COMMUNICATIONS_NEW_POST = 'preference_communications_newPost';
 }

@@ -23,7 +23,7 @@ class SearchManager extends BaseCachedManager
     {
         return $this->__CacheManager->getOrSet($this->generateKey("posts", $query, $limit), function () use ($query, $limit) {
             if (!isset($query)) {
-                return Post::take($limit)->get();
+                return Post::take($limit)->get(); //Todo: get popular posts
             }
 
             return Post::where('title', 'like', '%' . $query . '%')
@@ -37,6 +37,7 @@ class SearchManager extends BaseCachedManager
         return $this->__CacheManager->getOrSet($this->generateKey("tags", $query, $limit), function () use ($query, $limit) {
             if (!isset($query)) {
                 return Tag::withCount('posts')
+                    ->without('posts')
                     ->withSum('ratings', 'rating')
                     ->orderBy('ratings_sum_rating', 'DESC')
                     ->take($limit)->get();
